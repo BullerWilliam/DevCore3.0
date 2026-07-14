@@ -53,7 +53,6 @@ resetDirectory(outputRoot);
 const editorDir = path.join(repoRoot, 'apps', 'editor');
 const packagerDir = path.join(repoRoot, 'apps', 'packager');
 
-runNpm(['install', '--legacy-peer-deps'], {}, homeDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, homeDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, editorDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, packagerDir);
