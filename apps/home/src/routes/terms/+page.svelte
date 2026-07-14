@@ -11,7 +11,7 @@
         <p class="eyebrow">DevCore</p>
         <h1>Terms of Service</h1>
         <p>
-            DevCore is still consolidating the PenguinMod ecosystem into one hosted surface.
+            DevCore is still consolidating its legacy ecosystem into one hosted surface.
             The main editor bundle already ships a legacy terms document, and a DevCore-specific
             rewrite can live here without changing the editor build.
         </p>

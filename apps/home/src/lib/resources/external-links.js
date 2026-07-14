@@ -62,13 +62,12 @@ export default {
     turbowarp: "https://turbowarp.org",
 
     /**
-     * PenguinMod's github page
+     * DevCore's github page
      */
-    github: "https://github.com/PenguinMod/",
+    github: "https://github.com/BullerWilliam/DevCore3.0",
 
     /**
-     * PenguinMod's issues page
+     * DevCore's issues page
      */
-    // TODO: UNIMPORTANT: maybe we should make PenguinMod-Issues finally,,
-    issues: "https://github.com/PenguinMod/PenguinMod-Home/issues",
+    issues: "https://github.com/BullerWilliam/DevCore3.0/issues",
 }

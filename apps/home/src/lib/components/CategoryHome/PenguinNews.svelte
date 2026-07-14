@@ -14,10 +14,10 @@
 </script>
 
 <Category {...props}>
-    <!-- PenguinNews Category -->
+    <!-- DevCore News Category -->
     {#snippet header()}
         <LocalizedString
-            text="PenguinNews"
+            text="DevCore News"
             key="home.sections.informational"
         />
     {/snippet}
@@ -62,7 +62,7 @@
     {#snippet footer()}
         {#if browser && TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) !== "en"}
             <LocalizedString
-                text="PenguinNews is not translated in your language. Sorry! :("
+                text="DevCore News is not translated in your language. Sorry! :("
                 key="home.sections.informational.notranslation"
             />
         {:else}

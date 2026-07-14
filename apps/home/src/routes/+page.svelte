@@ -85,7 +85,7 @@
                     {#if !StateApplication.loggedInProcessed}
                         <img
                             src="/asset/penguin/large/frontpage.svg"
-                            alt="PenguinMod"
+                            alt="DevCore"
                         />
                     {:else if !($StoreSettings.loggedIn)}
                         <!-- TODO: Add a wrapper around this where the video doesnt literally embed til you click or something so we can display YouTube privacy disclaimer -->
@@ -112,7 +112,7 @@
             <div style="width:4px;"></div>
             <p>
                 <LocalizedString
-                    text="PenguinMod is made by English-speaking developers. Expect minor issues and sorry for any translation errors."
+                    text="DevCore is made by English-speaking developers. Expect minor issues and sorry for any translation errors."
                     key="translation.warning"
                 />
             </p>
@@ -122,7 +122,7 @@
     <!-- Scratch Note -->
     <p class="section-scratchnote">
         <LocalizedString
-            text="Scratch Note: Please don't mention PenguinMod on Scratch, we have different rules compared to Scratch! 😅"
+            text="Scratch Note: Please don't mention DevCore on Scratch, we have different rules compared to Scratch! 😅"
             key="home.scratchnote"
         />
     </p>
@@ -251,7 +251,7 @@
                             {/snippet}
                             {#snippet swapPenguinNews()}
                                 <LocalizedString
-                                    text="PenguinNews"
+                                    text="DevCore News"
                                     key="home.sections.informational"
                                 />
                             {/snippet}
@@ -414,7 +414,7 @@
     <div class="section-footer">
         <p style="margin-block-end: 2px;">
             <LocalizedString
-                text="PenguinMod is not affiliated with Scratch, TurboWarp, the Scratch Team, or the Scratch Foundation."
+                text="DevCore is not affiliated with Scratch, TurboWarp, the Scratch Team, or the Scratch Foundation."
                 key="home.footer.notaffiliated"
             />
         </p>
@@ -528,7 +528,7 @@
                     />
                 </p>
                 <a href={"/support"}>
-                    PenguinMod
+                    DevCore
                 </a>
                 <a href={externalLinks.scratch}>
                     Scratch

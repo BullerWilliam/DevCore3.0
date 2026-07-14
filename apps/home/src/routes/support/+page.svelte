@@ -7,15 +7,15 @@
         <p class="eyebrow">DevCore</p>
         <h1>Support DevCore</h1>
         <p>
-            DevCore is being assembled from the wider PenguinMod ecosystem, so support options are
-            still being unified.
+            DevCore is being assembled from a wider legacy ecosystem, so support options are still
+            being unified.
         </p>
         <p>
             The easiest ways to help right now are to share feedback, report issues, and support the
             upstream tools that made this stack possible.
         </p>
         <div class="link-list">
-            <a href="https://github.com/PenguinMod/">PenguinMod GitHub</a>
+            <a href="https://github.com/BullerWilliam/DevCore3.0">DevCore GitHub</a>
             <a href="https://github.com/sponsors/GarboMuffin">Support TurboWarp</a>
             <a href="https://www.scratchfoundation.org/donate">Support Scratch Foundation</a>
             <a href="https://discord.gg/NZ9MBMYTZh">Join the community Discord</a>

@@ -7,8 +7,8 @@
         <p class="eyebrow">DevCore</p>
         <h1>Privacy Policy</h1>
         <p>
-            DevCore currently reuses several PenguinMod-hosted services for API and project data,
-            while the public-facing site is being brought together under one repo and one deployment.
+            DevCore currently reuses several legacy hosted services for API and project data, while
+            the public-facing site is being brought together under one repo and one deployment.
         </p>
         <p>
             The bundled legacy privacy document remains available here:

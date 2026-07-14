@@ -8,11 +8,12 @@
         <h1>Uploading Guidelines</h1>
         <p>
             Project-sharing guidelines are part of the larger DevCore consolidation work, since
-            moderation, accounts, and publishing are still partially backed by PenguinMod services.
+            moderation, accounts, and publishing are still partially backed by legacy hosted
+            services.
         </p>
         <p>
             Until the local sharing stack is fully rewritten, the best reference is the existing
-            PenguinMod guidelines page:
+            DevCore guidelines source page:
             <a href="https://studio.penguinmod.com/PenguinMod-Guidelines/PROJECTS">open uploading guidelines</a>.
         </p>
         <p>
