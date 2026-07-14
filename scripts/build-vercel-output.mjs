@@ -11,7 +11,12 @@ import { fileURLToPath } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, '..');
-const outputRoot = path.join(repoRoot, 'dist', 'vercel');
+const homeDir = path.join(repoRoot, 'apps', 'home');
+const outputRoot = process.env.DEVCORE_OUTPUT_DIR
+    ? path.resolve(repoRoot, process.env.DEVCORE_OUTPUT_DIR)
+    : process.cwd() === homeDir
+        ? path.join(homeDir, 'vercel-output')
+        : path.join(repoRoot, 'dist', 'vercel');
 const npmRunner = process.env.npm_execpath
     ? `"${process.execPath}" "${process.env.npm_execpath}"`
     : 'npm';
@@ -45,7 +50,6 @@ const copyFile = (source, target) => {
 
 resetDirectory(outputRoot);
 
-const homeDir = path.join(repoRoot, 'apps', 'home');
 const editorDir = path.join(repoRoot, 'apps', 'editor');
 const packagerDir = path.join(repoRoot, 'apps', 'packager');
 

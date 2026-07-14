@@ -6,6 +6,7 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"build:vercel": "node ../../scripts/build-vercel-output.mjs",
 		"preview": "vite preview",
 		"prepare": "svelte-kit sync || echo ''",
 		"indexl10n": "node scripts/programatic-langs.js && node scripts/translation-index.js"
