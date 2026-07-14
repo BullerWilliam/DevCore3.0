@@ -1,6 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm install --workspaces=false --ignore-scripts --legacy-peer-deps",
+  "installCommand": "node -e \"console.log('Skipping root install; scripts/build-vercel-output.mjs handles workspace installs.')\"",
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist/vercel"
 }
