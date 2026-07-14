@@ -1,4 +1,9 @@
-import { PUBLIC_STUDIO_URL } from "$lib/resources/public-env";
+import {
+    DEVCORE_CREDITS_PATH,
+    DEVCORE_CONTACT_PATH,
+    DEVCORE_EDITOR_PATH,
+    DEVCORE_PACKAGER_PATH
+} from "$lib/resources/site-paths";
 
 export default {
     /**
@@ -6,17 +11,17 @@ export default {
      * 
      * This should only be used in a context of "visit the editor" with no specific target
      */
-    editor: `${PUBLIC_STUDIO_URL}/editor.html`,
+    editor: DEVCORE_EDITOR_PATH,
 
     /**
      * PenguinMod's credits page
      */
-    credits: `${PUBLIC_STUDIO_URL}/credits.html`,
+    credits: DEVCORE_CREDITS_PATH,
 
     /**
      * PenguinMod's contact page
      */
-    contact: `${PUBLIC_STUDIO_URL}/contact.html`,
+    contact: DEVCORE_CONTACT_PATH,
 
     /**
      * Donation pages for sites
@@ -29,7 +34,7 @@ export default {
     /**
      * PenguinMod's packager page
      */
-    packager: `${PUBLIC_STUDIO_URL}/PenguinMod-Packager/`,
+    packager: DEVCORE_PACKAGER_PATH,
     
     /**
      * PenguinMod's status page

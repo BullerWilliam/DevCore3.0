@@ -1,6 +1,6 @@
 <script>
     import { onMount } from "svelte";
-    import { PUBLIC_STUDIO_URL } from "$lib/resources/public-env";
+    import { buildSharedProjectPath } from "$lib/resources/site-paths";
 
     // components
     import { Category, UserDisplay } from "PenguinMod-SvelteUI";
@@ -68,7 +68,7 @@
         switch (type) {
             case "upload":
             case "remix":
-                return `${PUBLIC_STUDIO_URL}/#${content.id}`;
+                return buildSharedProjectPath(content.id);
             case "posted":
                 // TODO: UNIMPORTANT: posts arent really planned for PM, and if they are added, do we really want them all to appear on the profile page?
                 return `/profile/${author}?post=${content.id}`;

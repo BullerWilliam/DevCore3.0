@@ -34,11 +34,15 @@
 #   msg/js/<LANG>.js for every language <LANG> defined in msg/js/<LANG>.json.
 
 import sys
+from functools import reduce
+from importlib import reload
 # if sys.version_info[0] != 2:
 #   raise Exception("Blockly build only compatible with Python 2.x.\n"
 #                   "You are using: " + sys.version)
 
-import errno, glob, httplib, json, os, re, subprocess, threading, urllib, platform
+import errno, glob, json, os, re, subprocess, threading, platform
+import http.client as httplib
+import urllib.parse
 
 REMOTE_COMPILER = "remote"
 
@@ -47,10 +51,15 @@ CLOSURE_ROOT = os.path.pardir
 CLOSURE_LIBRARY = "closure-library"
 CLOSURE_COMPILER = REMOTE_COMPILER
 
-CLOSURE_DIR_NPM = "node_modules"
-CLOSURE_ROOT_NPM = os.path.join("node_modules")
+LOCAL_NODE_MODULES = "node_modules"
+WORKSPACE_NODE_MODULES = os.path.normpath(os.path.join("..", "..", "node_modules"))
+CLOSURE_DIR_NPM = LOCAL_NODE_MODULES if os.path.isdir(LOCAL_NODE_MODULES) else WORKSPACE_NODE_MODULES
+CLOSURE_ROOT_NPM = CLOSURE_DIR_NPM
 CLOSURE_LIBRARY_NPM = "google-closure-library"
-CLOSURE_COMPILER_NPM = ("google-closure-compiler.cmd" if os.name == "nt" else "google-closure-compiler")
+DEFAULT_NPM_COMPILER = "google-closure-compiler.cmd" if os.name == "nt" else "google-closure-compiler"
+CLOSURE_COMPILER_NPM = os.path.join(CLOSURE_DIR_NPM, ".bin", DEFAULT_NPM_COMPILER)
+if not os.path.isfile(CLOSURE_COMPILER_NPM):
+  CLOSURE_COMPILER_NPM = DEFAULT_NPM_COMPILER
 
 def import_path(fullpath):
   """Import a file with full path specification.
@@ -71,7 +80,10 @@ def import_path(fullpath):
   return module
 
 def read(filename):
-    f = open(filename)
+    if (sys.version_info[0] < 3):
+      f = open(filename)
+    else:
+      f = open(filename, encoding='utf-8', errors='ignore')
     content = "".join(f.readlines())
     f.close()
     return content
@@ -375,7 +387,7 @@ class Gen_compressed(threading.Thread):
 
       headers = {"Content-type": "application/x-www-form-urlencoded"}
       conn = httplib.HTTPSConnection("closure-compiler.appspot.com")
-      conn.request("POST", "/compile", urllib.urlencode(remoteParams), headers)
+      conn.request("POST", "/compile", urllib.parse.urlencode(remoteParams), headers)
       response = conn.getresponse()
       json_str = response.read()
       conn.close()
@@ -390,12 +402,12 @@ class Gen_compressed(threading.Thread):
       n = int(name[6:]) - 1
       return filenames[n]
 
-    if json_data.has_key("serverErrors"):
+    if "serverErrors" in json_data:
       errors = json_data["serverErrors"]
       for error in errors:
         print("SERVER ERROR: %s" % target_filename)
         print(error["error"])
-    elif json_data.has_key("errors"):
+    elif "errors" in json_data:
       errors = json_data["errors"]
       for error in errors:
         print("FATAL ERROR")
@@ -407,7 +419,7 @@ class Gen_compressed(threading.Thread):
           print((" " * error["charno"]) + "^")
         sys.exit(1)
     else:
-      if json_data.has_key("warnings"):
+      if "warnings" in json_data:
         warnings = json_data["warnings"]
         for warning in warnings:
           print("WARNING")
@@ -424,7 +436,7 @@ class Gen_compressed(threading.Thread):
     return False
 
   def write_output(self, target_filename, remove, json_data):
-      if not json_data.has_key("compiledCode"):
+      if "compiledCode" not in json_data:
         print("FATAL ERROR: Compiler did not return compiledCode.")
         sys.exit(1)
 
@@ -567,39 +579,48 @@ if __name__ == "__main__":
 
     # Sanity check the local compiler
     test_args = [closure_compiler, os.path.join("build", "test_input.js")]
-    test_proc = subprocess.Popen(test_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    test_proc = subprocess.Popen(test_args, stdin=subprocess.PIPE, stdout=subprocess.PIPE, text=True)
     (stdout, _) = test_proc.communicate()
     assert stdout == read(os.path.join("build", "test_expect.js"))
 
     print("Using local compiler: %s ...\n" % CLOSURE_COMPILER_NPM)
-  except (ImportError, AssertionError):
+  except (ImportError, AssertionError, OSError):
     print("Using remote compiler: closure-compiler.appspot.com ...\n")
 
     try:
-      closure_dir = CLOSURE_DIR
-      closure_root = CLOSURE_ROOT
-      closure_library = CLOSURE_LIBRARY
+      closure_dir = CLOSURE_DIR_NPM
+      closure_root = CLOSURE_ROOT_NPM
+      closure_library = CLOSURE_LIBRARY_NPM
       closure_compiler = CLOSURE_COMPILER
 
       calcdeps = import_path(os.path.join(
           closure_root, closure_library, "closure", "bin", "calcdeps.py"))
     except ImportError:
-      if os.path.isdir(os.path.join(os.path.pardir, "closure-library-read-only")):
-        # Dir got renamed when Closure moved from Google Code to GitHub in 2014.
-        print("Error: Closure directory needs to be renamed from"
-              "'closure-library-read-only' to 'closure-library'.\n"
-              "Please rename this directory.")
-      elif os.path.isdir(os.path.join(os.path.pardir, "google-closure-library")):
-        print("Error: Closure directory needs to be renamed from"
-             "'google-closure-library' to 'closure-library'.\n"
-             "Please rename this directory.")
-      else:
-        print("""Error: Closure not found.  Read this:
-  developers.google.com/blockly/guides/modify/web/closure""")
-      sys.exit(1)
+      try:
+        closure_dir = CLOSURE_DIR
+        closure_root = CLOSURE_ROOT
+        closure_library = CLOSURE_LIBRARY
+        closure_compiler = CLOSURE_COMPILER
 
-  search_paths = calcdeps.ExpandDirectories(
-      ["core", os.path.join(closure_root, closure_library)])
+        calcdeps = import_path(os.path.join(
+            closure_root, closure_library, "closure", "bin", "calcdeps.py"))
+      except ImportError:
+        if os.path.isdir(os.path.join(os.path.pardir, "closure-library-read-only")):
+          # Dir got renamed when Closure moved from Google Code to GitHub in 2014.
+          print("Error: Closure directory needs to be renamed from"
+                "'closure-library-read-only' to 'closure-library'.\n"
+                "Please rename this directory.")
+        elif os.path.isdir(os.path.join(os.path.pardir, "google-closure-library")):
+          print("Error: Closure directory needs to be renamed from"
+               "'google-closure-library' to 'closure-library'.\n"
+               "Please rename this directory.")
+        else:
+          print("""Error: Closure not found.  Read this:
+  developers.google.com/blockly/guides/modify/web/closure""")
+        sys.exit(1)
+
+  search_paths = list(calcdeps.ExpandDirectories(
+      ["core", os.path.join(closure_root, closure_library)]))
 
   search_paths_vertical = search_paths
 
@@ -609,12 +630,6 @@ if __name__ == "__main__":
     "closure_library": closure_library,
     "closure_compiler": closure_compiler,
   }
-
-  # Run all tasks in parallel threads.
-  # Uncompressed is limited by processor speed.
-  # Compressed is limited by network and server speed.
-  # Vertical:
-  Gen_uncompressed(search_paths_vertical, True, closure_env).start()
 
   # Compressed forms of vertical
   Gen_compressed(search_paths_vertical, closure_env).start()

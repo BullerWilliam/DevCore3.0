@@ -16,16 +16,28 @@ DevCore adds a shared theme contract through `packages/devcore-theme`. The home 
 
 ## Vercel
 
-This repo is arranged for a root-based Vercel monorepo workflow:
+This repo is arranged for a root-based Vercel workflow that assembles multiple DevCore surfaces into one static deployment:
 
-- Root `vercel.json`: default home deployment
-- Additional Vercel projects should keep the repo root and override only the build/output settings in the dashboard
+- Root `vercel.json`: installs the repo without running legacy package scripts, then calls `npm run build:vercel`
+- `scripts/build-vercel-output.mjs`: performs app-local installs for `apps/home` and `apps/editor`, builds home/editor/packager, and assembles the combined output into `dist/vercel`
+- Default output directory: `dist/vercel`
+- Home env vars can be copied from `apps/home/.env.template`, but the repo includes safe runtime defaults so the home build does not fail when those vars are absent
 
 Suggested project settings:
 
-- Home: `npm run build:home` with output `apps/home/build`
-- Editor: `npm run build:editor` with output `apps/editor/build`
-- Packager: `npm run build:packager` with output `apps/packager/dist`
+- Build command: `npm run build:vercel`
+- Output directory: `dist/vercel`
+- Main routes after build:
+  - `/` for home
+  - `/editor` for the editor
+  - `/player` for shared-project playback
+  - `/packager` for the packager
+
+Current build status:
+
+- Home: builds successfully
+- Packager: builds successfully
+- Editor: builds successfully through the upstream PenguinMod prebuilt package set, while the imported local source repos remain in-tree for DevCore development
 
 ## Repo Inventory
 

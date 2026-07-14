@@ -8,6 +8,7 @@
         writeStoredDevcoreTheme
     } from "@devcore/theme";
     import { PUBLIC_STUDIO_URL } from "$lib/resources/public-env";
+    import { DEVCORE_EDITOR_PATH } from "$lib/resources/site-paths";
 
     // Components
     import Icon from "$lib/components/Icon/Component.svelte";
@@ -85,7 +86,7 @@
 
         <!-- generic links -->
         <a
-            href={PUBLIC_STUDIO_URL}
+            href={DEVCORE_EDITOR_PATH}
             class="navigation-button-link"
             {@attach LocalizedTooltip("navigation.create")}
         >

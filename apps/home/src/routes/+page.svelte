@@ -1,7 +1,5 @@
 <script>
     import { browser } from "$app/environment";
-    import { PUBLIC_STUDIO_URL } from "$lib/resources/public-env";
-
     import { PenguinModAPIError } from "$lib/resources/penguinmod/module";
 
     // components
@@ -19,6 +17,7 @@
     import CacheHelper from "$lib/resources/cache/cache-helper";
     import TranslationMapper from "$lib/resources/localization/translation/mapper";
     import PenguinModClient from "$lib/resources/penguinmod/client";
+    import { buildSharedProjectPath } from "$lib/resources/site-paths";
 
     import StateApplication from "$lib/state/app.svelte";
     import StoreSettings from "$lib/stores/settings.js";
@@ -339,7 +338,7 @@
                             <Project
                                 src={PenguinModClient.projects.getProjectThumbnailURL(project.id)}
                                 userSrc={PenguinModClient.users.getPfpUrl(project.author.username)}
-                                href={`${PUBLIC_STUDIO_URL}/#${project.id}`}
+                                href={buildSharedProjectPath(project.id)}
                                 glint={project.featured ? "featured" : null}
                                 title={project.title}
                             >

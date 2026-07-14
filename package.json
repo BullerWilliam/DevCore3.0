@@ -35,7 +35,10 @@
     "tools/scripts"
   ],
   "scripts": {
+    "install:home": "npm install --prefix apps/home --workspaces=false --legacy-peer-deps",
+    "install:editor": "npm install --prefix apps/editor --workspaces=false --legacy-peer-deps",
     "build:home": "npm run build --prefix apps/home",
+    "build:vercel": "node scripts/build-vercel-output.mjs",
     "build:editor": "npm run build --prefix apps/editor",
     "build:packager": "npm run build --prefix apps/packager",
     "dev:home": "npm run dev --prefix apps/home",
