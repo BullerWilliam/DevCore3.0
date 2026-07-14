@@ -52,8 +52,12 @@ resetDirectory(outputRoot);
 
 const editorDir = path.join(repoRoot, 'apps', 'editor');
 const packagerDir = path.join(repoRoot, 'apps', 'packager');
+const apiModuleDir = path.join(repoRoot, 'packages', 'api-module');
+const markdownDir = path.join(repoRoot, 'packages', 'markdown');
 
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, homeDir);
+runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, apiModuleDir);
+runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, markdownDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, editorDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, packagerDir);
 
