@@ -1,0 +1,10 @@
+[ ] = not done
+[-] = done
+
+main
+[-] make the api actually work lol
+[-] scratch authentication
+[ ] saving projects (encrypt the sent file somehow so people who know the api url cant get it)
+
+questioning
+[ ] use github instead? (https://discord.com/channels/1033551490331197462/1038251742439149661/1082409761326256248)

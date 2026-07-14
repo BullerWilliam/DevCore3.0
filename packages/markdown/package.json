@@ -1,0 +1,52 @@
+{
+  "name": "PenguinMod-MarkDown",
+  "version": "0.6.0",
+  "description": "A markdown parser and compiler. Built for speed.",
+  "repository": {
+    "url": "egoist/md",
+    "type": "git"
+  },
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm run lint && jest",
+    "test:cov": "npm run lint && jest --coverage",
+    "prepublishOnly": "npm run build",
+    "lint": "xo",
+    "build": "bili --format umd,cjs,es,umd-min"
+  },
+  "author": "egoist <0x142857@gmail.com>",
+  "license": "MIT",
+  "babel": {
+    "presets": [
+      [
+        "env",
+        {
+          "targets": {
+            "node": "current"
+          }
+        }
+      ]
+    ]
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.6.0",
+    "bili": "^2.2.7",
+    "eslint-config-rem": "^3.1.0",
+    "jest": "^22.4.2",
+    "xo": "^0.18.2"
+  },
+  "xo": {
+    "extends": "rem/prettier",
+    "envs": ["jest"],
+    "rules": {
+      "complexity": 0,
+      "no-cond-assign": 0,
+      "no-unexpected-multiline": 0,
+      "func-call-spacing": 0,
+      "no-useless-escape": 0
+    }
+  },
+  "dependencies": {
+    "slugo": "^0.2.1"
+  }
+}

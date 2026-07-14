@@ -1,0 +1,38 @@
+# Tokens
+.env
+
+# Node
+node_modules
+package-lock.json
+
+# macOS
+.DS_Store
+
+# Windows
+System Volume Information
+
+# Database Files
+cooldown.json
+banned.json
+users.json
+userips.json
+usermessages.json
+userdata.json
+userfeed.json
+following.json
+hadfollowing.json
+
+userreports.json
+projectreports.json
+
+admins.json
+approvers.json
+
+# Extra
+blockedips.json
+globalsettings.json
+illegalwords.json
+cache/*
+
+# Projects
+projects/*

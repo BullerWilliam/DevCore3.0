@@ -1,0 +1,42 @@
+* {
+    font-family: Helvetica, Arial,sans-serif;
+    font-size: large;
+}
+
+button {
+    cursor: pointer;
+}
+label {
+    display: block;
+}
+
+.fake-link {
+    padding: 0;
+    margin: 0;
+    border: 0;
+
+    display: block;
+
+    background: transparent;
+    color: darkcyan;
+    text-decoration: underline;
+    
+    cursor: pointer;
+}
+.costume-button > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.costume-button img {
+    width: 96px;
+    height: 96px;
+
+    object-fit: contain;
+}
+.costume-image {
+    width: 196px;
+    height: 196px;
+    
+    object-fit: contain;
+}

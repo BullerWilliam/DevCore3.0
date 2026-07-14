@@ -1,0 +1,16 @@
+:root {
+  /* PenguinMod #00c3ff is too bright in light mode */
+  --ifm-color-primary: dodgerblue;
+  --ifm-font-family-base: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --ifm-container-width: 800px;
+  --ifm-container-width-xl: 1000px;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 215, 0, 0.15);
+}
+
+h1 {
+  font-size: 2.5em !important;
+}
+
+.pagination-nav {
+  display: none;
+}

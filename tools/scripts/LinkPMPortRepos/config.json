@@ -1,0 +1,17 @@
+{
+    "gui": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-gui",
+    "markdown": "C:/Users/Jeremy/Documents/Projects/PenguinMod/PenguinMod-MarkDown",
+    "packager": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/packager",
+    "audio": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-audio",
+    "paint": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-paint",
+    "render": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-render",
+    "render-fonts": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-render-fonts",
+    "svg-renderer": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-svg-renderer",
+    "storage": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-storage",
+    "l10n": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-l10n",
+    "vm": "C:/Users/Jeremy/Documents/Projects/PenguinMod-Port/scratch-vm",
+    "entryPoints": [
+        "gui",
+        "packager"
+    ]
+}

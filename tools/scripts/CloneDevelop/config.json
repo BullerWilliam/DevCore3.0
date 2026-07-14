@@ -1,0 +1,60 @@
+{
+    "gui": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-gui",
+        "repo": "penguinmod.github.io"
+    },
+    "packager": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-packager",
+        "repo": "PenguinMod-Packager"
+    },
+    "audio": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-audio",
+        "repo": "PenguinMod-Audio"
+    },
+    "blocks": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-blocks",
+        "repo": "PenguinMod-Blocks"
+    },
+    "paint": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-paint",
+        "repo": "PenguinMod-Paint"
+    },
+    "parser": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-parser",
+        "repo": "PenguinMod-Parser"
+    },
+    "render": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-render",
+        "repo": "PenguinMod-Render"
+    },
+    "render-fonts": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-render-fonts",
+        "repo": "penguinmod-render-fonts"
+    },
+    "storage": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-storage",
+        "repo": "PenguinMod-Storage"
+    },
+    "vm": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/scratch-vm",
+        "repo": "PenguinMod-Vm"
+    },
+    "markdown": {
+        "path": "/home/godlsayerakp/Documents/repos/PenguinMod/PenguinMod-MarkDown",
+        "repo": "PenguinMod-MarkDown"
+    },
+    "repos": [
+        "markdown",
+        "vm",
+        "storage",
+        "render-fonts",
+        "render",
+        "parser",
+        "paint",
+        "blocks",
+        "audio",
+        "packager",
+        "gui"
+    ],
+    "src": "PenguinMod"
+}

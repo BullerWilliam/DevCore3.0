@@ -1,0 +1,407 @@
+[
+    {
+        "name":  "penguinmod.github.io",
+        "html_url":  "https://github.com/PenguinMod/penguinmod.github.io",
+        "clone_url":  "https://github.com/PenguinMod/penguinmod.github.io.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "PenguinMod Main Repo that combines the other repos together!"
+    },
+    {
+        "name":  "PenguinMod-Vm",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Vm",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Vm.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "PenguinMod Vm"
+    },
+    {
+        "name":  "PenguinMod-Blocks",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Blocks",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Blocks.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "PenguinMod Blocks"
+    },
+    {
+        "name":  "PenguinMod-Render",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Render",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Render.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "PenguinMod Render"
+    },
+    {
+        "name":  "PenguinMod-Packager",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Packager",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Packager.git",
+        "default_branch":  "master",
+        "archived":  false,
+        "fork":  true,
+        "description":  "Converts Scratch projects into HTML files, zip archives, or executable programs for Windows, macOS, and Linux."
+    },
+    {
+        "name":  "PenguinMod-WRONG-REPOSITORY-Desktop",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-WRONG-REPOSITORY-Desktop",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-WRONG-REPOSITORY-Desktop.git",
+        "default_branch":  "master",
+        "archived":  true,
+        "fork":  true,
+        "description":  "A better offline editor for Scratch 3."
+    },
+    {
+        "name":  "PenguinMod-StorageOld",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-StorageOld",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-StorageOld.git",
+        "default_branch":  "develop",
+        "archived":  true,
+        "fork":  true,
+        "description":  "Load and store project and asset files for Scratch 3.0"
+    },
+    {
+        "name":  "PenguinMod-Gui",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Gui",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Gui.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  null
+    },
+    {
+        "name":  "PenguinMod-Parser",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Parser",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Parser.git",
+        "default_branch":  "master",
+        "archived":  false,
+        "fork":  true,
+        "description":  "scratch-parser with various bug fixes"
+    },
+    {
+        "name":  "FreshPkg",
+        "html_url":  "https://github.com/PenguinMod/FreshPkg",
+        "clone_url":  "https://github.com/PenguinMod/FreshPkg.git",
+        "default_branch":  "main",
+        "archived":  true,
+        "fork":  false,
+        "description":  null
+    },
+    {
+        "name":  "PenguinMod-DocsLegacy",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-DocsLegacy",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-DocsLegacy.git",
+        "default_branch":  "main",
+        "archived":  true,
+        "fork":  false,
+        "description":  "Outdated. Use https://github.com/PenguinMod/PenguinMod-DocsNewest instead."
+    },
+    {
+        "name":  "PMSharing-template",
+        "html_url":  "https://github.com/PenguinMod/PMSharing-template",
+        "clone_url":  "https://github.com/PenguinMod/PMSharing-template.git",
+        "default_branch":  "main",
+        "archived":  true,
+        "fork":  false,
+        "description":  "a template/example for how the how pm sharing will function via github"
+    },
+    {
+        "name":  "PenguinMod-Paint",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Paint",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Paint.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "scratch-paint with additional features and branding changes for PenguinMod"
+    },
+    {
+        "name":  "penguinmod-render-fonts",
+        "html_url":  "https://github.com/PenguinMod/penguinmod-render-fonts",
+        "clone_url":  "https://github.com/PenguinMod/penguinmod-render-fonts.git",
+        "default_branch":  "master",
+        "archived":  false,
+        "fork":  true,
+        "description":  "Fonts for Scratch SVG rendering"
+    },
+    {
+        "name":  "PenguinMod-Home",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Home",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Home.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "A main dashboard page featuring community projects and featured content."
+    },
+    {
+        "name":  "PenguinMod-ObjectLibraries",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-ObjectLibraries",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-ObjectLibraries.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "The repo containing all new Public Domain costumes, sounds and others in PenguinMod\u0027s libraries."
+    },
+    {
+        "name":  "PenguinMod-Audio",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Audio",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Audio.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "Web Audio-based audio engine"
+    },
+    {
+        "name":  "PenguinMod-Guidelines",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Guidelines",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Guidelines.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  null
+    },
+    {
+        "name":  "PenguinMod-DocsNew",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-DocsNew",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-DocsNew.git",
+        "default_branch":  "master",
+        "archived":  true,
+        "fork":  true,
+        "description":  "Outdated. Use https://github.com/PenguinMod/PenguinMod-DocsNewest instead."
+    },
+    {
+        "name":  "PenguinMod-BackendApi",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-BackendApi",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-BackendApi.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "The backend api for penguinmod."
+    },
+    {
+        "name":  "PenguinMod-LegacyBackendApi",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-LegacyBackendApi",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-LegacyBackendApi.git",
+        "default_branch":  "main",
+        "archived":  true,
+        "fork":  false,
+        "description":  "Legacy API. Archived as it is no longer recommended."
+    },
+    {
+        "name":  "PenguinMod-ExtensionsGallery",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-ExtensionsGallery",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-ExtensionsGallery.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  null
+    },
+    {
+        "name":  "PenguinMod-IntermediateBackendApi",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-IntermediateBackendApi",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-IntermediateBackendApi.git",
+        "default_branch":  "main",
+        "archived":  true,
+        "fork":  false,
+        "description":  "Replaces LegacyBackendApi. This version uses less resources \u0026 doesn\u0027t use Data URLs to save."
+    },
+    {
+        "name":  "PenguinMod-Desktop-OLD-CAT-VERSION",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Desktop-OLD-CAT-VERSION",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Desktop-OLD-CAT-VERSION.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "Work in Progress"
+    },
+    {
+        "name":  "PenguinMod-Storage",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Storage",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Storage.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "Load and store project and asset files for PenguinMod"
+    },
+    {
+        "name":  "PenguinMod-Scripts",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Scripts",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Scripts.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "Scripts to help when developing for PenguinMod"
+    },
+    {
+        "name":  "PenguinMod-BasicApi",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-BasicApi",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-BasicApi.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "The PenguinMod Basic API responsible for the site\u0027s status, \u0027What\u0027s New\u0027 card, and \u0027Recent Commits\u0027 card."
+    },
+    {
+        "name":  "PenguinMod-MarkDown",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-MarkDown",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-MarkDown.git",
+        "default_branch":  "master",
+        "archived":  false,
+        "fork":  true,
+        "description":  "A markdown parser and compiler. Built for speed."
+    },
+    {
+        "name":  "penguinmod-download-page",
+        "html_url":  "https://github.com/PenguinMod/penguinmod-download-page",
+        "clone_url":  "https://github.com/PenguinMod/penguinmod-download-page.git",
+        "default_branch":  "main",
+        "archived":  true,
+        "fork":  true,
+        "description":  "The Penguinmod O.V. (Offline Version) website"
+    },
+    {
+        "name":  "PenguinMod-StorageExtAPI",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-StorageExtAPI",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-StorageExtAPI.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "The PenguinMod Storage Extension API is responsible for storing and retrieving server data in the Storage extension."
+    },
+    {
+        "name":  "PenguinMod-Docs",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Docs",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Docs.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "again but this time its not a fork"
+    },
+    {
+        "name":  "PenguinMod-VSCode-Extension",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-VSCode-Extension",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-VSCode-Extension.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  null
+    },
+    {
+        "name":  "PenguinMod-GenericExtApi",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-GenericExtApi",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-GenericExtApi.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "pm_bapi rewritten in express"
+    },
+    {
+        "name":  "PenguinMod-ApiModule",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-ApiModule",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-ApiModule.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "WIP. Meant for internal use to help with development. Will not be supported beyond that."
+    },
+    {
+        "name":  "PenguinMod-Paper",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Paper",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Paper.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "The Swiss Army Knife of Vector Graphics Scripting – Scriptographer ported to JavaScript and the browser, using HTML5 Canvas. Created by @lehni \u0026 @puckey"
+    },
+    {
+        "name":  "PenguinBot-Public",
+        "html_url":  "https://github.com/PenguinMod/PenguinBot-Public",
+        "clone_url":  "https://github.com/PenguinMod/PenguinBot-Public.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "Public version of the PenguinBot repo. Avoid pushing event code, easter eggs, or tokens here."
+    },
+    {
+        "name":  "pmp-protobuf",
+        "html_url":  "https://github.com/PenguinMod/pmp-protobuf",
+        "clone_url":  "https://github.com/PenguinMod/pmp-protobuf.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  null
+    },
+    {
+        "name":  "PenguinMod-HomeNew",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-HomeNew",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-HomeNew.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "Rewrite of PenguinMod-Home with Svelte v5. A main dashboard page featuring community projects and featured content."
+    },
+    {
+        "name":  "penguinmod-svg-renderer",
+        "html_url":  "https://github.com/PenguinMod/penguinmod-svg-renderer",
+        "clone_url":  "https://github.com/PenguinMod/penguinmod-svg-renderer.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "Forked from TW so we have less npm issues lol. Scratch SVG renderer but unhardcoded stage size."
+    },
+    {
+        "name":  "PenguinMod-Addons",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Addons",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Addons.git",
+        "default_branch":  "develop",
+        "archived":  false,
+        "fork":  true,
+        "description":  "Repository for addons"
+    },
+    {
+        "name":  "BFunEmoji",
+        "html_url":  "https://github.com/PenguinMod/BFunEmoji",
+        "clone_url":  "https://github.com/PenguinMod/BFunEmoji.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "Quick and Dirty, CC0 Licensed Emoji set in Bitmap format"
+    },
+    {
+        "name":  "PenguinMod-SvelteUI",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-SvelteUI",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-SvelteUI.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "Reusable Svelte components for PenguinMod-Home and others"
+    },
+    {
+        "name":  "PenguinMod-LibraryConcileUI",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-LibraryConcileUI",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-LibraryConcileUI.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "gui to easily write metadata for costumes and sounds in the PM library"
+    },
+    {
+        "name":  "PenguinMod-Holdover",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-Holdover",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-Holdover.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "send people to the site while its kinda down"
+    },
+    {
+        "name":  "PenguinMod-MarkDownNew",
+        "html_url":  "https://github.com/PenguinMod/PenguinMod-MarkDownNew",
+        "clone_url":  "https://github.com/PenguinMod/PenguinMod-MarkDownNew.git",
+        "default_branch":  "main",
+        "archived":  false,
+        "fork":  false,
+        "description":  "wrapper around marked with formatting helpers"
+    }
+]

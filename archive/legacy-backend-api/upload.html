@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>PenguinMod - Upload</title>
+        
+        <meta charset="utf-8">
+        
+        <meta name="title" content="PenguinMod - Upload"/>
+        <meta name="description" content="The page for uploading PenguinMod projects via PenguinMod's upload button.">
+        <meta property="theme-color" content="#51D3F4">
+        
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://projects.penguinmod.site/upload">
+        <meta property="og:title" content="PenguinMod - Upload"/>
+        <meta property="og:image" content="https://projects.penguinmod.site/icon.png">
+        
+        <meta property="twitter:url" content="https://projects.penguinmod.site/upload">
+        <meta property="twitter:title" content="PenguinMod - Upload">
+        <meta property="twitter:description" content="The page for uploading PenguinMod projects via PenguinMod's upload button.">
+        <meta property="twitter:image" content="https://projects.penguinmod.site/icon.png">
+        
+        <link rel="icon" href="../icon.png">
+        <style>
+            * {
+                font-family: monospace;
+            }
+            .bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(2,0,58);
+                background: linear-gradient(180deg, rgba(2,0,58,1) 0%, rgba(6,47,109,1) 30%, rgba(0,212,255,1) 100%);
+            }
+            .bgError {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(255,0,0);
+                background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(54,0,0,1) 30%, rgba(0,0,0,1) 100%);
+            }
+            .card {
+                position: absolute;
+                width: 60%;
+                height: 60%;
+                left: calc(20% - 16px);
+                top: calc(20% - 16px);
+                background: rgb(255,255,255);
+                border-radius: 20px;
+                text-align: center;
+                padding: 16px;
+            }
+            .plist {
+                background-color: rgba(0%, 0%, 0%, 10%);
+                width: 100%;
+                height: 75%;
+                border-radius: 8px;
+            }
+            @keyframes spinningBasic {
+                0% { rotate: 0deg; }
+                50% { rotate: 180deg; }
+                100% { rotate: 360deg; }
+            }
+            .loadspinner {
+                animation-name: spinningBasic;
+                animation-delay: 0s;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            button {
+                border-width: 0px;
+                background-color: #fff;
+                border-radius: 16px;
+                cursor: pointer;
+                padding: 8px;
+                margin: 4px;
+            }
+            button:hover {
+                background-color: dodgerblue;
+                border-color: #2a70d1 !important;
+            }
+            img {
+                object-fit: cover;
+            }
+            textarea {
+                resize: none;
+            }
+
+            @keyframes errorAnimate {
+                0% {
+                    rotate: -3deg;
+                    background: red;
+                }
+                10% {
+                    rotate: 3deg;
+                }
+                20% {
+                    rotate: 0deg;
+                }
+                100% {
+                    rotate: 0deg;
+                    background: white;
+                }
+            }
+            .error-animate {
+                animation-name: errorAnimate;
+                animation-delay: 0s;
+                animation-duration: 1s;
+                animation-iteration-count: 1;
+            }
+            .alert-notif {
+                width: 100%;
+                margin-top: 4px;
+                margin-bottom: 4px;
+                background: white;
+                padding: 32px;
+                border-radius: 16px;
+            }
+            .notifalertbar {
+                width: 100%;
+                height: 48px;
+                background: yellow;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg">
+            <div id="NotifAlertBar" style="position:absolute;left:32.5%;top:0px;width:35%;height:100%;display:flex;flex-direction:column;z-index:99;pointer-events:none"></div>
+            <div class="notifalertbar">
+                <p>We are moving to a new site layout. Try it <a href="https://home.penguinmod.site/upload">here.</a></p>
+            </div>
+            <div id="Main_Card" class="card">
+                <div id="ptitle_div" style="width:100%;height:20%;overflow:hidden">
+                    <h1 id="ptitle_name">Upload</h1>
+                </div>
+                <div class="plist" style="display:flex;flex-direction:row">
+                    <div style="height: 100%;width:50%;display:flex;align-content: center;justify-content: center;align-items: center;flex-direction: column;flex-wrap: nowrap;">
+                        <input id="Project_Name" type="text" placeholder="Project name" style="width:90%; height:32px; font-size:32px">
+                        <br>
+                        <textarea id="Project_Instructions" type="text" placeholder="Tell us how to play/use your project..." style="width:90%; height:64px; font-size:16px"></textarea>
+                        <br>
+                        <textarea id="Project_Notes" type="text" placeholder="Leave some notes here and credit the neccessary people..." style="width:90%; height:64px; font-size:16px"></textarea>
+                        <br>
+                        <button id="Project_Submit" style="width:60%">Login with Scratch & Submit</button>
+                        <p>Your submission will be moderated before it is shown publicly.</p>
+                        <br>
+                        <br>
+                        <span>
+                            <button onclick="alert(`To update projects, add ${String.fromCharCode(34)}Update of (project name)${String.fromCharCode(34)} to the project title. Once your project is approved, it'll replace the original with this project including instructions and notes. If you are uploading another update before the previous one is accepted, make sure to add a number after the word ${String.fromCharCode(34)}Update${String.fromCharCode(34)}.`)">How to update projects</button>
+                            <button id="Project_ChooseRemix">This project is a remix</button>
+                        </span>
+                    </div>
+                    <div style="height: 100%;width:50%;display:flex;align-content: center;justify-content: center;align-items: center;flex-direction: column;flex-wrap: nowrap;">
+                        <a id="Project_ProjectName" style="font-weight:bold;font-size:20px">Project name</a>
+                        <a style="display:flex;align-items:center;">by <span style="font-weight:bold;margin-left:4px;" id="Project_AuthorName">Author</span><img id="Project_AuthorThumbnail" width=24 height=24 style="margin-right:4px;margin-left:4px;border-radius:1000px" src="https://projects.penguinmod.site/api/pmWrapper/scratchUserImage?username=ScratchCat"></a>
+                        <br>
+                        <img id="Project_ProjectImage" alt="Project Image" style="width:320px;height:240px" src="data:image/png;base64,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">
+                    </div>
+                </div>
+            </div>
+            <div id="RemixProjectMenu" style="display:none;position:fixed;width:100%;height:100%;background:rgba(0,0,0,50%)">
+                <div style="display: flex;position: absolute;width: 75%;height: 75%;left: 12.5%;top: 12.5%;border-radius: 32px;background: white;flex-direction: column;align-items: center;">
+                    <div style="display:flex;flex-direction:row;">
+                        <p>Choose the project that you are remixing</p>
+                        <button id="Remix_NotRemixing" style="border-style: solid;border-color: #c3c3c3;margin-left:16px;border-width: 2px;">I'm not remixing a project</button>
+                    </div>
+                    <div id="Remix_ProjectList" style="overflow:auto;width: 90%;height: 90%;background: rgba(0,0,0,12%);border-radius: 32px;display:flex;justify-content:center;flex-wrap:wrap">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        if (!window.location.href.includes("?stopBreakingStuffLol=true")) {
+            setTimeout(() => {
+                fetch(`https://projects.penguinmod.site/api`).then(res => res.json().then(data => {
+                    if (data.unavailable.main == true) {
+                        document.body.innerHTML = `<div class="bgError"><div class="card"><h1 id="TEXT" style="color:red">Something is not right. We are working on it currently.</h1></div></div>`
+                        const text = document.getElementById("TEXT")
+                        setTimeout(() => {
+                            let repeats = 0
+                            setInterval(() => {
+                                if (repeats > 1500) {
+                                    document.body.innerHTML = ""
+                                    document.body.style.background = "black"
+                                    document.body.style.backgroundColor = "black"
+                                    return
+                                }
+                                text.innerHTML = `Something is not right. We are working on it currently.`
+                                text.innerHTML = text.innerHTML.split("").map(char => {
+                                    if (Math.round(Math.random() * 3) == 3) {
+                                        return char.toUpperCase()
+                                    } else {
+                                        if ((repeats > 150) && (Math.round(Math.random() * 5) == 5)) {
+                                            return `□`
+                                        } else {
+                                            return char
+                                            if ((repeats > 500) && (Math.round(Math.random()) == 1)) {
+                                                return `□`
+                                            } else {
+                                                return char
+                                            }
+                                        }
+                                    }
+                                }).join("")
+                                repeats += 1
+                            }, 10)
+                        }, 1000)
+                    }
+                }))
+            }, 2000)
+        }
+    </script>
+    <script>const div = document.getElementById("ptitle_div"); const name = document.getElementById("ptitle_name"); setInterval(() => { name.style.fontSize = (div.clientHeight * 0.5) + "px" }, 10);</script>
+    <script>const x=document.getElementById("NotifAlertBar");function DisplayAlertNotification(message,duration,cssclass){const y=document.createElement("div");if(cssclass!=null||cssclass!=undefined)y.classList.add(cssclass);y.innerHTML=`<p>${String(message).replace(/</gmi,"&lt;").replace(/&/gmi,"&amp;")}</p>`;x.append(y);if(duration==-1)return y;setTimeout(() => y.remove(),duration*1000);return y;}</script>
+    <script>function GetUsernameFromCode(code){return new Promise((resolve,reject)=>{fetch(`https://projects.penguinmod.site/api/users/usernameFromCode?privateCode=${code}`).then(r=>r.json().then(j=>{if(j.username==null)return reject(j.error);resolve(j.username)}).catch(reject)).catch(reject)})}</script>
+    <script>function Authenticate(){return new Promise((resolve,reject)=>{const login=window.open(`https://auth.itinerary.eu.org/auth/?redirect=aHR0cHM6Ly9wcm9qZWN0cy5wZW5ndWlubW9kLnNpdGUvYXBpL3VzZXJzL2xvZ2lu&name=PenguinMod`,"Scratch Authentication",`scrollbars=yes,resizable=yes,status=no,location=yes,toolbar=no,menubar=no,width=768,height=512,left=200,top=200`);if(!login){reject("PopupBlocked");};let cantAccessAnymore=false;let finished=false;let interval=null;interval=setInterval(()=>{if(login?.closed&&(!finished)){clearInterval(interval);try{login.close();}catch{};reject("PopupClosed");};try{const query=login.location.search;if(!cantAccessAnymore)return;const parameters=new URLSearchParams(query);const privateCode = parameters.get("privateCode");finished = true;clearInterval(interval);setTimeout(()=>{login.close();},500);resolve(privateCode);}catch{cantAccessAnymore = true;};},10);});}</script>
+    <script>function SafeJSONParse(obj,isArray){let x=true;try{JSON.parse(obj);}catch{x=false};if(x){if(isArray){if(!Array.isArray(JSON.parse(obj)))return[];return JSON.parse(obj);};return JSON.parse(obj)}else{if(isArray)return[];return{};}}</script>
+    <script>function RandomInteger(a, b) {if (a > b) { var c = a; a = b; b = c; };return Math.floor(Math.random() * (b - a + 1) + a);}</script>
+    <script>
+        const Card = document.getElementById("Main_Card")
+        const RemixMenu = document.getElementById("RemixProjectMenu")
+        const RemixList = document.getElementById("Remix_ProjectList")
+        const Inputs = {
+            ProjectName: document.getElementById("Project_Name"),
+            ProjectInstructions: document.getElementById("Project_Instructions"),
+            ProjectNotes: document.getElementById("Project_Notes"),
+        }
+        const Buttons = {
+            Submit: document.getElementById("Project_Submit"),
+            Remix: document.getElementById("Project_ChooseRemix"),
+            CloseRemix: document.getElementById("Remix_NotRemixing"),
+        }
+        const Labels = {
+            Name: document.getElementById("Project_ProjectName"),
+            Author: document.getElementById("Project_AuthorName"),
+            AuthorImage: document.getElementById("Project_AuthorThumbnail"),
+            Image: document.getElementById("Project_ProjectImage"),
+        }
+        const LoginCode = {}
+        const URLParameters = new URLSearchParams(window.location.search)
+        if (URLParameters.get("privateCode") != null) {
+            LoginCode.value = URLParameters.get("privateCode")
+        } else {
+            LoginCode.value = localStorage.getItem("PM_PRIVATECODE")
+        }
+        Inputs.ProjectName.onchange = () => {
+            Labels.Name.innerText = Inputs.ProjectName.value
+        }
+        if (URLParameters.get("name") != null) {
+            let projectName = SafeJSONParse(URLParameters.get("name"), true)
+            projectName = projectName.map(value => {
+                if (typeof value == "object") {
+                    if (Array.isArray(value)) return JSON.stringify(value)
+                    if (Array.isArray(value.random)) {
+                        const randomNumbers = value.random
+                        return String(RandomInteger(Number(randomNumbers[0]),Number(randomNumbers[1])))
+                    }
+                    return JSON.stringify(value)
+                }
+                return String(value)
+            })
+            projectName = projectName.join(" ")
+            Inputs.ProjectName.value = projectName
+            Labels.Name.innerText = Inputs.ProjectName.value
+        }
+        let UploadImage = "data:image/png;base64,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"
+        let UploadProject = ""
+        let RemixOfProject = null
+        Buttons.Remix.onclick = () => {
+            RemixMenu.style.display = ""
+            RemixList.innerHTML = ""
+            fetch("https://projects.penguinmod.site/api/pmWrapper/projects").then(res => {
+                res.json().then(json => {
+                    json.forEach(project => {
+                        const projName = String(project.name).replace(/&/gmi, "&amp;").replace(/</, "&lt;")
+                        const projAuthor = String(project.author.username).replace(/&/gmi, "&amp;").replace(/</, "&lt;")
+                        RemixList.innerHTML += `<button onclick="ChosenRemixProject(${String(project.id).replace(/[^0-9]*/gmi, "")})"><img width=240 height=180 src="https://projects.penguinmod.site/api/pmWrapper/iconUrl?id=${String(project.id).replace(/[^0-9]*/gmi, "")}"><p><b>${projName}</b> by <b>${projAuthor}</b></p></button>`
+                    })
+                }).catch(err => {
+                    RemixList.innerHTML = `<p style="color:red">${String(err).replace(/</gmi, "&lt;")}</p>`
+                })
+            }).catch(err => {
+                RemixList.innerHTML = `<p style="color:red">${String(err).replace(/</gmi, "&lt;")}</p>`
+            })
+        }
+        Buttons.CloseRemix.onclick = () => {
+            RemixMenu.style.display = "none"
+            RemixOfProject = null
+        }
+        function ChosenRemixProject(id) {
+            RemixOfProject = id
+            RemixMenu.style.display = "none"
+        }
+        Buttons.Submit.onclick = () => {
+            GetUsernameFromCode(LoginCode.value).then(username => {
+                const notif = DisplayAlertNotification("Uploading project as " + username + ", please wait...", -1, "alert-notif")
+                fetch(`https://projects.penguinmod.site/api/projects/publish`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({
+                        passcode: LoginCode.value,
+                        title: Inputs.ProjectName.value,
+                        author: username,
+                        image: UploadImage,
+                        project: UploadProject,
+                        instructions: Inputs.ProjectInstructions.value,
+                        notes: Inputs.ProjectNotes.value,
+                        remix: RemixOfProject,
+                    })
+                }).then(ret => {
+                    ret.json().then(json => {
+                        notif.remove()
+                        if (json.error) {
+                            if (json.error == "PublishDisabled") {
+                                Card.classList.remove('error-animate')
+                                void Card.offsetWidth; // trigger reflow
+                                Card.classList.add('error-animate')
+                                DisplayAlertNotification("You are not able to publish projects currently. This may be due to server changes or a temporary misuse of the project sharing system.", 10, "alert-notif")
+                                return
+                            }
+                            if (json.error == "MissingProjectData") {
+                                Card.classList.remove('error-animate')
+                                void Card.offsetWidth; // trigger reflow
+                                Card.classList.add('error-animate')
+                                DisplayAlertNotification("The project is too large. The maximum size for projects is 32 megabytes.", 10, "alert-notif")
+                                return
+                            }
+                            if (json.error == "TooManyRequests") {
+                                Card.classList.remove('error-animate')
+                                void Card.offsetWidth; // trigger reflow
+                                Card.classList.add('error-animate')
+                                DisplayAlertNotification("You have already uploaded a project in the past 8 minutes. Please wait before doing it again.", 10, "alert-notif")
+                                return
+                            }
+                            alert(JSON.stringify(json.error))
+                            return
+                        }
+                        alert("The project was uploaded! Please wait until it is approved.")
+                    }).catch(err => {
+                        notif.remove()
+                        alert(JSON.stringify(err))
+                    })
+                }).catch(err => {
+                    notif.remove()
+                    alert(JSON.stringify(err))
+                })
+            }).catch(err => {
+                if (err == "CodeNotFound") {
+                    Authenticate().then(code => {
+                        LoginCode.value = code
+                        localStorage.setItem("PM_PRIVATECODE", code)
+                    }).catch(err => {
+                        Card.classList.remove('error-animate')
+                        void Card.offsetWidth; // trigger reflow
+                        Card.classList.add('error-animate')
+                        DisplayAlertNotification(String(err), 5, "alert-notif")
+                    })
+                    return
+                }
+                Card.classList.remove('error-animate')
+                void Card.offsetWidth; // trigger reflow
+                Card.classList.add('error-animate')
+                DisplayAlertNotification(String(err), 5, "alert-notif")
+            })
+        }
+        GetUsernameFromCode(LoginCode.value).then(username => {
+            Buttons.Submit.innerText = "Submit as " + username
+            Labels.Author.innerText = username
+            Labels.AuthorImage.src = `https://projects.penguinmod.site/api/pmWrapper/scratchUserImage?username=${username}`
+            fetch(`https://projects.penguinmod.site/api/users/getstore?container=${username}&token=${LoginCode.value}`).then(res => {
+                return new Promise((resolve, reject) => {
+                    res.json().then(container => {
+                        resolve(container)
+                    })
+                })
+            }).then(container => {
+                console.log(container)
+                Labels.Image.src = container.projectThumbnail
+                UploadImage = container.projectThumbnail
+                UploadProject = container.projectUpload
+            })
+        })
+        
+    </script>
+</html>

@@ -1,0 +1,272 @@
+[
+    {
+        "archived":  false,
+        "path":  "apps/home",
+        "category":  "app",
+        "repo":  "PenguinMod-HomeNew"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/home-legacy",
+        "category":  "app",
+        "repo":  "PenguinMod-Home"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/editor",
+        "category":  "app",
+        "repo":  "penguinmod.github.io"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/packager",
+        "category":  "app",
+        "repo":  "PenguinMod-Packager"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/addons",
+        "category":  "app",
+        "repo":  "PenguinMod-Addons"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/extensions-gallery",
+        "category":  "app",
+        "repo":  "PenguinMod-ExtensionsGallery"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/docs",
+        "category":  "app",
+        "repo":  "PenguinMod-Docs"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/holdover",
+        "category":  "app",
+        "repo":  "PenguinMod-Holdover"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/library-concile",
+        "category":  "app",
+        "repo":  "PenguinMod-LibraryConcileUI"
+    },
+    {
+        "archived":  false,
+        "path":  "apps/desktop-old-cat-version",
+        "category":  "app",
+        "repo":  "PenguinMod-Desktop-OLD-CAT-VERSION"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/audio",
+        "category":  "package",
+        "repo":  "PenguinMod-Audio"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/blocks",
+        "category":  "package",
+        "repo":  "PenguinMod-Blocks"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/render",
+        "category":  "package",
+        "repo":  "PenguinMod-Render"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/render-fonts",
+        "category":  "package",
+        "repo":  "penguinmod-render-fonts"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/storage",
+        "category":  "package",
+        "repo":  "PenguinMod-Storage"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/vm",
+        "category":  "package",
+        "repo":  "PenguinMod-Vm"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/paint",
+        "category":  "package",
+        "repo":  "PenguinMod-Paint"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/paper",
+        "category":  "package",
+        "repo":  "PenguinMod-Paper"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/parser",
+        "category":  "package",
+        "repo":  "PenguinMod-Parser"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/markdown",
+        "category":  "package",
+        "repo":  "PenguinMod-MarkDown"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/markdown-new",
+        "category":  "package",
+        "repo":  "PenguinMod-MarkDownNew"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/object-libraries",
+        "category":  "package",
+        "repo":  "PenguinMod-ObjectLibraries"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/svelte-ui",
+        "category":  "package",
+        "repo":  "PenguinMod-SvelteUI"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/svg-renderer",
+        "category":  "package",
+        "repo":  "penguinmod-svg-renderer"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/pmp-protobuf",
+        "category":  "package",
+        "repo":  "pmp-protobuf"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/generic-ext-api",
+        "category":  "package",
+        "repo":  "PenguinMod-GenericExtApi"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/api-module",
+        "category":  "package",
+        "repo":  "PenguinMod-ApiModule"
+    },
+    {
+        "archived":  false,
+        "path":  "packages/bfunemoji",
+        "category":  "package",
+        "repo":  "BFunEmoji"
+    },
+    {
+        "archived":  false,
+        "path":  "services/backend-api",
+        "category":  "service",
+        "repo":  "PenguinMod-BackendApi"
+    },
+    {
+        "archived":  false,
+        "path":  "services/basic-api",
+        "category":  "service",
+        "repo":  "PenguinMod-BasicApi"
+    },
+    {
+        "archived":  false,
+        "path":  "services/storage-ext-api",
+        "category":  "service",
+        "repo":  "PenguinMod-StorageExtAPI"
+    },
+    {
+        "archived":  false,
+        "path":  "tools/scripts",
+        "category":  "tool",
+        "repo":  "PenguinMod-Scripts"
+    },
+    {
+        "archived":  false,
+        "path":  "tools/vscode-extension",
+        "category":  "tool",
+        "repo":  "PenguinMod-VSCode-Extension"
+    },
+    {
+        "archived":  false,
+        "path":  "tools/penguinbot-public",
+        "category":  "tool",
+        "repo":  "PenguinBot-Public"
+    },
+    {
+        "archived":  false,
+        "path":  "tools/guidelines",
+        "category":  "tool",
+        "repo":  "PenguinMod-Guidelines"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/gui-static",
+        "category":  "archive",
+        "repo":  "PenguinMod-Gui"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/freshpkg",
+        "category":  "archive",
+        "repo":  "FreshPkg"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/docs-legacy",
+        "category":  "archive",
+        "repo":  "PenguinMod-DocsLegacy"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/pmsharing-template",
+        "category":  "archive",
+        "repo":  "PMSharing-template"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/docs-new",
+        "category":  "archive",
+        "repo":  "PenguinMod-DocsNew"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/legacy-backend-api",
+        "category":  "archive",
+        "repo":  "PenguinMod-LegacyBackendApi"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/intermediate-backend-api",
+        "category":  "archive",
+        "repo":  "PenguinMod-IntermediateBackendApi"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/storage-old",
+        "category":  "archive",
+        "repo":  "PenguinMod-StorageOld"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/download-page",
+        "category":  "archive",
+        "repo":  "penguinmod-download-page"
+    },
+    {
+        "archived":  true,
+        "path":  "archive/wrong-repository-desktop",
+        "category":  "archive",
+        "repo":  "PenguinMod-WRONG-REPOSITORY-Desktop"
+    }
+]

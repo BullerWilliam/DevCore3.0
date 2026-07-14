@@ -1,0 +1,15 @@
+node_modules/
+.npm/
+.pnpm-store/
+
+.svelte-kit/
+build/
+dist/
+.vercel/
+
+coverage/
+.webpack/
+
+package-lock.json
+pnpm-lock.yaml
+yarn.lock

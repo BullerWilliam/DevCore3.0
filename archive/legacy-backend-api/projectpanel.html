@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>PenguinMod - Project Panel</title>
+        
+        <meta charset="utf-8">
+        
+        <meta name="title" content="PenguinMod - Project Panel"/>
+        <meta name="description" content="The admin panel for approving PenguinMod projects and editing them.">
+        <meta property="theme-color" content="#51D3F4">
+        
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://projects.penguinmod.site/panel">
+        <meta property="og:title" content="PenguinMod - Project Panel"/>
+        <meta property="og:image" content="https://projects.penguinmod.site/icon.png">
+        
+        <meta property="twitter:url" content="https://projects.penguinmod.site/panel">
+        <meta property="twitter:title" content="PenguinMod - Project Panel">
+        <meta property="twitter:description" content="The admin panel for approving PenguinMod projects and editing them.">
+        <meta property="twitter:image" content="https://projects.penguinmod.site/icon.png">
+        
+        <link rel="icon" href="../icon.png">
+        <style>
+            * {
+                font-family: monospace;
+            }
+            .bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(2,0,58);
+                background: linear-gradient(180deg, rgba(2,0,58,1) 0%, rgba(6,47,109,1) 30%, rgba(0,212,255,1) 100%);
+            }
+            .bgError {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(255,0,0);
+                background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(54,0,0,1) 30%, rgba(0,0,0,1) 100%);
+            }
+            .card {
+                position: absolute;
+                width: 90%;
+                height: 90%;
+                left: calc(5% - 16px);
+                top: calc(5% - 16px);
+                background: rgb(255,255,255);
+                border-radius: 20px;
+                text-align: center;
+                padding: 16px;
+            }
+            .plist {
+                background-color: rgba(0%, 0%, 0%, 10%);
+                width: 100%;
+                height: 75%;
+                border-radius: 8px;
+            }
+            @keyframes spinningBasic {
+                0% { rotate: 0deg; }
+                50% { rotate: 180deg; }
+                100% { rotate: 360deg; }
+            }
+            .loadspinner {
+                animation-name: spinningBasic;
+                animation-delay: 0s;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            button {
+                border-width: 0px;
+                background-color: #fff;
+                border-radius: 16px;
+                cursor: pointer;
+                padding: 8px;
+                margin: 4px;
+            }
+            button:hover {
+                background-color: dodgerblue;
+                border-color: #2a70d1 !important;
+            }
+            img {
+                object-fit: cover;
+            }
+            textarea {
+                resize: none;
+            }
+
+            @keyframes errorAnimate {
+                0% {
+                    rotate: -3deg;
+                    background: red;
+                }
+                10% {
+                    rotate: 3deg;
+                }
+                20% {
+                    rotate: 0deg;
+                }
+                100% {
+                    rotate: 0deg;
+                    background: white;
+                }
+            }
+            .error-animate {
+                animation-name: errorAnimate;
+                animation-delay: 0s;
+                animation-duration: 1s;
+                animation-iteration-count: 1;
+            }
+            .alert-notif {
+                width: 100%;
+                margin-top: 4px;
+                margin-bottom: 4px;
+                background: white;
+                padding: 32px;
+                border-radius: 16px;
+            }
+            .notifalertbar {
+                width: 100%;
+                height: 48px;
+                background: yellow;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg">
+            <div id="NotifAlertBar" style="position:absolute;left:32.5%;top:0px;width:35%;height:100%;display:flex;flex-direction:column;z-index:99;pointer-events:none"></div>
+            <div class="notifalertbar">
+                <p>We are moving to a new site layout. Try it <a href="https://home.penguinmod.site/panel">here.</a></p>
+            </div>
+            <div id="Main_Card" class="card">
+                <div id="ptitle_div" style="width:100%;height:20%;overflow:hidden">
+                    <h1 id="ptitle_name">Project Panel</h1>
+                </div>
+                <div class="plist" style="display:flex;flex-direction:row;">
+                    <div style="overflow: auto;width: 50%;height:100%;display:flex;flex-direction:column;justify-content: flex-start;align-items: center;flex-wrap: nowrap;">
+                        <p>Authentication</p>
+                        <p id="AuthUsername" style="display:none">Currently logged in as {NAME}</p>
+                        <button id="AuthButton">Login using Scratch</button>
+                        <p>Project Information</p>
+                        <div style="width:70%">
+                            <input style="width:80%" id="ProjectId" type="number" placeholder="Project ID">
+                            <button style="width:10%" onclick="alert('Enter the ID of the project you are approving or editing here.')">?</button>
+                        </div>
+                        <button style="width:70%" onclick="renameProject(this)">Change project details</button>
+                        <div style="width:70%;display:none">
+                            <input style="width:80%" id="ProjectReplaceName" type="text" placeholder="Replace project name (leave blank for no change)">
+                            <button style="width:10%" onclick="alert('If you would like to rename the project, enter a new name here. Leave it blank to use the original name, or if this project is an update of an existing project then it will use the name of the original project.')">?</button>
+                        </div>
+                        <button style="width:70%" id="OpenProjectReplaceMenu" onclick="showMenu('replace')">Replace project</button>
+                        <div style="width:70%;display:none">
+                            <input style="width:80%" id="ProjectReplaceId" type="number" placeholder="Replace Project ID">
+                            <button style="width:10%" onclick="alert('If this project is an update of an existing project, enter the ID of the project it is replacing here. You can only use projects that are owned by the same creator.')">?</button>
+                        </div>
+                        <br>
+                        <br>
+                        <div style="display:flex;flex-direction:row;width:50%;align-items:center;justify-content: center;">
+                            <p><input type="checkbox" id="WebhookPost" checked=true> Display on webhook</p>
+                            <button style="width:10%;margin-left:24px" onclick="alert('If a project is approved or updated, it will be posted in the PenguinMod discord. Uncheck this box if you would not like to post a message when approving or updating.')">?</button>
+                        </div>
+                        <button id="ApproveProject">Approve or Update project</button>
+                        <br>
+                        <p>Unapproved projects:</p>
+                        <button id="ShowUnapproved">View or Modify</button>
+<!--                         <p>Approved projects:</p>
+                        <button id="ShowApproved">View or Modify</button> -->
+                    </div>
+                    <div id="ApprovingGuidelines" style="width: 50%;height:100%;display:flex;flex-direction:column;justify-content: flex-start;align-items:center;flex-wrap: wrap;overflow-y:auto">
+                        <p>Approving Guidelines</p>
+                        <br>
+                        <img class="loadspinner" width=24 height=24 src="https://pm-bapi.vercel.app/circle_load.png">
+                    </div>
+                </div>
+            </div>
+            <div id="UnapprovedProjectsMenu" style="display:none;position:fixed;width:100%;height:100%;background:rgba(0,0,0,50%)">
+                <div style="display: flex;position: absolute;width: 75%;height: 75%;left: 12.5%;top: 12.5%;border-radius: 32px;background: white;flex-direction: column;align-items: center;">
+                    <div style="display:flex;flex-direction:row;">
+                        <p>Use the menu below to perform actions on projects</p>
+                        <button id="UnapprovedProjectsClose" style="border-style: solid;border-color: #c3c3c3;margin-left:16px;border-width: 2px;">Close</button>
+                    </div>
+                    <div id="UnapprovedProjects" style="overflow:auto;width: 90%;height: 90%;background: rgba(0,0,0,12%);border-radius: 32px;display:flex;flex-wrap: wrap;flex-direction: row;align-content: flex-start;">
+                    </div>
+                </div>
+            </div>
+            <div id="ReplaceProjectMenu" style="display:none;position:fixed;width:100%;height:100%;background:rgba(0,0,0,50%)">
+                <div style="display: flex;position: absolute;width: 75%;height: 75%;left: 12.5%;top: 12.5%;border-radius: 32px;background: white;flex-direction: column;align-items: center;">
+                    <div style="display:flex;flex-direction:row;">
+                        <p>Select the project you would like to update with this one</p>
+                        <button id="ReplaceProjectMenuReset" style="border-style: solid;border-color: #c3c3c3;margin-left:16px;border-width: 2px;">I'm not updating a project</button>
+                    </div>
+                    <div id="ApprovedProjectsInsideReplace" style="overflow:auto;width: 90%;height: 90%;background: rgba(0,0,0,12%);border-radius: 32px;display:flex;flex-wrap: wrap;flex-direction: row;align-content: flex-start;">
+                    </div>
+                </div>
+            </div>
+            <div id="ApprovedProjectsMenu" style="display:none;position:fixed;width:100%;height:100%;background:rgba(0,0,0,50%)">
+                <div style="display: flex;position: absolute;width: 75%;height: 75%;left: 12.5%;top: 12.5%;border-radius: 32px;background: white;flex-direction: column;align-items: center;">
+                    <div style="display:flex;flex-direction:row;">
+                        <p>Use the menu below to perform actions on projects</p>
+                        <button id="ApprovedProjectsClose" style="border-style: solid;border-color: #c3c3c3;margin-left:16px;border-width: 2px;">Close</button>
+                    </div>
+                    <div id="ApprovedProjects" style="overflow:auto;width: 90%;height: 90%;background: rgba(0,0,0,12%);border-radius: 32px;display:flex;flex-wrap: wrap;flex-direction: row;align-content: flex-start;">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        if (!window.location.href.includes("?stopBreakingStuffLol=true")) {
+            setTimeout(() => {
+                fetch(`https://projects.penguinmod.site/api`).then(res => res.json().then(data => {
+                    if (data.unavailable.main == true) {
+                        document.body.innerHTML = `<div class="bgError"><div class="card"><h1 id="TEXT" style="color:red">Something is not right. We are working on it currently.</h1></div></div>`
+                        const text = document.getElementById("TEXT")
+                        setTimeout(() => {
+                            let repeats = 0
+                            setInterval(() => {
+                                if (repeats > 1500) {
+                                    document.body.innerHTML = ""
+                                    document.body.style.background = "black"
+                                    document.body.style.backgroundColor = "black"
+                                    return
+                                }
+                                text.innerHTML = `Something is not right. We are working on it currently.`
+                                text.innerHTML = text.innerHTML.split("").map(char => {
+                                    if (Math.round(Math.random() * 3) == 3) {
+                                        return char.toUpperCase()
+                                    } else {
+                                        if ((repeats > 150) && (Math.round(Math.random() * 5) == 5)) {
+                                            return `□`
+                                        } else {
+                                            return char
+                                            if ((repeats > 500) && (Math.round(Math.random()) == 1)) {
+                                                return `□`
+                                            } else {
+                                                return char
+                                            }
+                                        }
+                                    }
+                                }).join("")
+                                repeats += 1
+                            }, 10)
+                        }, 1000)
+                    }
+                }))
+            }, 2000)
+        }
+    </script>
+    <script>const div = document.getElementById("ptitle_div"); const name = document.getElementById("ptitle_name"); setInterval(() => { name.style.fontSize = (div.clientHeight * 0.5) + "px" }, 10);</script>
+    <script>const x=document.getElementById("NotifAlertBar");function DisplayAlertNotification(message,duration,cssclass){const y=document.createElement("div");if(cssclass!=null||cssclass!=undefined)y.classList.add(cssclass);y.innerHTML=`<p>${String(message).replace(/</gmi,"&lt;").replace(/&/gmi,"&amp;")}</p>`;x.append(y);if(duration==-1)return y;setTimeout(() => y.remove(),duration*1000);return y;}</script>
+    <script>function GetUsernameFromCode(code){return new Promise((resolve,reject)=>{fetch(`https://projects.penguinmod.site/api/users/usernameFromCode?privateCode=${code}`).then(r=>r.json().then(j=>{if(j.username==null)return reject(j.error);resolve(j.username)}).catch(reject)).catch(reject)})}</script>
+    <script>function Authenticate(){return new Promise((resolve,reject)=>{const login=window.open(`https://auth.itinerary.eu.org/auth/?redirect=aHR0cHM6Ly9wcm9qZWN0cy5wZW5ndWlubW9kLnNpdGUvYXBpL3VzZXJzL2xvZ2lu&name=PenguinMod`,"Scratch Authentication",`scrollbars=yes,resizable=yes,status=no,location=yes,toolbar=no,menubar=no,width=768,height=512,left=200,top=200`);if(!login){reject("PopupBlocked");};let cantAccessAnymore=false;let finished=false;let interval=null;interval=setInterval(()=>{if(login?.closed&&(!finished)){clearInterval(interval);try{login.close();}catch{};reject("PopupClosed");};try{const query=login.location.search;if(!cantAccessAnymore)return;const parameters=new URLSearchParams(query);const privateCode = parameters.get("privateCode");finished = true;clearInterval(interval);setTimeout(()=>{login.close();},500);resolve(privateCode);}catch{cantAccessAnymore = true;};},10);});}</script>
+    <script>function SafeJSONParse(obj,isArray){let x=true;try{JSON.parse(obj);}catch{x=false};if(x){if(isArray){if(!Array.isArray(JSON.parse(obj)))return[];return JSON.parse(obj);};return JSON.parse(obj)}else{if(isArray)return[];return{};}}</script>
+    <script>function RandomInteger(a, b) {if (a > b) { var c = a; a = b; b = c; };return Math.floor(Math.random() * (b - a + 1) + a);}</script>
+    <script>window.onerror = alert</script>
+    <script>
+        const Card = document.getElementById("Main_Card")
+        const Things = {
+            AuthButton: document.getElementById("AuthButton"),
+            ProjectId: document.getElementById("ProjectId"),
+            ApproveProject: document.getElementById("ApproveProject"),
+            UnapprovedProjects: document.getElementById("UnapprovedProjects"),
+            ShowUnapproved: document.getElementById("ShowUnapproved"),
+            WebhookPost: document.getElementById("WebhookPost"),
+
+            ApprovingGuidelines: document.getElementById("ApprovingGuidelines"),
+            
+            UnapprovedProjectsMenu: document.getElementById("UnapprovedProjectsMenu"),
+            UnapprovedProjectsClose: document.getElementById("UnapprovedProjectsClose"),
+            
+            ReplaceProjectMenu: document.getElementById("ReplaceProjectMenu"),
+            ReplaceProjectOpen: document.getElementById("OpenProjectReplaceMenu"),
+            ReplaceProjectList: document.getElementById("ApprovedProjectsInsideReplace"),
+            ReplaceProjectMenuReset: document.getElementById("ReplaceProjectMenuReset"),
+
+            ProjectReplaceName: document.getElementById("ProjectReplaceName"),
+            ProjectReplaceId: document.getElementById("ProjectReplaceId"),
+
+            AuthUsername: document.getElementById("AuthUsername")
+        }
+        let privateCode = ""
+        Things.AuthButton.onclick = () => {
+            Authenticate().then(pc => {
+                privateCode = pc
+                localStorage.setItem("PM_PRIVATECODE", privateCode)
+                fetch("https://projects.penguinmod.site/api/users/login?privateCode=" + privateCode).then(() => {
+                    GetUsernameFromCode(privateCode).then(username => {
+                        Things.AuthUsername.innerText = `Currently logged in as ${username}`
+                        Things.AuthUsername.style.display = ""
+                    })
+                })
+            })
+        }
+        Things.UnapprovedProjectsClose.onclick = () => {
+            Things.UnapprovedProjectsMenu.style.display = "none"
+        }
+        Things.ApproveProject.onclick = () => {
+            if (privateCode == "") {
+                DisplayAlertNotification("You must authenticate before approving or updating projects!", 5, "alert-notif")
+                return
+            }
+            const newProjectName = Things.ProjectReplaceName.value == null ? "" : Things.ProjectReplaceName.value
+            const replaceProjectId = Things.ProjectReplaceId.value == null ? "" : Things.ProjectReplaceId.value
+            GetUsernameFromCode(privateCode).then(username => {
+                fetch(`https://projects.penguinmod.site/api/projects/approve?passcode=${privateCode}&approver=${username}&webhook=${Things.WebhookPost.checked}&id=${Things.ProjectId.value}${newProjectName != "" ? `&newMeta={"name":${JSON.stringify(newProjectName)}}` : ""}${replaceProjectId != "" ? `&replace=${replaceProjectId}` : ""}`).then(response => {
+                    response.json().then(json => {
+                        if (!json.success) {
+                            Card.classList.remove('error-animate')
+                            void Card.offsetWidth; // trigger reflow
+                            Card.classList.add('error-animate')
+                            if (json.error == "FeatureDisabledForThisAccount") {
+                                return DisplayAlertNotification("Your account is not an admin account.", 5, "alert-notif")
+                            }
+                            DisplayAlertNotification(JSON.stringify(json), 5, "alert-notif")
+                            return
+                        }
+                        window.location.reload()
+                    })
+                })
+            })
+        }
+        Things.ShowUnapproved.onclick = () => {
+            GetUsernameFromCode(privateCode).then(username => {
+                Things.AuthUsername.innerText = `Currently logged in as ${username}`
+                Things.AuthUsername.style.display = ""
+                fetch(`https://projects.penguinmod.site/api/projects/approve?passcode=${privateCode}&approver=${username}&id=-9`).then(response => {
+                    response.json().then(json => {
+                        if (!json.success) {
+                            if (json.error == "NotFound") {
+                                // Things.ShowUnapproved.style.display = "none"
+                                Things.UnapprovedProjectsMenu.style.display = ""
+                                // Things.UnapprovedProjects.style.display = ""
+                                Things.UnapprovedProjects.innerHTML = ""
+                                fetch(`https://projects.penguinmod.site/api/pmWrapper/projects`).then(json => json.json().then(publishedProjects => {
+                                    const publishedNames = publishedProjects.map(project => { return project.name })
+                                    fetch(`https://projects.penguinmod.site/api/projects/getAll`).then(json => json.json().then(json => {
+                                        const projects = Object.getOwnPropertyNames(json)
+                                        projects.forEach(projectId => {
+                                            if (json[projectId].accepted == true) return
+                                            if (json[projectId].hidden == true) return
+                                            const projectName = String(json[projectId].name).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                                            const projectOwner = String(json[projectId].owner).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                                            const projectDate = String(`${new Date(Number(json[projectId].date)).toDateString()} at ${new Date(Number(json[projectId].date)).toLocaleTimeString()}`).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                                            Things.UnapprovedProjects.innerHTML += `
+    <div style="width:172px;background:white;padding:4px;margin:4px;border-radius:6px">
+        <img width="172px" height="129px" src="https://projects.penguinmod.site/api/pmWrapper/iconUrl?id=${projectId}">
+        <a target="_blank" href="https://penguinmod.site/#${projectId}"><span><b>${projectName}</b></span> <span style="color:gray;font-size:12px">#${projectId}</span></a><br>
+        <a>by <b>${projectOwner}</b></a><br>
+        <a style="color:gray;font-size:10px">Uploaded ${projectDate}</a><br>
+        ${publishedNames.includes(projectName) ? `<a style="color:#ff8800;font-size:10px">This project has the same name as an approved project</a><br>` : ""}
+        <button onclick="selectProject(${projectId})" style="border-style: solid;border-color: #c3c3c3;border-width: 2px;">Select</button>
+        <button onclick="deleteProject(${projectId})" style="border-style: solid;border-color: #c3c3c3;border-width: 2px;">Delete</button>
+    </div>
+    `
+                                        })
+                                    }))
+                                }))
+                                return
+                            }
+                            Card.classList.remove('error-animate')
+                            void Card.offsetWidth; // trigger reflow
+                            Card.classList.add('error-animate')
+                            if (json.error == "FeatureDisabledForThisAccount") {
+                                return DisplayAlertNotification("shut up low rank", 5, "alert-notif")
+                            }
+                            DisplayAlertNotification(JSON.stringify(json), 5, "alert-notif")
+                            return
+                        }
+                    })
+                })
+            }).catch(err => {
+                Card.classList.remove('error-animate')
+                void Card.offsetWidth; // trigger reflow
+                Card.classList.add('error-animate')
+                if (err == "CodeNotFound") {
+                    return DisplayAlertNotification("You need to authenticate first.", 5, "alert-notif")
+                }
+                DisplayAlertNotification(JSON.stringify(err), 5, "alert-notif")
+            })
+        }
+
+        const savedCode = localStorage.getItem("PM_PRIVATECODE")
+        if (savedCode != null) privateCode = savedCode
+        GetUsernameFromCode(savedCode).then(username => {
+            Things.AuthUsername.innerText = `Currently logged in as ${username}`
+            Things.AuthUsername.style.display = ""
+        })
+
+        fetch(`https://projects.penguinmod.site/api/projects/guidelines`).then(res => res.json().then(guidelines => {
+            if (!res.ok) {
+                Things.ApprovingGuidelines.innerHTML = `<p style='color:red'>Failed to get guidelines for project approving; ${guidelines.error}</p>`
+                return
+            }
+            Things.ApprovingGuidelines.innerHTML = `<p>Approving Guidelines</p><br><p>${guidelines.approvedirections.join("</p><p>")}</p><br><p>${guidelines.dontapprove.join("</p><p>")}</p><br><p>${guidelines.mightapprove.join("</p><p>")}</p>`
+        }).catch(err => {
+            Things.ApprovingGuidelines.innerHTML = `<p style='color:red'>Failed to get guidelines for project approving; ${err}</p>`
+        }))
+
+        function selectProject(id) {
+            Things.ProjectId.value = id
+            Things.UnapprovedProjectsMenu.style.display = "none"
+        }
+        function deleteProject(id) {
+            const code = prompt(`Are you sure? This CANNOT be undone!\nType ${id} to delete the project.`)
+            if (String(code) !== String(id)) return
+            Things.UnapprovedProjectsMenu.style.display = "none"
+            GetUsernameFromCode(privateCode).then(username => {
+                fetch(`https://projects.penguinmod.site/api/projects/delete?passcode=${privateCode}&approver=${username}&id=${id}`).then(res => {
+                    res.json().then(json => {
+                        if (!res.ok) {
+                            DisplayAlertNotification(String(json.error), 5, "alert-notif")
+                        }
+                    }).catch(err => {
+                        DisplayAlertNotification(String(err), 5, "alert-notif")
+                    })
+                }).catch(err => {
+                    DisplayAlertNotification(String(err), 5, "alert-notif")
+                })
+            })
+        }
+        function setReplaceProject(id) {
+            Things.ProjectReplaceId.value = id
+            Things.ReplaceProjectOpen.innerHTML = `<b>Replacing ${id}</b>`
+            Things.ReplaceProjectMenu.style.display = "none"
+        }
+
+        function renameProject(element) {
+            const newName = prompt("Rename project:")
+            if (newName === "" || newName === null || newName === " ") {
+                Things.ProjectReplaceName.value = null
+                element.innerHTML = `Change project details`
+                return
+            }
+            Things.ProjectReplaceName.value = newName
+            console.log("renaming project to", Things.ProjectReplaceName.value)
+            element.innerHTML = `Changing project name: ${newName.replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")}`
+        }
+
+        function showMenu(id) {
+            switch (id) {
+                case "replace": {
+                    Things.ReplaceProjectMenu.style.display = ""
+                    Things.ReplaceProjectList.innerHTML = ""
+                    fetch(`https://projects.penguinmod.site/api/projects/getAll`).then(json => json.json().then(json => {
+                        const projects = Object.getOwnPropertyNames(json)
+                        projects.forEach(projectId => {
+                            if (json[projectId].accepted == false) return
+                            const projectName = String(json[projectId].name).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                            const projectOwner = String(json[projectId].owner).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                                            const projectDate = String(`${new Date(Number(json[projectId].date)).toDateString()} at ${new Date(Number(json[projectId].date)).toLocaleTimeString()}`).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                            Things.ReplaceProjectList.innerHTML += `
+<div style="width:172px;background:white;padding:4px;margin:4px;border-radius:6px">
+    <img width="172px" height="129px" src="https://projects.penguinmod.site/api/pmWrapper/iconUrl?id=${projectId}">
+    <a target="_blank" href="https://penguinmod.site/#${projectId}"><span><b>${projectName}</b></span> <span style="color:gray;font-size:12px">#${projectId}</span></a><br>
+    <a>by <b>${projectOwner}</b></a><br>
+    <a style="color:gray;font-size:10px">Uploaded ${projectDate}</a><br>
+    <button onclick='setReplaceProject(${projectId})' style="border-style: solid;border-color: #c3c3c3;border-width: 2px;">Select</button>
+</div>
+`
+                        })
+                    }))
+                    break
+                }
+            }
+        }
+        Things.ReplaceProjectMenuReset.onclick = () => {
+            Things.ReplaceProjectMenu.style.display = "none"
+            Things.ReplaceProjectOpen.innerHTML = `Replace project`
+            Things.ProjectReplaceId.value = null
+        }
+    </script>
+</html>

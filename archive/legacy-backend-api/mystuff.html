@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>PenguinMod - My Stuff</title>
+        
+        <meta charset="utf-8">
+        
+        <meta name="title" content="PenguinMod - My Stuff">
+        <meta name="description" content="View all of the projects you have saved or uploaded to PenguinMod.">
+        <meta property="theme-color" content="#51D3F4">
+        
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://projects.penguinmod.site/stuff">
+        <meta property="og:title" content="PenguinMod - My Stuff"/>
+        <meta property="og:image" content="https://projects.penguinmod.site/icon.png">
+        
+        <meta property="twitter:url" content="https://projects.penguinmod.site/stuff">
+        <meta property="twitter:title" content="PenguinMod - My Stuff">
+        <meta property="twitter:description" content="View all of the projects you have saved or uploaded to PenguinMod.">
+        <meta property="twitter:image" content="https://projects.penguinmod.site/icon.png">
+        
+        <link rel="icon" href="icon.png">
+        <style>
+            * {
+                font-family: monospace;
+            }
+            .bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(2,0,58);
+                background: linear-gradient(180deg, rgba(2,0,58,1) 0%, rgba(6,47,109,1) 30%, rgba(0,212,255,1) 100%);
+            }
+            .bgError {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(255,0,0);
+                background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(54,0,0,1) 30%, rgba(0,0,0,1) 100%);
+            }
+            .card {
+                position: absolute;
+                width: 60%;
+                height: 80%;
+                left: calc(22.5% - 16px);
+                top: calc(10% - 16px);
+                background: rgb(255,255,255);
+                border-radius: 20px;
+                text-align: center;
+                padding: 16px;
+            }
+            .plist {
+                background-color: rgba(0%, 0%, 0%, 10%);
+                width: 100%;
+                height: 75%;
+                border-radius: 8px;
+            }
+            @keyframes spinningBasic {
+                0% { rotate: 0deg; }
+                50% { rotate: 180deg; }
+                100% { rotate: 360deg; }
+            }
+            .loadspinner {
+                animation-name: spinningBasic;
+                animation-delay: 0s;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            button {
+                border-width: 0px;
+                background-color: #fff;
+                border-radius: 16px;
+                cursor: pointer;
+                padding: 8px;
+                margin: 4px;
+            }
+            button:hover {
+                background-color: dodgerblue;
+                border-color: #2a70d1 !important;
+            }
+            .buttonActor {
+                display: inline-block;
+                border-width: 0px;
+                background-color: #fff;
+                border-radius: 16px;
+                padding: 8px;
+                margin: 4px;
+            }
+            img {
+                object-fit: cover;
+            }
+            .alert-notif {
+                width: 100%;
+                margin-top: 4px;
+                margin-bottom: 4px;
+                background: white;
+                padding: 32px;
+                border-radius: 16px;
+            }
+            .notifalertbar {
+                width: 100%;
+                height: 48px;
+                background: yellow;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg">
+            <div id="NotifAlertBar" style="position:absolute;left:32.5%;top:0px;width:35%;height:100%;display:flex;flex-direction:column;z-index:99;pointer-events:none"></div>
+            <div class="notifalertbar">
+                <p>We are moving to a new site layout. Try it <a href="https://home.penguinmod.site/mystuff">here.</a></p>
+            </div>
+            <div class="card">
+                <div id="ptitle_div" style="width:100%;height:20%;overflow:hidden">
+                    <h1 id="ptitle_name">My Stuff</h1>
+                </div>
+                <div class="plist" style="display:flex;flex-direction:row;">
+                    <div style="display:flex;flex-direction:column;align-items:center;width:100%" id="list_load">
+                        <br><br>
+                        <img class="loadspinner" width=24 height=24 src="https://pm-bapi.vercel.app/circle_load.png">
+                    </div>
+                    <div style="display:none;flex-direction:column;align-items:center;width:100%" id="list_none">
+                        <br><br>
+                        <p style="color:gray">No projects found. <a style="color:dodgerblue" href="https://penguinmod.site" target="_blank">Why not make one?</a></p>
+                    </div>
+                    <div style="display:none;flex-direction:column;align-items:center;width:100%" id="list_error">
+                        <br><br>
+                        <p id="errorSay" style="color:red">Error</p>
+                    </div>
+                    <div style="display:none;flex-direction:column;align-items:center;width:100%" id="list_login">
+                        <br><br>
+                        <p>You must sign in to view your stuff.</p>
+                        <button id="signIn">Sign in with Scratch</button>
+                    </div>
+                    <div style="display:none;flex-direction:column;align-items:center;width:100%" id="list_projects">
+                        <div id="projectList" style="width: 100%;overflow:auto;height: 100%;">
+                        </div>
+                    </div>
+                </div>
+                <div id="projectPanelLink" style="display:none">
+                    <br>
+                    <span>
+                        <a href="/panel">Project Panel</a>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </body>
+    <script>
+        if (!window.location.href.includes("?stopBreakingStuffLol=true")) {
+            setTimeout(() => {
+                fetch(`https://projects.penguinmod.site/api`).then(res => res.json().then(data => {
+                    if (data.unavailable.main == true) {
+                        document.body.innerHTML = `<div class="bgError"><div class="card"><h1 id="TEXT" style="color:red">Something is not right. We are working on it currently.</h1></div></div>`
+                        const text = document.getElementById("TEXT")
+                        setTimeout(() => {
+                            let repeats = 0
+                            setInterval(() => {
+                                if (repeats > 1500) {
+                                    document.body.innerHTML = ""
+                                    document.body.style.background = "black"
+                                    document.body.style.backgroundColor = "black"
+                                    return
+                                }
+                                text.innerHTML = `Something is not right. We are working on it currently.`
+                                text.innerHTML = text.innerHTML.split("").map(char => {
+                                    if (Math.round(Math.random() * 3) == 3) {
+                                        return char.toUpperCase()
+                                    } else {
+                                        if ((repeats > 150) && (Math.round(Math.random() * 5) == 5)) {
+                                            return `□`
+                                        } else {
+                                            return char
+                                            if ((repeats > 500) && (Math.round(Math.random()) == 1)) {
+                                                return `□`
+                                            } else {
+                                                return char
+                                            }
+                                        }
+                                    }
+                                }).join("")
+                                repeats += 1
+                            }, 10)
+                        }, 1000)
+                    }
+                }))
+            }, 2000)
+        }
+    </script>
+    <script>const div = document.getElementById("ptitle_div"); const name = document.getElementById("ptitle_name"); setInterval(() => { name.style.fontSize = (div.clientHeight * 0.5) + "px" }, 10);</script>
+    <script>const x=document.getElementById("NotifAlertBar");function DisplayAlertNotification(message,duration,cssclass){const y=document.createElement("div");if(cssclass!=null||cssclass!=undefined)y.classList.add(cssclass);y.innerHTML=`<p>${String(message).replace(/</gmi,"&lt;").replace(/&/gmi,"&amp;")}</p>`;x.append(y);if(duration==-1)return y;setTimeout(() => y.remove(),duration*1000);return y;}</script>
+    <script>function GetUsernameFromCode(code){return new Promise((resolve,reject)=>{fetch(`https://projects.penguinmod.site/api/users/usernameFromCode?privateCode=${code}`).then(r=>r.json().then(j=>{if(j.username==null)return reject(j.error);resolve(j.username)}).catch(reject)).catch(reject)})}</script>
+    <script>function Authenticate(){return new Promise((resolve,reject)=>{const login=window.open(`https://auth.itinerary.eu.org/auth/?redirect=aHR0cHM6Ly9wcm9qZWN0cy5wZW5ndWlubW9kLnNpdGUvYXBpL3VzZXJzL2xvZ2lu&name=PenguinMod`,"Scratch Authentication",`scrollbars=yes,resizable=yes,status=no,location=yes,toolbar=no,menubar=no,width=768,height=512,left=200,top=200`);if(!login){reject("PopupBlocked");};let cantAccessAnymore=false;let finished=false;let interval=null;interval=setInterval(()=>{if(login?.closed&&(!finished)){clearInterval(interval);try{login.close();}catch{};reject("PopupClosed");};try{const query=login.location.search;if(!cantAccessAnymore)return;const parameters=new URLSearchParams(query);const privateCode = parameters.get("privateCode");finished = true;clearInterval(interval);setTimeout(()=>{login.close();},500);resolve(privateCode);}catch{cantAccessAnymore = true;};},10);});}</script>
+    <script>
+        const lists = {
+            load: document.getElementById("list_load"),
+            none: document.getElementById("list_none"),
+            error: document.getElementById("list_error"),
+            projects: document.getElementById("list_projects"),
+            login: document.getElementById("list_login"),
+        }
+        
+        const buttons = {
+            signIn: document.getElementById("signIn")
+        }
+
+        const errorLabel = document.getElementById("errorSay")
+        const projectArea = document.getElementById("projectList")
+
+        const projectPanelLink = document.getElementById("projectPanelLink")
+        
+        let privateCode = localStorage.getItem("PM_PRIVATECODE")
+        function loadContent() {
+            lists.load.style.display = ""
+            lists.none.style.display = "none"
+            lists.error.style.display = "none"
+            lists.projects.style.display = "none"
+            lists.login.style.display = "none"
+            GetUsernameFromCode(privateCode).then(username => {
+                fetch(`https://projects.penguinmod.site/api/users/isAdmin?username=${username}`).then(res => res.json().then(json => {
+                	if (json.admin === true) {
+                		projectPanelLink.style.display = ""
+                	}
+                }))
+                fetch(`https://projects.penguinmod.site/api/users/getMyProjects?user=${username}&code=${privateCode}&sorted=true`).then(response => {
+                    response.json().then(projects => {
+                        lists.load.style.display = "none"
+                        if (projects.length <= 0) {
+                            lists.none.style.display = ""
+                            return
+                        }
+                        lists.projects.style.display = ""
+                        projectArea.innerHTML = ""
+                        projects.forEach(project => {
+                            const projectDate = String(`${new Date(Number(project.date)).toDateString()} at ${new Date(Number(project.date)).toLocaleTimeString()}`).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+                            projectArea.innerHTML += `
+<div class="buttonActor"${project.hidden ? ` style="background:#ff7d7d"` : (!project.accepted ? ` style="background:#c6baff"` : "")}${project.featured == true ? ` style="background: linear-gradient(151deg, rgba(255,213,55,1) 4%, rgba(254,255,191,1) 12%, rgba(255,213,55,1) 21%);"` : ""}>
+    <img src="https://projects.penguinmod.site/api/pmWrapper/iconUrl?id=${String(project.id).replace(/[\"\'\<\>\\]/gmi, "")}" width=240 height=180>
+    <p style="font-weight:bold">${String(project.name).replace(/[\"\'\<\>\\]/gmi, "")}</p>
+    <p style="font-size:10px">Uploaded on ${projectDate}</p>
+    ${project.hidden ? `<p style="font-size:10px">This project is hidden.</p>` : (!project.accepted ? `<p style="font-size:10px">This project isn't approved.</p>` : "")}
+    
+    <a href="https://penguinmod.site/#${Number(project.id)}" target="_blank"><button style="border-style: solid;border-color: #c3c3c3;border-width: 2px;">View in PenguinMod</button></a>
+    <button style="border-style: solid;border-color: #c3c3c3;border-width: 2px;" onclick="deleteProject(${String(project.id)})">Delete</button>
+</div>`.replace(/\t/gmi, "").replace(/\n/gmi, "")
+                        })
+                    }).catch(err => {
+                        lists.load.style.display = "none"
+                        lists.projects.style.display = "none"
+                        lists.error.style.display = ""
+                        errorLabel.innerText = err
+                    })
+                }).catch(err => {
+                    lists.load.style.display = "none"
+                    lists.projects.style.display = "none"
+                    lists.error.style.display = ""
+                    errorLabel.innerText = err
+                })
+            }).catch(() => {
+                lists.load.style.display = "none"
+                lists.login.style.display = ""
+            })
+        }
+        loadContent()
+
+        buttons.signIn.onclick = () => {
+            Authenticate().then(code => {
+                privateCode = code
+                localStorage.setItem("PM_PRIVATECODE", code)
+                loadContent()
+            })
+        }
+        
+        function deleteProject(id) {
+            const code = prompt(`Are you sure? This CANNOT be undone!\nType ${id} to delete the project.`)
+            if (String(code) !== String(id)) return
+            lists.load.style.display = ""
+            lists.none.style.display = "none"
+            lists.error.style.display = "none"
+            lists.projects.style.display = "none"
+            lists.login.style.display = "none"
+            GetUsernameFromCode(privateCode).then(username => {
+                fetch(`https://projects.penguinmod.site/api/projects/delete?passcode=${privateCode}&approver=${username}&id=${id}`).then(res => {
+                    res.json().then(json => {
+                        if (!res.ok) {
+                            DisplayAlertNotification(String(json.error), 5, "alert-notif")
+                            return
+                        }
+                        loadContent()
+                    }).catch(err => {
+                        DisplayAlertNotification(String(err), 5, "alert-notif")
+                    })
+                }).catch(err => {
+                    DisplayAlertNotification(String(err), 5, "alert-notif")
+                })
+            })
+        }
+    </script>
+</html>

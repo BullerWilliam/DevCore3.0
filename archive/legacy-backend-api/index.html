@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en-US">
+    <head>
+        <title>PenguinMod - Projects</title>
+        
+        <meta charset="utf-8">
+        
+        <meta name="title" content="PenguinMod - Projects"/>
+        <meta name="description" content="{{META}}">
+        <meta property="theme-color" content="#51D3F4">
+        
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://projects.penguinmod.site/">
+        <meta property="og:title" content="PenguinMod - Projects"/>
+        <meta property="og:image" content="{{ICON-META}}">
+        
+        <meta property="twitter:url" content="https://projects.penguinmod.site/">
+        <meta property="twitter:title" content="PenguinMod - Projects">
+        <meta property="twitter:description" content="{{META-TWITTER}}">
+        <meta property="twitter:image" content="{{ICON-TWITTER}}">
+        
+        <link rel="icon" href="icon.png">
+        <style>
+            * {
+                font-family: monospace;
+            }
+            .bg {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(2,0,58);
+                background: linear-gradient(180deg, rgba(2,0,58,1) 0%, rgba(6,47,109,1) 30%, rgba(0,212,255,1) 100%);
+            }
+            .bgError {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                left: 0px;
+                top: 0px;
+                background: rgb(255,0,0);
+                background: linear-gradient(0deg, rgba(255,0,0,1) 0%, rgba(54,0,0,1) 30%, rgba(0,0,0,1) 100%);
+            }
+            .card {
+                position: absolute;
+                width: 80%;
+                height: 80%;
+                left: calc(10% - 16px);
+                top: calc(10% - 16px);
+                background: rgb(255,255,255);
+                border-radius: 20px;
+                text-align: center;
+                padding: 16px;
+            }
+            .plist {
+                background-color: rgba(0%, 0%, 0%, 10%);
+                width: 100%;
+                height: 75%;
+                border-radius: 8px;
+            }
+            @keyframes spinningBasic {
+                0% { rotate: 0deg; }
+                50% { rotate: 180deg; }
+                100% { rotate: 360deg; }
+            }
+            .loadspinner {
+                animation-name: spinningBasic;
+                animation-delay: 0s;
+                animation-duration: 1s;
+                animation-iteration-count: infinite;
+                animation-timing-function: linear;
+            }
+            button {
+                border-width: 0px;
+                background-color: #fff;
+                border-radius: 16px;
+                cursor: pointer;
+                padding: 8px;
+                margin: 4px;
+            }
+            button:hover {
+                background-color: dodgerblue;
+                border-color: #2a70d1 !important;
+            }
+            img {
+                object-fit: cover;
+            }
+            .notifalertbar {
+                width: 100%;
+                height: 48px;
+                background: yellow;
+                position: absolute;
+                left: 0px;
+                top: 0px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="bg">
+            <div class="notifalertbar">
+                <p>We are moving to a new site layout. Try it <a href="https://home.penguinmod.site/">here.</a></p>
+            </div>
+            <div class="card">
+                <div id="ptitle_div" style="width:100%;height:20%;overflow:hidden">
+                    <h1 id="ptitle_name">Projects</h1>
+                </div>
+                <div class="plist" style="overflow:auto">
+                    <div id="list_load">
+                        <br><br>
+                        <img class="loadspinner" width=24 height=24 src="https://pm-bapi.vercel.app/circle_load.png">
+                    </div>
+                    <div id="list_none" style="display:none">
+                        <br><br>
+                        <p id="errorSay" style="color:gray">No projects found. <a style="color:dodgerblue" href="https://penguinmod.site" target="_blank">Why not make one?</a></p>
+                    </div>
+                    <div id="list_filled" style="display:none">
+                        <p><button id="pager_left">&lt;</button> <span id="pager_pages">0 / 0</span> <button id="pager_right">></button> <button style="margin-left:6px" id="pager_specific">Specific Page</button> <button style="margin-left:6px" id="pager_user">Specific User</button></p>
+                        <div id="projectArea" style="">
+                        </div>
+                        <br><br>
+                    </div>
+                </div>
+                <br>
+                <span>
+                    <a href="/mystuff">My Stuff</a>
+                </span>
+            </div>
+        </div>
+    </body>
+    <script>
+        setTimeout(() => {
+            fetch(`https://projects.penguinmod.site/api`).then(res => res.json().then(data => {
+                if (data.unavailable.main == true) {
+                    document.body.innerHTML = `<div class="bgError"><div class="card"><h1 id="TEXT" style="color:red">Something is not right. We are working on it currently.</h1></div></div>`
+                    const text = document.getElementById("TEXT")
+                    setTimeout(() => {
+                        let repeats = 0
+                        setInterval(() => {
+                            if (repeats > 1500) {
+                                document.body.innerHTML = ""
+                                document.body.style.background = "black"
+                                document.body.style.backgroundColor = "black"
+                                return
+                            }
+                            text.innerHTML = `Something is not right. We are working on it currently.`
+                            text.innerHTML = text.innerHTML.split("").map(char => {
+                                if (Math.round(Math.random() * 3) == 3) {
+                                    return char.toUpperCase()
+                                } else {
+                                    if ((repeats > 150) && (Math.round(Math.random() * 5) == 5)) {
+                                        return `□`
+                                    } else {
+                                        return char
+                                        if ((repeats > 500) && (Math.round(Math.random()) == 1)) {
+                                            return `□`
+                                        } else {
+                                            return char
+                                        }
+                                    }
+                                }
+                            }).join("")
+                            repeats += 1
+                        }, 10)
+                    }, 1000)
+                }
+            }))
+        }, 2000)
+    </script>
+    <script>const div = document.getElementById("ptitle_div"); const name = document.getElementById("ptitle_name"); setInterval(() => { name.style.fontSize = (div.clientHeight * 0.5) + "px" }, 10);</script>
+    <script>
+        const lists = {
+            load: document.getElementById("list_load"),
+            none: document.getElementById("list_none"),
+            fill: document.getElementById("list_filled"),
+        }
+        const pagers = {
+            left: document.getElementById("pager_left"),
+            right: document.getElementById("pager_right"),
+            specific: document.getElementById("pager_specific"),
+            user: document.getElementById("pager_user"),
+                
+            count: document.getElementById("pager_pages"),
+        }
+        const errorDisplay = document.getElementById("errorSay")
+        const projectArea = document.getElementById("projectArea")
+        let maxPages = 0
+        const urlParameters = new URLSearchParams(window.location.search)
+        if (urlParameters.get("user") != null) {
+            const user = urlParameters.get("user")
+            const sanitizedUsername = String(user).replace(/&/gmi, "&amp;").replace(/</gmi, "&lt;")
+            // const imageUrl = `https://projects.penguinmod.site/api/pmWrapper/scratchUserImage?username=${String(sanitizedUsername)}`
+            const titleDisplay = document.getElementById("ptitle_name")
+            titleDisplay.innerHTML = `Projects by <a style="color:dodgerblue" target="_blank" href="https://scratch.mit.edu/users/${sanitizedUsername}">${sanitizedUsername}</a>`
+        }
+        function LoadProjectArea(page) {
+            lists.load.style.display = ""
+            lists.none.style.display = "none"
+            lists.fill.style.display = "none"
+            fetch(`https://pmprojectapi-v2.jeremygamer13.repl.co/api/projects/paged?length=30${(urlParameters.get("user") != null) ? `&user=${urlParameters.get("user")}` : ""}`).then(res => {
+                res.json().then(projects => {
+                    lists.load.style.display = "none"
+                    if (projects.length <= 0) {
+                        lists.none.style = ""
+                        if (urlParameters.get("user") != null) {
+                            errorDisplay.parentElement.prepend(pagers.user)
+                            if (urlParameters.get("user") == "undefined") {
+                                errorDisplay.innerHTML = `No projects found. The user you tried to check may not have loaded in properly when you clicked this link.<br><br><a style="color:dodgerblue" href="https://penguinmod.site" target="_blank">Make some projects yourself here!</a>`
+                                return
+                            }
+                            errorDisplay.innerHTML = `No projects found. Check your spelling and capitalization, then try again.<br><br><a style="color:dodgerblue" href="https://penguinmod.site" target="_blank">Make some projects yourself here!</a>`
+                        }
+                        return
+                    }
+                    lists.fill.style = ""
+
+                    maxPages = projects.length
+                    projectArea.innerHTML = ``
+                    projects[page].map(project => {
+                        projectArea.innerHTML += `<a href="https://penguinmod.site/#${Number(project.id)}" target="_blank"><button${project.featured == true ? ` style="background: linear-gradient(151deg, rgba(255,213,55,1) 4%, rgba(254,255,191,1) 12%, rgba(255,213,55,1) 21%);"` : ""}><img src="https://projects.penguinmod.site/api/pmWrapper/iconUrl?id=${String(project.id).replace(/[\"\'\<\>\\]/gmi, "")}" width=240 height=180><p style="font-weight:bold">${String(project.name).replace(/[\"\'\<\>\\]/gmi, "")}</p><p>by ${String(project.owner).replace(/[\"\'\<\>\\]/gmi, "")}</p></button></a>`
+                        return project
+                    })
+                }).catch(err => {
+                    lists.load.style.display = "none"
+                    lists.none.style = ""
+                    errorDisplay.innerHTML = ""
+                    errorDisplay.innerText = String(err)
+                    errorDisplay.style.color = "red"
+                })
+            }).catch(err => {
+                lists.load.style.display = "none"
+                lists.none.style = ""
+                errorDisplay.innerHTML = ""
+                errorDisplay.innerText = String(err)
+                errorDisplay.style.color = "red"
+            })
+        }
+        let projectPage = 0
+        LoadProjectArea(projectPage)
+        pagers.left.onclick = () => {
+            projectPage -= 1
+            if (projectPage < 0) projectPage = 0
+            LoadProjectArea(projectPage)
+        }
+        pagers.right.onclick = () => {
+            projectPage += 1
+            if (projectPage > (maxPages - 1)) projectPage = (maxPages - 1)
+            LoadProjectArea(projectPage)
+        }
+        pagers.specific.onclick = () => {
+            projectPage = Number(prompt("Go to page:"))
+            if (isNaN(projectPage)) projectPage = 0
+            if (projectPage < 0) projectPage = 0
+            if (projectPage > (maxPages - 1)) projectPage = (maxPages - 1)
+            LoadProjectArea(projectPage)
+        }
+        pagers.user.onclick = () => {
+            let user = prompt("View projects by user:")
+            if (user == "" || user === null || user == " ") {
+                window.location.href = `https://projects.penguinmod.site/`
+                return
+            }
+            window.location.href = `https://projects.penguinmod.site/?user=${user}`
+        }
+
+        setInterval(() => {
+            pagers.count.innerText = `${projectPage + 1} / ${maxPages}`
+        }, 25)
+    </script>
+</html>
