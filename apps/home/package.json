@@ -14,9 +14,11 @@
 	"dependencies": {
 		"@asamuzakjp/css-color": "^4.1.0",
 		"@devcore/theme": "file:../../packages/devcore-theme",
+		"axios": "^1.18.1",
 		"lottie-web": "^5.13.0",
 		"penguinmod": "file:../../packages/api-module",
-		"PenguinMod-MarkDown": "file:../../packages/markdown"
+		"PenguinMod-MarkDown": "file:../../packages/markdown",
+		"pmp-protobuf": "^1.8.5"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-static": "^3.0.10",
