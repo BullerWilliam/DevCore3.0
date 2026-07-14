@@ -8,7 +8,9 @@ export default defineConfig({
     optimizeDeps: {
         include: [
             'PenguinMod-SvelteUI',
+            '@asamuzakjp/css-color',
             '@devcore/theme',
+            'lottie-web',
             'penguinmod'
         ],
         force: true
@@ -27,7 +29,9 @@ export default defineConfig({
     },
     resolve: {
         alias: {
-            'PenguinMod-SvelteUI': path.resolve('../../packages/svelte-ui/src/lib/index.js')
+            'PenguinMod-SvelteUI': path.resolve('../../packages/svelte-ui/src/lib/index.js'),
+            '@asamuzakjp/css-color': path.resolve('./node_modules/@asamuzakjp/css-color'),
+            'lottie-web': path.resolve('./node_modules/lottie-web')
         }
     }
 });
