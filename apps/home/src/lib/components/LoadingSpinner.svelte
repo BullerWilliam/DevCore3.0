@@ -3,8 +3,8 @@
     import { browser } from "$app/environment";
 
     // components
-    import LocalizedAlt from "./Localization/LocalizedAlt.svelte";
-    import LocalizedTooltip from "./Localization/LocalizedTooltip.svelte";
+    import LocalizedAlt from "./Localization/LocalizedAlt.svelte.js";
+    import LocalizedTooltip from "./Localization/LocalizedTooltip.svelte.js";
     
     import delay from "$lib/resources/delay.js";
 

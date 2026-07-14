@@ -5,7 +5,7 @@
     import { Category, UserDisplay } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
-    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
+    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte.js";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
 
     import { CACHE_BASIC_API_UPDATES } from "$lib/resources/cache/cache-time";

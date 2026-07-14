@@ -10,8 +10,8 @@
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
     import PenguinNews from "$lib/components/CategoryHome/PenguinNews.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
-    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte";
-    import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte";
+    import LocalizedAlt from "$lib/components/Localization/LocalizedAlt.svelte.js";
+    import LocalizedTooltip from "$lib/components/Localization/LocalizedTooltip.svelte.js";
 
     import { CACHE_FRONTPAGE_PROJECTS } from "$lib/resources/cache/cache-time";
     import CacheHelper from "$lib/resources/cache/cache-helper";
