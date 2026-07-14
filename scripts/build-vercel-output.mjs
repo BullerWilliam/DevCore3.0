@@ -15,7 +15,7 @@ const homeDir = path.join(repoRoot, 'apps', 'home');
 const outputRoot = process.env.DEVCORE_OUTPUT_DIR
     ? path.resolve(repoRoot, process.env.DEVCORE_OUTPUT_DIR)
     : process.cwd() === homeDir
-        ? path.join(homeDir, 'vercel-output')
+        ? path.join(homeDir, 'dist', 'vercel')
         : path.join(repoRoot, 'dist', 'vercel');
 const npmRunner = process.env.npm_execpath
     ? `"${process.execPath}" "${process.env.npm_execpath}"`
@@ -56,6 +56,7 @@ const packagerDir = path.join(repoRoot, 'apps', 'packager');
 runNpm(['install', '--legacy-peer-deps'], {}, homeDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, homeDir);
 runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, editorDir);
+runNpm(['install', '--workspaces=false', '--legacy-peer-deps'], {}, packagerDir);
 
 runNpm(['run', 'build'], {}, homeDir);
 runNpm(['run', 'build'], {}, packagerDir);
