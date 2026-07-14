@@ -14,6 +14,7 @@ const config = {
             strict: true
         }),
         prerender: {
+            crawl: false,
             handleHttpError: "warn"
         }
     },
