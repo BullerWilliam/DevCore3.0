@@ -1,7 +1,7 @@
 import { browser } from "$app/environment";
 import { get } from "svelte/store";
 
-import StoreSession, { defaultSession } from "$lib/stores/session";
+import StoreSession, { defaultSession, normalizeSession } from "$lib/stores/session";
 
 class CacheHelper {
     /**
@@ -33,7 +33,7 @@ class CacheHelper {
             newSession.frontpageProjectsCachedTime = Date.now();
 
         // save that
-        StoreSession.set(newSession);
+        StoreSession.set(normalizeSession(newSession));
     }
 
     /**
@@ -61,7 +61,7 @@ class CacheHelper {
             newSession[key] = defaultSession[key];
         }
 
-        StoreSession.set(newSession);
+        StoreSession.set(normalizeSession(newSession));
     }
 
     /**

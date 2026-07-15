@@ -1,5 +1,6 @@
 <script>
     import { browser } from "$app/environment";
+    import { get } from "svelte/store";
     import { PenguinModAPIError } from "$lib/resources/penguinmod/module";
 
     // components
@@ -29,8 +30,17 @@
     let frontPageLoading = $state(true);
     let frontPageError = $state(null);
     let frontPageRatelimited = $state(false);
+    const hasValidFrontpageCache = () => {
+        const currentSession = get(StoreSession);
+        const cachedResult = currentSession.frontpageProjectsCachedResult;
+
+        return typeof cachedResult?.selectedTag === "string" && cachedResult.selectedTag.length > 0;
+    };
     const loadingAttempt = async () => {
-        if (!CacheHelper.isExpired("frontpageProjectsCachedTime", CACHE_FRONTPAGE_PROJECTS)) return;
+        if (
+            hasValidFrontpageCache()
+            && !CacheHelper.isExpired("frontpageProjectsCachedTime", CACHE_FRONTPAGE_PROJECTS)
+        ) return;
 
         const frontPage = await PenguinModClient.projects.getFrontPage();
         CacheHelper.update({
