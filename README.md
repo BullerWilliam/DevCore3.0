@@ -21,15 +21,12 @@ This repo is arranged for a root-based Vercel workflow that assembles multiple D
 - Root `vercel.json`: installs the repo without running legacy package scripts, then calls `npm run build:vercel`
 - `scripts/build-vercel-output.mjs`: performs app-local installs for `apps/home` and `apps/editor`, builds home/editor/packager, and assembles the combined output into `dist/vercel`
 - Default output directory: `dist/vercel`
-- Node runtime: controlled by `package.json` `engines.node`, currently `24.x`
-- Function runtime config: intentionally no legacy `version`, `builds`, or `functions.runtime` block in `vercel.json`
 - Home env vars can be copied from `apps/home/.env.template`, but the repo includes safe runtime defaults so the home build does not fail when those vars are absent
 
 Suggested project settings:
 
 - Build command: `npm run build:vercel`
 - Output directory: `dist/vercel`
-- If Vercel reports `Function Runtimes must have a valid version`, clear any Dashboard function runtime override and redeploy once without build cache so Vercel stops using stale runtime config
 - Main routes after build:
   - `/` for home
   - `/editor` for the editor
