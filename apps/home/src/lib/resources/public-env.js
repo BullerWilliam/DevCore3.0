@@ -20,7 +20,7 @@ export const PUBLIC_STUDIO_URL = normalizePublicUrl(
 
 export const PUBLIC_API_URL = normalizePublicUrl(
     STATIC_PUBLIC_API_URL,
-    'https://studio.penguinmod.com/api'
+    'https://projects.penguinmod.com'
 );
 
 export const PUBLIC_BASIC_API_URL = normalizePublicUrl(

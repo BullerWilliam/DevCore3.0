@@ -26,10 +26,10 @@ const PenguinModClient = new PenguinModAPI({
 if (browser) {
     // TODO: UNIMPORTANT: Is it possible that adding our own telemetry is useful for the rampant malicious usage of the API?
     PenguinModClient.injectOptions = (options) => {
-        // NOTE: we give some info that PM Home is what is using the apimodule right now
+        // Keep request metadata stable across localhost and deployed hosts.
+        // The API only needs to know which frontend is calling, not the current domain.
         return {
             headers: {
-                "PenguinMod-Frontend": location.host,
                 "PenguinMod-FrontendType": "PenguinMod-HomeNew",
             },
         };
