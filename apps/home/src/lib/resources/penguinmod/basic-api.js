@@ -1,6 +1,22 @@
 import externalLinks from "$lib/resources/external-links.js";
 import { PUBLIC_BASIC_API_URL } from "$lib/resources/public-env";
 
+const buildBasicApiUrl = (pathname) => {
+    const fallback = "/basic-api";
+    const base = typeof PUBLIC_BASIC_API_URL === "string" && PUBLIC_BASIC_API_URL.trim()
+        ? PUBLIC_BASIC_API_URL.trim()
+        : fallback;
+
+    if (/^https?:\/\//i.test(base)) {
+        const url = new URL(base);
+        url.pathname = pathname;
+        return url.toString();
+    }
+
+    const normalizedBase = base === "/" ? "" : base.replace(/\/$/, "");
+    return `${normalizedBase}${pathname}`;
+};
+
 class PenguinModBasicAPI {
     /**
      * Gets the current status updates.
@@ -10,11 +26,7 @@ class PenguinModBasicAPI {
      * @returns {Promise<PenguinModBasicAPITypes.StatusUpdate[]>}
      */
     static async statusUpdates() {
-        const url = new URL(PUBLIC_BASIC_API_URL);
-        url.pathname = "/status";
-
-        // do the fetch on the diff path
-        const response = await fetch(url);
+        const response = await fetch(buildBasicApiUrl("/status"));
         if (!response.ok)
             throw new Error(await response.text());
         const json = await response.json();
@@ -40,11 +52,7 @@ class PenguinModBasicAPI {
      * @returns {Promise<PenguinModBasicAPITypes.Update[]>}
      */
     static async updates() {
-        const url = new URL(PUBLIC_BASIC_API_URL);
-        url.pathname = "/updates";
-
-        // do the fetch on the diff path
-        const response = await fetch(url);
+        const response = await fetch(buildBasicApiUrl("/updates"));
         if (!response.ok)
             throw new Error(await response.text());
         const json = await response.json();
