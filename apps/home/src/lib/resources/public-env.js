@@ -20,10 +20,10 @@ export const PUBLIC_STUDIO_URL = normalizePublicUrl(
 
 export const PUBLIC_API_URL = normalizePublicUrl(
     STATIC_PUBLIC_API_URL,
-    'https://projects.penguinmod.com'
+    '/api'
 );
 
 export const PUBLIC_BASIC_API_URL = normalizePublicUrl(
     STATIC_PUBLIC_BASIC_API_URL,
-    'https://penguinmod-basic-api.derpygamer2142.com'
+    '/basic-api'
 );
