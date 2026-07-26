@@ -5,10 +5,29 @@ import { PenguinModAPI } from "$lib/resources/penguinmod/module";
 
 import StoreSettings from "$lib/stores/settings";
 
-// NOTE: Need to fix the api url for ApiModule
-// TODO: UNIMPORTANT: When .env is missing, this seems to give unhelpful errors that dont say the problem is .env exactly. Probably try to alert that before this loads?
-const apiUrl = new URL(PUBLIC_API_URL);
-apiUrl.pathname = "/api";
+const normalizeApiUrl = (value) => {
+    if (typeof value !== "string") return "/api";
+
+    const trimmed = value.trim();
+    if (!trimmed) return "/api";
+
+    if (/^https?:\/\//i.test(trimmed)) {
+        const url = new URL(trimmed);
+        if (!url.pathname || url.pathname === "/") {
+            url.pathname = "/api";
+        }
+        return url.toString().replace(/\/$/, "");
+    }
+
+    if (trimmed === "/") return "/api";
+
+    const normalized = trimmed.replace(/\/$/, "");
+    if (normalized.endsWith("/api")) return normalized;
+
+    return `${normalized}/api`;
+};
+
+const apiUrl = normalizeApiUrl(PUBLIC_API_URL);
 
 // get the current token so we dont need to use setToken everywhere (outside of auth at least)
 let userToken = null;
