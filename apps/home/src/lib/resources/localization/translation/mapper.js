@@ -73,7 +73,7 @@ class TranslationMapper {
     static mapSavedLanguageCode(savedLanguageCode) {
         const browserLanguage = Locale.browserLanguage;
         if ((!savedLanguageCode) || (savedLanguageCode === "browser")) savedLanguageCode = browserLanguage;
-        if (typeof savedLanguageCode !== "string") throw new Error("Saved language code is not a string (likely invalid settings)");
+        if (typeof savedLanguageCode !== "string") return this.mapLanguageCode(browserLanguage || "en-US");
         return this.mapLanguageCode(savedLanguageCode);
     }
 }
