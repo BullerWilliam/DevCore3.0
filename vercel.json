@@ -2,5 +2,15 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "installCommand": "node -e \"console.log('Skipping root install; scripts/build-vercel-output.mjs handles workspace installs.')\"",
   "buildCommand": "npm run build:vercel",
-  "outputDirectory": "dist/vercel"
+  "outputDirectory": "dist/vercel",
+  "rewrites": [
+    {
+      "source": "/api/:match*",
+      "destination": "https://projects.penguinmod.com/api/:match*"
+    },
+    {
+      "source": "/basic-api/:match*",
+      "destination": "https://penguinmod-basic-api.derpygamer2142.com/:match*"
+    }
+  ]
 }
