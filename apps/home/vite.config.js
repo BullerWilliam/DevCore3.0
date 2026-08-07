@@ -10,15 +10,9 @@ export default defineConfig({
             'PenguinMod-SvelteUI',
             '@asamuzakjp/css-color',
             '@devcore/theme',
-            'lottie-web',
-            'penguinmod'
+            'lottie-web'
         ],
         force: true
-    },
-    ssr: {
-        external: [
-            'penguinmod'
-        ],
     },
     server: {
         watch: {
