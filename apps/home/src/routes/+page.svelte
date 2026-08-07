@@ -592,6 +592,10 @@
     .section-onboarding-studio-inner p {
         margin-block: 16px;
     }
+    .section-onboarding-studio-inner :global(a),
+    .section-onboarding-studio-inner :global(button) {
+        color: #ffffff;
+    }
     .section-onboarding-showoff-inner {
         display: flex;
         align-items: center;

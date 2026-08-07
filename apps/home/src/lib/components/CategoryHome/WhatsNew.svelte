@@ -136,6 +136,11 @@
 </Category>
 
 <style>
+    a {
+        color: var(--devcore-green-700, #19871a);
+        font-weight: 700;
+    }
+
     .single-container {
         width: 100%;
         height: 100%;

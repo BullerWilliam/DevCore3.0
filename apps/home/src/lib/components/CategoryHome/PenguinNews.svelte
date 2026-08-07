@@ -70,3 +70,10 @@
         {/if}
     {/snippet}
 </Category>
+
+<style>
+    a {
+        color: var(--devcore-green-700, #19871a);
+        font-weight: 700;
+    }
+</style>
