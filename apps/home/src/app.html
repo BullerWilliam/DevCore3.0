@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="utf-8" />
 		
-		<meta property="theme-color" content="#00C3FF">
-		<meta name="theme-color" content="#00C3FF">
+		<meta property="theme-color" content="#0FA9D8">
+		<meta name="theme-color" content="#0FA9D8">
 		<meta property="og:type" content="website">
 		<meta property="og:image" content="%sveltekit.assets%/devcore-icon.png">
 		<meta property="twitter:image" content="%sveltekit.assets%/devcore-icon.png">
@@ -19,7 +19,7 @@
 
         <style>
             :root {
-                --devcore-topbar: #00c3ff;
+                --devcore-topbar: #0fa9d8;
                 --devcore-topbar-text: #ffffff;
                 --devcore-accent: #ff9f1a;
             }
@@ -45,32 +45,6 @@
         (() => {
             'use strict';
 
-            const DEVCORE_THEME_KEY = 'devcore:theme';
-            const defaultTheme = {
-                topBar: '#00c3ff',
-                topBarText: '#ffffff',
-                accent: '#ff9f1a'
-            };
-            const colorPattern = /^#[0-9a-f]{6}$/i;
-            const normalizeColor = (value, fallback) =>
-                typeof value === 'string' && colorPattern.test(value.trim()) ? value.trim().toLowerCase() : fallback;
-            const normalizeTheme = (value) => ({
-                topBar: normalizeColor(value?.topBar, defaultTheme.topBar),
-                topBarText: normalizeColor(value?.topBarText, defaultTheme.topBarText),
-                accent: normalizeColor(value?.accent, defaultTheme.accent)
-            });
-            const applyDevcoreTheme = () => {
-                try {
-                    const raw = localStorage.getItem(DEVCORE_THEME_KEY);
-                    const theme = normalizeTheme(raw ? JSON.parse(raw) : defaultTheme);
-                    document.documentElement.style.setProperty('--devcore-topbar', theme.topBar);
-                    document.documentElement.style.setProperty('--devcore-topbar-text', theme.topBarText);
-                    document.documentElement.style.setProperty('--devcore-accent', theme.accent);
-                    document.querySelector('meta[property="theme-color"]')?.setAttribute('content', theme.topBar);
-                    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme.topBar);
-                } catch {}
-            };
-
             // NOTE: We need to parse settings here because no fancy svelte (svelte ALWAYS has some FOUC)
             const settingsUpdated = () => {
                 const stringStored = localStorage.getItem('pm:settings') || "{}";
@@ -87,13 +61,9 @@
             }
 
             // NOTE: We use StoreSettings' generous document event to listen for dark theme swaps
-            applyDevcoreTheme();
             settingsUpdated();
             document.addEventListener("penguinmod-store-settings-updated", () => {
                 settingsUpdated();
-            });
-            window.addEventListener('storage', (event) => {
-                if (event.key === DEVCORE_THEME_KEY) applyDevcoreTheme();
             });
         })();
     </script>
