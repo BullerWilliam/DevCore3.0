@@ -235,8 +235,8 @@
         height: 100%;
         border: 0;
         outline: 0;
-        background: rgba(255, 255, 255, 0.96);
-        color: #4f5964;
+        background: rgba(215, 245, 207, 0.92);
+        color: #105214;
         font-size: 0.88rem;
         font-weight: 600;
         padding: 0 0.95rem 0 0.15rem;
@@ -244,7 +244,7 @@
     }
 
     .navigation-search-input::placeholder {
-        color: #67727d;
+        color: rgba(16, 82, 20, 0.72);
         opacity: 1;
     }
 
