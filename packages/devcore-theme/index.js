@@ -1,9 +1,22 @@
 export const DEVCORE_THEME_STORAGE_KEY = 'devcore:theme';
 
+export const DEVCORE_GREEN_SCALE = Object.freeze({
+    50: '#effbea',
+    100: '#d7f5cf',
+    200: '#afeaa3',
+    300: '#83dc78',
+    400: '#52cf4a',
+    500: '#27bf24',
+    600: '#1fa41d',
+    700: '#19871a',
+    800: '#156c17',
+    900: '#105214'
+});
+
 export const DEFAULT_DEVCORE_THEME = Object.freeze({
-    topBar: '#00c3ff',
+    topBar: DEVCORE_GREEN_SCALE[500],
     topBarText: '#ffffff',
-    accent: '#ff9f1a'
+    accent: DEVCORE_GREEN_SCALE[700]
 });
 
 const HEX_COLOR_PATTERN = /^#[0-9a-f]{6}$/i;
@@ -21,24 +34,11 @@ export const normalizeDevcoreTheme = input => ({
 });
 
 export const readStoredDevcoreTheme = () => {
-    if (typeof window === 'undefined' || !window.localStorage) {
-        return {...DEFAULT_DEVCORE_THEME};
-    }
-    try {
-        const raw = window.localStorage.getItem(DEVCORE_THEME_STORAGE_KEY);
-        if (!raw) return {...DEFAULT_DEVCORE_THEME};
-        return normalizeDevcoreTheme(JSON.parse(raw));
-    } catch (error) {
-        return {...DEFAULT_DEVCORE_THEME};
-    }
+    return {...DEFAULT_DEVCORE_THEME};
 };
 
 export const writeStoredDevcoreTheme = theme => {
-    const normalized = normalizeDevcoreTheme(theme);
-    if (typeof window !== 'undefined' && window.localStorage) {
-        window.localStorage.setItem(DEVCORE_THEME_STORAGE_KEY, JSON.stringify(normalized));
-    }
-    return normalized;
+    return normalizeDevcoreTheme(theme);
 };
 
 export const applyDevcoreTheme = (theme = readStoredDevcoreTheme(), root = typeof document !== 'undefined' ? document.documentElement : null) => {
@@ -48,6 +48,16 @@ export const applyDevcoreTheme = (theme = readStoredDevcoreTheme(), root = typeo
     root.style.setProperty('--devcore-topbar', normalized.topBar);
     root.style.setProperty('--devcore-topbar-text', normalized.topBarText);
     root.style.setProperty('--devcore-accent', normalized.accent);
+    root.style.setProperty('--devcore-green-50', DEVCORE_GREEN_SCALE[50]);
+    root.style.setProperty('--devcore-green-100', DEVCORE_GREEN_SCALE[100]);
+    root.style.setProperty('--devcore-green-200', DEVCORE_GREEN_SCALE[200]);
+    root.style.setProperty('--devcore-green-300', DEVCORE_GREEN_SCALE[300]);
+    root.style.setProperty('--devcore-green-400', DEVCORE_GREEN_SCALE[400]);
+    root.style.setProperty('--devcore-green-500', DEVCORE_GREEN_SCALE[500]);
+    root.style.setProperty('--devcore-green-600', DEVCORE_GREEN_SCALE[600]);
+    root.style.setProperty('--devcore-green-700', DEVCORE_GREEN_SCALE[700]);
+    root.style.setProperty('--devcore-green-800', DEVCORE_GREEN_SCALE[800]);
+    root.style.setProperty('--devcore-green-900', DEVCORE_GREEN_SCALE[900]);
     root.setAttribute('data-devcore-theme', 'true');
 
     if (typeof document !== 'undefined') {
@@ -61,11 +71,6 @@ export const applyDevcoreTheme = (theme = readStoredDevcoreTheme(), root = typeo
 export const bootDevcoreTheme = () => applyDevcoreTheme(readStoredDevcoreTheme());
 
 export const subscribeToDevcoreTheme = callback => {
-    if (typeof window === 'undefined') return () => {};
-    const handleStorage = event => {
-        if (event.key && event.key !== DEVCORE_THEME_STORAGE_KEY) return;
-        callback(readStoredDevcoreTheme());
-    };
-    window.addEventListener('storage', handleStorage);
-    return () => window.removeEventListener('storage', handleStorage);
+    callback(readStoredDevcoreTheme());
+    return () => {};
 };

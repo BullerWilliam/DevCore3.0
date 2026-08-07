@@ -145,7 +145,7 @@
         align-items: center;
         justify-content: center;
         border: 0;
-        border-radius: 999px;
+        border-radius: 0.35rem;
         background: transparent;
         color: #fff;
         text-decoration: none;
@@ -166,6 +166,7 @@
         top: 0.42rem;
         padding: 0 0.45rem;
         gap: 0.1rem;
+        border-radius: 0.3rem;
     }
 
     .navigation-theme-button {
@@ -182,6 +183,7 @@
     .navigation-logo-link {
         width: 2.15rem;
         padding: 0;
+        border-radius: 0.2rem;
     }
 
     .navigation-logo {
@@ -205,12 +207,13 @@
         height: 2.15rem;
         display: inline-flex;
         align-items: center;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.14);
+        border-radius: 0.35rem;
+        background: rgba(0, 0, 0, 0.12);
         overflow: hidden;
         flex: 0 1 22rem;
         min-width: 13rem;
         max-width: 22rem;
+        padding-left: 0.1rem;
     }
 
     .navigation-search-button {
@@ -229,7 +232,7 @@
     .navigation-search-input {
         width: 100%;
         min-width: 0;
-        height: 100%;
+        height: calc(100% - 0.2rem);
         border: 0;
         outline: 0;
         background: rgba(255, 255, 255, 0.92);
@@ -237,6 +240,7 @@
         font-size: 0.88rem;
         font-weight: 600;
         padding: 0 0.95rem 0 0.15rem;
+        border-radius: 0.28rem;
     }
 
     .navigation-search-input::placeholder {
