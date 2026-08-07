@@ -62,7 +62,7 @@
     }
     .eyebrow {
         margin: 0;
-        color: var(--devcore-topbar, #00c3ff);
+        color: var(--devcore-topbar, #27bf24);
         font-size: 0.85rem;
         font-weight: 800;
         letter-spacing: 0.08em;
@@ -73,7 +73,7 @@
         overflow-wrap: anywhere;
     }
     a {
-        color: var(--devcore-topbar, #00c3ff);
+        color: var(--devcore-topbar, #27bf24);
         font-weight: 700;
     }
     :global(body.app-theme-dark) .info-card {

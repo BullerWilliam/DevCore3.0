@@ -4,8 +4,8 @@
 >
     <defs>
         <linearGradient id="Gradient1" x1="0" x2="0" y1="0" y2="1">
-            <stop style="stop-color:#0094FF;" class="stop1" offset="0%" />
-            <stop style="stop-color:#006FFF;" class="stop2" offset="100%" />
+            <stop style="stop-color:#52CF4A;" class="stop1" offset="0%" />
+            <stop style="stop-color:#19871A;" class="stop2" offset="100%" />
         </linearGradient>
         <clipPath id="cut-off-bit">
             <rect x="0" y="0" width="48" height="24" />

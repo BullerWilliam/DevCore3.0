@@ -563,7 +563,7 @@
         display: flex;
         flex-direction: row;
 
-        background: #00c3ffad;
+        background: rgba(39, 191, 36, 0.78);
         color: white;
     }
     .section-onboarding-studio,
@@ -803,8 +803,8 @@
     }
 
     .section-categories-feeds-login-left-actions > a:nth-child(1) > button > div {
-        background: #00c3ff;
-        outline-color: #00c3ff55;
+        background: #27bf24;
+        outline-color: rgba(39, 191, 36, 0.33);
     }
     .section-categories-feeds-login-left-actions > a:nth-child(2) > button > div {
         background: #FFAB00;
@@ -877,7 +877,7 @@
         justify-content: center;
 
         border-top: rgba(0, 0, 0, .3) 1px solid;
-        background: #00c3ff15;
+        background: rgba(39, 191, 36, 0.08);
         font-weight: 700;
     }
     .section-footer-list {
