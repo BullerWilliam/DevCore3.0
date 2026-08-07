@@ -146,7 +146,7 @@
                     <div class="section-categories-feeds-login-left">
                         <!-- user profile header -->
                         <div class="section-categories-feeds-login-left-username">
-                            <a href={`/profile/${$StoreSession.userCachedUsername}`}>
+                            <a href={`/profile?user=${encodeURIComponent($StoreSession.userCachedUsername)}`}>
                                 <img
                                     src={PenguinModClient.users.getPfpUrl($StoreSession.userCachedUsername)}
                                     alt={$StoreSession.userCachedDisplayName}

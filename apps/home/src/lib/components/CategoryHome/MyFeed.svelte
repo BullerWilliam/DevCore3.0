@@ -71,10 +71,9 @@
                 return buildSharedProjectPath(content.id);
             case "posted":
                 // TODO: UNIMPORTANT: posts arent really planned for PM, and if they are added, do we really want them all to appear on the profile page?
-                return `/profile/${author}?post=${content.id}`;
+                return `/profile?user=${encodeURIComponent(author)}&post=${encodeURIComponent(content.id)}`;
             default:
-                // TODO: /profile/author must be valid
-                return `/profile/${author}`;
+                return `/profile?user=${encodeURIComponent(author)}`;
         }
     };
 </script>

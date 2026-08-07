@@ -117,6 +117,9 @@ const packagerOutput = path.join(repoRoot, 'apps', 'packager', 'dist');
 
 copyDirectory(checkedInOutputDir, outputRoot);
 copyDirectory(homeOutput, outputRoot);
+copyHtmlRoute('mystuff.html', 'mystuff', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('settings.html', 'settings', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('profile.html', 'profile', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('privacy.html', 'privacy', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('terms.html', 'terms', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('support.html', 'support', content => content.replaceAll('="./', '="/'));

@@ -5,6 +5,18 @@
   "outputDirectory": "dist/vercel",
   "rewrites": [
     {
+      "source": "/mystuff",
+      "destination": "/mystuff/"
+    },
+    {
+      "source": "/settings",
+      "destination": "/settings/"
+    },
+    {
+      "source": "/profile",
+      "destination": "/profile/"
+    },
+    {
       "source": "/privacy",
       "destination": "/privacy/"
     },
