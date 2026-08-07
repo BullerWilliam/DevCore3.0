@@ -1,7 +1,7 @@
 {
-  "short_name": "PenguinMod",
-  "name": "PenguinMod",
-  "description": "Mod of TurboWarp that was made to allow for really cool projects.",
+  "short_name": "DevCore",
+  "name": "DevCore",
+  "description": "DevCore is a creative coding studio for building, remixing, and sharing interactive projects.",
   "icons": [
     {
       "src": "images/192.png",

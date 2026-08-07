@@ -78,7 +78,7 @@ import aboutIcon from './icon--about.svg';
 import errorIcon from './tw-error.svg';
 import themeIcon from './tw-moon.svg';
 
-import scratchLogo from './scratch-logo.svg';
+import devcoreLogo from './devcore-icon.png';
 
 import sharedMessages from '../../lib/shared-messages';
 
@@ -1082,7 +1082,7 @@ MenuBar.propTypes = {
 };
 
 MenuBar.defaultProps = {
-    logo: scratchLogo,
+    logo: devcoreLogo,
     usernameLoggedIn: false,
     onShare: () => { }
 };
