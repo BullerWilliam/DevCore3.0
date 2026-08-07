@@ -136,8 +136,13 @@
 </Category>
 
 <style>
-    a {
-        color: var(--devcore-green-700, #19871a);
+    a,
+    a:link,
+    a:visited,
+    a:hover,
+    a:focus,
+    a:active {
+        color: var(--devcore-green-700, #19871a) !important;
         font-weight: 700;
     }
 
