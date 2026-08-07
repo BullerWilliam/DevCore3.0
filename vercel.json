@@ -5,12 +5,20 @@
   "outputDirectory": "dist/vercel",
   "rewrites": [
     {
-      "source": "/api/:match*",
-      "destination": "https://projects.penguinmod.com/api/:match*"
+      "source": "/privacy",
+      "destination": "/privacy/"
     },
     {
-      "source": "/basic-api/:match*",
-      "destination": "https://penguinmod-basic-api.derpygamer2142.com/:match*"
+      "source": "/terms",
+      "destination": "/terms/"
+    },
+    {
+      "source": "/support",
+      "destination": "/support/"
+    },
+    {
+      "source": "/guidelines/uploading",
+      "destination": "/guidelines/uploading/"
     }
   ]
 }
