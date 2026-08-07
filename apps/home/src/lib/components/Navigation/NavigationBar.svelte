@@ -150,9 +150,9 @@
         display: grid;
         grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
         align-items: center;
-        gap: 0.75rem;
+        gap: 0.5rem;
         padding: 0 0.8rem;
-        background: #0fa9d8;
+        background: var(--devcore-topbar, #27bf24);
         color: #fff;
         box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
     }
@@ -175,7 +175,7 @@
 
     .navigation-main {
         justify-content: center;
-        gap: 0.5rem;
+        gap: 0.35rem;
     }
 
     .navigation-logo-link,
@@ -206,8 +206,8 @@
     }
 
     .navigation-logo {
-        width: 2.35rem;
-        height: 2.35rem;
+        width: 2rem;
+        height: 2rem;
         object-fit: contain;
         display: block;
     }
@@ -291,7 +291,7 @@
     }
 
     .navigation-search:focus-within {
-        box-shadow: inset 0 0 0 2px rgba(15, 169, 216, 0.28);
+        box-shadow: inset 0 0 0 2px rgba(39, 191, 36, 0.28);
     }
 
     @media (max-width: 980px) {

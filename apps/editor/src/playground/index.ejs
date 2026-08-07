@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="google" value="notranslate">
-    <meta name="theme-color" content="#00c3ff">
+    <meta name="theme-color" content="#27bf24">
     <meta name="description" content="DevCore is a creative coding studio for building, remixing, and sharing interactive projects." />
     <title><%= htmlWebpackPlugin.options.title %></title>
     <link rel="apple-touch-icon" href="<%= htmlWebpackPlugin.options.root %>images/apple-touch-icon.png">
@@ -14,9 +14,19 @@
     <% } %>
     <style>
       :root {
-        --devcore-topbar: #00c3ff;
+        --devcore-topbar: #27bf24;
         --devcore-topbar-text: #ffffff;
-        --devcore-accent: #ff9f1a;
+        --devcore-accent: #19871a;
+        --devcore-green-50: #effbea;
+        --devcore-green-100: #d7f5cf;
+        --devcore-green-200: #afeaa3;
+        --devcore-green-300: #83dc78;
+        --devcore-green-400: #52cf4a;
+        --devcore-green-500: #27bf24;
+        --devcore-green-600: #1fa41d;
+        --devcore-green-700: #19871a;
+        --devcore-green-800: #156c17;
+        --devcore-green-900: #105214;
       }
       #splash {
         position: absolute; width: 100%; height: 100%; top: 0; left: 0;
@@ -57,40 +67,11 @@
     </div>
     <script>
       (function() {
-        const themeKey = 'devcore:theme';
-        const defaults = {
-          topBar: '#00c3ff',
-          topBarText: '#ffffff',
-          accent: '#ff9f1a'
-        };
-        const colorPattern = /^#[0-9a-f]{6}$/i;
-        const normalizeColor = (value, fallback) =>
-          typeof value === 'string' && colorPattern.test(value.trim()) ? value.trim().toLowerCase() : fallback;
-        const applyDevcoreTheme = () => {
-          try {
-            const raw = localStorage.getItem(themeKey);
-            const parsed = raw ? JSON.parse(raw) : defaults;
-            const theme = {
-              topBar: normalizeColor(parsed?.topBar, defaults.topBar),
-              topBarText: normalizeColor(parsed?.topBarText, defaults.topBarText),
-              accent: normalizeColor(parsed?.accent, defaults.accent)
-            };
-            document.documentElement.style.setProperty('--devcore-topbar', theme.topBar);
-            document.documentElement.style.setProperty('--devcore-topbar-text', theme.topBarText);
-            document.documentElement.style.setProperty('--devcore-accent', theme.accent);
-            document.querySelector('meta[name="theme-color"]')?.setAttribute('content', theme.topBar);
-          } catch {}
-        };
-
-        applyDevcoreTheme();
         document.querySelector('#splash-content').style.display = 'block';
         <% if (!htmlWebpackPlugin.options.noTheme) { %>
         try {var localTheme = localStorage.getItem('tw:theme');} catch (e) {}
         if (localTheme ? localTheme === 'dark' : window.matchMedia('(prefers-color-scheme: dark)').matches) document.querySelector('#splash').setAttribute('splash-theme', 'dark');
         <% } %>
-        window.addEventListener('storage', (event) => {
-          if (event.key === themeKey) applyDevcoreTheme();
-        });
       })();
     </script>
     <div id="app"></div>
