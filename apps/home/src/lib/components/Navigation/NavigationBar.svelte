@@ -31,29 +31,25 @@
 
 <div class="navigation-shell">
     <div class="navigation-bar">
-        <div class="navigation-side navigation-side-left">
-            <button
-                class="navigation-circle-button navigation-language-button"
-                {@attach LocalizedTooltip("navigation.language")}
-                aria-label="Language"
-                type="button"
-            >
-                <Icon>language</Icon>
-                <Icon>expand_more</Icon>
-            </button>
-        </div>
+        <button
+            class="navigation-button navigation-language-button"
+            {@attach LocalizedTooltip("navigation.language")}
+            aria-label="Language"
+            type="button"
+        >
+            <Icon>language</Icon>
+            <Icon class="navigation-caret">expand_more</Icon>
+        </button>
 
-        <div class="navigation-main">
+        <div class="navigation-row">
             <a class="navigation-logo-link" href="/">
-                <img
-                    class="navigation-logo"
-                    src="/devcore-icon.png"
-                    alt="DevCore"
-                />
+                <img class="navigation-logo" src="/devcore-icon.png" alt="DevCore" />
             </a>
 
+            <div class="navigation-logo-spacer"></div>
+
             <button
-                class="navigation-moon-button"
+                class="navigation-button navigation-theme-button"
                 onclick={optionThemeToggle}
                 {@attach LocalizedTooltip("navigation.theme")}
                 type="button"
@@ -63,75 +59,52 @@
 
             <a
                 href={DEVCORE_EDITOR_PATH}
-                class="navigation-create-link"
+                class="navigation-button navigation-create-button"
                 {@attach LocalizedTooltip("navigation.create")}
             >
-                <LocalizedString
-                    text="Create"
-                    key="navigation.create"
-                />
+                <LocalizedString text="Create" key="navigation.create" />
             </a>
 
             <form class="navigation-search" onsubmit={handleSearchSubmit}>
-                <Icon>search</Icon>
+                <button class="navigation-search-button" type="submit" aria-label="Search">
+                    <Icon>search</Icon>
+                </button>
                 <input
+                    class="navigation-search-input"
                     type="search"
                     placeholder={searchPlaceholder()}
                     aria-label={searchPlaceholder()}
+                    name="search"
                 />
             </form>
-        </div>
 
-        <div class="navigation-side navigation-side-right">
             {#if StateApplication.loggedInProcessed && !($StoreSettings.loggedIn)}
                 <a
                     href={PUBLIC_STUDIO_URL}
-                    class="navigation-auth-link"
+                    class="navigation-button navigation-auth-button"
                     {@attach LocalizedTooltip("navigation.login")}
                 >
-                    <LocalizedString
-                        text="Sign in"
-                        key="navigation.login"
-                    />
+                    <LocalizedString text="Sign in" key="navigation.login" />
                 </a>
                 <a
                     href={PUBLIC_STUDIO_URL}
-                    class="navigation-auth-link"
+                    class="navigation-button navigation-auth-button"
                     {@attach LocalizedTooltip("navigation.signup")}
                 >
-                    <LocalizedString
-                        text="Sign up"
-                        key="navigation.signup"
-                    />
+                    <LocalizedString text="Sign up" key="navigation.signup" />
                 </a>
             {:else if StateApplication.loggedInProcessed && $StoreSettings.loggedIn}
-                <a class="navigation-auth-link" href={profileHref()}>
-                    <LocalizedString
-                        text="Profile"
-                        key="navigation.profile"
-                    />
+                <a class="navigation-button navigation-auth-button" href={profileHref()}>
+                    <LocalizedString text="Profile" key="navigation.profile" />
                 </a>
-                <a class="navigation-auth-link" href="/mystuff">
-                    <LocalizedString
-                        text="My Stuff"
-                        key="navigation.mystuff"
-                    />
+                <a class="navigation-button navigation-auth-button" href="/mystuff">
+                    <LocalizedString text="My Stuff" key="navigation.mystuff" />
                 </a>
-                <a class="navigation-auth-link" href="/settings">
-                    <LocalizedString
-                        text="Settings"
-                        key="account.settings.title"
-                    />
+                <a class="navigation-button navigation-auth-button" href="/settings">
+                    <LocalizedString text="Settings" key="account.settings.title" />
                 </a>
-                <button
-                    class="navigation-auth-button"
-                    onclick={handleLogout}
-                    type="button"
-                >
-                    <LocalizedString
-                        text="Logout"
-                        key="navigation.logout"
-                    />
+                <button class="navigation-button navigation-auth-button" onclick={handleLogout} type="button">
+                    <LocalizedString text="Logout" key="navigation.logout" />
                 </button>
             {/if}
         </div>
@@ -146,54 +119,27 @@
     }
 
     .navigation-bar {
+        position: relative;
         min-height: 3rem;
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
-        align-items: center;
-        gap: 0.5rem;
-        padding: 0 0.8rem;
+        padding: 0 0.45rem;
         background: var(--devcore-topbar, #27bf24);
         color: #fff;
         box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.12);
+        overflow: hidden;
     }
 
-    .navigation-side,
-    .navigation-main {
-        min-width: 0;
+    .navigation-row {
+        min-height: 3rem;
+        margin-left: 2.4rem;
         display: flex;
         align-items: center;
-    }
-
-    .navigation-side-left {
-        justify-content: flex-start;
-    }
-
-    .navigation-side-right {
-        justify-content: flex-end;
-        gap: 0.25rem;
-    }
-
-    .navigation-main {
         justify-content: center;
-        gap: 0.35rem;
+        gap: 0.12rem;
+        white-space: nowrap;
     }
 
-    .navigation-logo-link,
-    .navigation-auth-link,
-    .navigation-auth-button,
-    .navigation-create-link,
-    .navigation-moon-button,
-    .navigation-circle-button {
-        color: #fff;
-        font-size: 0.86rem;
-        font-weight: 700;
-        text-decoration: none;
-    }
-
-    .navigation-logo-link,
-    .navigation-moon-button,
-    .navigation-circle-button {
-        width: 2.15rem;
+    .navigation-button,
+    .navigation-logo-link {
         height: 2.15rem;
         display: inline-flex;
         align-items: center;
@@ -201,133 +147,130 @@
         border: 0;
         border-radius: 999px;
         background: transparent;
+        color: #fff;
+        text-decoration: none;
+        font-size: 0.86rem;
+        font-weight: 700;
         cursor: pointer;
         flex: 0 0 auto;
     }
 
-    .navigation-logo {
-        width: 2rem;
-        height: 2rem;
-        object-fit: contain;
-        display: block;
-    }
-
-    .navigation-moon-button :global(span),
-    .navigation-circle-button :global(span) {
-        font-size: 1.15rem;
-    }
-
-    .navigation-language-button {
-        width: auto;
-        padding: 0 0.3rem;
-        gap: 0.05rem;
-    }
-
-    .navigation-create-link {
-        height: 2rem;
-        padding: 0 0.95rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.18);
-        white-space: nowrap;
-    }
-
-    .navigation-search {
-        width: min(29rem, 38vw);
-        height: 2.2rem;
-        padding: 0 0.95rem;
-        display: flex;
-        align-items: center;
-        gap: 0.55rem;
-        border-radius: 999px;
-        background: #fff;
-        color: #54606f;
-        box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
-    }
-
-    .navigation-search input {
-        width: 100%;
-        min-width: 0;
-        border: 0;
-        outline: 0;
-        background: transparent;
-        color: #54606f;
-        font-size: 0.9rem;
-        font-weight: 600;
-    }
-
-    .navigation-search :global(span) {
-        color: #5d6a76;
-        font-size: 1.15rem;
-    }
-
-    .navigation-auth-link,
-    .navigation-auth-button {
-        height: 2rem;
-        padding: 0 0.7rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border: 0;
-        border-radius: 999px;
-        background: transparent;
-        cursor: pointer;
-        white-space: nowrap;
-    }
-
-    .navigation-auth-link:hover,
-    .navigation-auth-button:hover,
-    .navigation-create-link:hover,
-    .navigation-moon-button:hover,
-    .navigation-circle-button:hover,
+    .navigation-button:hover,
     .navigation-logo-link:hover {
         background: rgba(0, 0, 0, 0.12);
     }
 
-    .navigation-logo-link:hover {
+    .navigation-language-button {
+        position: absolute;
+        left: 4px;
+        top: 0.42rem;
+        padding: 0 0.45rem;
+        gap: 0.1rem;
+    }
+
+    .navigation-theme-button {
+        width: 2.15rem;
+        padding: 0.5rem;
+    }
+
+    .navigation-theme-button :global(span),
+    .navigation-language-button :global(span),
+    .navigation-search-button :global(span) {
+        font-size: 1.15rem;
+    }
+
+    .navigation-logo-link {
+        width: 2.15rem;
+        padding: 0;
+    }
+
+    .navigation-logo {
+        width: 2.15rem;
+        height: 2.15rem;
+        object-fit: contain;
+        display: block;
+    }
+
+    .navigation-logo-spacer {
+        width: 12px;
+        flex: 0 0 auto;
+    }
+
+    .navigation-create-button,
+    .navigation-auth-button {
+        padding: 0 0.8rem;
+    }
+
+    .navigation-search {
+        height: 2.15rem;
+        display: inline-flex;
+        align-items: center;
         border-radius: 999px;
+        background: rgba(255, 255, 255, 0.14);
+        overflow: hidden;
+        flex: 0 1 22rem;
+        min-width: 13rem;
+        max-width: 22rem;
+    }
+
+    .navigation-search-button {
+        width: 2.6rem;
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        background: transparent;
+        color: #fff;
+        cursor: pointer;
+        flex: 0 0 auto;
+    }
+
+    .navigation-search-input {
+        width: 100%;
+        min-width: 0;
+        height: 100%;
+        border: 0;
+        outline: 0;
+        background: rgba(255, 255, 255, 0.92);
+        color: #4f5964;
+        font-size: 0.88rem;
+        font-weight: 600;
+        padding: 0 0.95rem 0 0.15rem;
+    }
+
+    .navigation-search-input::placeholder {
+        color: #67727d;
+        opacity: 1;
     }
 
     .navigation-search:focus-within {
-        box-shadow: inset 0 0 0 2px rgba(39, 191, 36, 0.28);
+        box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.22);
     }
 
-    @media (max-width: 980px) {
-        .navigation-bar {
-            grid-template-columns: auto 1fr auto;
-        }
-
-        .navigation-main {
+    @media (max-width: 900px) {
+        .navigation-row {
             justify-content: flex-start;
+            overflow-x: auto;
+            scrollbar-width: none;
         }
 
-        .navigation-search {
-            width: min(100%, 24rem);
+        .navigation-row::-webkit-scrollbar {
+            display: none;
         }
     }
 
-    @media (max-width: 760px) {
+    @media (max-width: 640px) {
         .navigation-bar {
-            gap: 0.45rem;
-            padding: 0 0.45rem;
+            padding-right: 0.25rem;
         }
 
-        .navigation-main {
-            gap: 0.35rem;
+        .navigation-row {
+            margin-left: 2.2rem;
         }
 
         .navigation-search {
-            width: min(100%, 13rem);
-            padding: 0 0.7rem;
-        }
-
-        .navigation-auth-link,
-        .navigation-auth-button,
-        .navigation-create-link {
-            padding: 0 0.55rem;
-            font-size: 0.8rem;
+            min-width: 10rem;
         }
     }
 </style>
