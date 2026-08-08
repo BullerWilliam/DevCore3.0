@@ -22,7 +22,7 @@
     let color = $derived(props.color);
 
     let colorStyle = $state(``);
-    let outlineColor = $state(`rgba(0, 195, 255, 0.35)`);
+    let outlineColor = $state(`rgba(39, 191, 36, 0.35)`);
     const updated = () => {
         if (color) {
             switch (kind) {
@@ -89,7 +89,7 @@
         outline-width: 2px;
         outline-style: solid;
         color: white;
-        background-color: #00c3ff;
+        background-color: #27bf24;
 
         cursor: pointer;
     }
@@ -116,7 +116,7 @@
     .button-kind-highlighted {
         outline: 0px;
         background-color: white;
-        color: #00c3ff;
+        color: #19871a;
     }
     .button-kind-border {
         background-color: transparent !important;

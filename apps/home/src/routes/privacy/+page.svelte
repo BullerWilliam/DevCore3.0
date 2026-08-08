@@ -26,7 +26,7 @@
         min-height: calc(100vh - 3rem);
         padding: 5rem 1.5rem 3rem;
         background:
-            radial-gradient(circle at top left, rgba(0, 195, 255, 0.18), transparent 28rem),
+            radial-gradient(circle at top left, rgba(39, 191, 36, 0.18), transparent 28rem),
             linear-gradient(180deg, rgba(255, 159, 26, 0.08), transparent 24rem);
         display: flex;
         justify-content: center;
