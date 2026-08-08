@@ -28,7 +28,7 @@ $ui-tertiary-light: hsla(215, 50%, 90%, 1);
 $text-primary-light: hsla(225, 15%, 40%, 1);
 
 $red-primary: #27bf24;
-$red-tertiary: hsla(203, 100%, 39%, 1); /* #007bc7 */
+$red-tertiary: #19871a;
 
 $sound-primary: hsla(300, 53%, 60%, 1); /* #CF63CF */
 $sound-tertiary: hsla(300, 48%, 50%, 1); /* #BD42BD */
@@ -44,9 +44,9 @@ $error-primary: hsla(30, 100%, 55%, 1); /* #FF8C1A */
 $error-light: hsla(30, 100%, 70%, 1); /* #FFB366 */
 $error-transparent: hsla(30, 100%, 55%, 0.25); /* #FF8C1A */
 
-$extensions-primary: hsla(194, 100%, 50%, 1);
-$extensions-tertiary: hsla(203, 100%, 39%, 1);
-$extensions-transparent: hsla(194, 100%, 50%, 0.35); /* 35% transparent version of extensions-primary */
-$extensions-light: hsla(203, 100%, 39%, 1); /* opaque version of extensions-transparent, on white bg */
+$extensions-primary: #27bf24;
+$extensions-tertiary: #19871a;
+$extensions-transparent: rgba(39, 191, 36, 0.35); /* 35% transparent version of extensions-primary */
+$extensions-light: #19871a; /* opaque version of extensions-transparent, on white bg */
 
-$drop-highlight: hsla(194, 100%, 77%, 1); /* lighter than motion-primary */
+$drop-highlight: #7adf6c; /* lighter than motion-primary */
