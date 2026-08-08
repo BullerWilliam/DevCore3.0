@@ -84,7 +84,7 @@
         margin-block: 6px;
     }
     .category-header-secondary :global(a) {
-        color: dodgerblue;
+        color: #19871a;
     }
     .category-container {
         flex: 1;
