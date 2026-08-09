@@ -303,6 +303,7 @@
                             <img
                                 src="/asset/penguin/wait.svg"
                                 alt="Please wait before trying to access this page again."
+                                height="80px"
                                 {@attach LocalizedAlt("navigation.error.429")}
                             />
                             <p>
@@ -315,6 +316,7 @@
                             <img
                                 src="/asset/penguin/server.svg"
                                 alt="Whoops! Our server's having some problems. Try again later."
+                                height="80px"
                                 {@attach LocalizedAlt("home.server.error")}
                             />
                             <p>
@@ -595,6 +597,9 @@
     .section-onboarding-studio-inner :global(a),
     .section-onboarding-studio-inner :global(button) {
         color: #ffffff;
+    }
+    .section-onboarding-studio-inner :global(.button-kind-highlighted) {
+        color: #19871a;
     }
     .section-onboarding-showoff-inner {
         display: flex;
