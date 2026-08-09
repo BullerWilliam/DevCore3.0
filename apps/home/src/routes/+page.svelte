@@ -4,7 +4,7 @@
     import { PenguinModAPIError } from "$lib/resources/penguinmod/module";
 
     // components
-    import { Button, Category, SwappableHolder, Project } from "PenguinMod-SvelteUI";
+    import { Category, SwappableHolder, Project } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
     import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
     import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
@@ -76,15 +76,20 @@
                             key="home.introduction1"
                         />
                     </p>
-                    <p>
-                        Built off of <a href="https://scratch.mit.edu" target="_blank" rel="noreferrer">Scratch</a>, <a href="https://turbowarp.org" target="_blank" rel="noreferrer">TurboWarp</a> and <a href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
+                    <p class="section-onboarding-built-off">
+                        Built off of <a href={externalLinks.scratch} target="_blank" rel="noreferrer">Scratch</a>, <a href={externalLinks.turbowarp} target="_blank" rel="noreferrer">TurboWarp</a> and <a href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
                     </p>
-                    <Button icon="/asset/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
+                    <a class="section-onboarding-cta" href={externalLinks.editor}>
+                        <img
+                            src="/asset/icons/blocks-blue.svg"
+                            alt=""
+                            class="section-onboarding-cta-icon"
+                        />
                         <LocalizedString
                             text="Try it out"
                             key="home.tryout"
                         />
-                    </Button>
+                    </a>
                 </div>
             </div>
             <div class="section-onboarding-showoff">
@@ -597,12 +602,52 @@
     .section-onboarding-studio-inner p {
         margin-block: 16px;
     }
-    .section-onboarding-studio-inner :global(a),
-    .section-onboarding-studio-inner :global(button) {
+    .section-onboarding-studio-inner :global(a) {
         color: #ffffff;
     }
-    .section-onboarding-studio-inner :global(.button-kind-highlighted) {
-        color: #19871a;
+    .section-onboarding-built-off {
+        position: relative;
+        z-index: 2;
+        line-height: 1.4;
+    }
+    .section-onboarding-built-off :global(a) {
+        position: relative;
+        z-index: 2;
+        text-decoration: underline;
+        text-underline-offset: 0.15em;
+    }
+    .section-onboarding-cta {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        margin: 4px;
+        padding: 1rem 1rem;
+        border-radius: 4px;
+        background-color: #ffffff;
+        color: #19871a !important;
+        font-size: 1.1rem;
+        font-weight: 700;
+        line-height: 1;
+        text-decoration: none;
+        outline: 0;
+        box-shadow: 0 0 0 0 rgba(39, 191, 36, 0.35);
+        transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+    .section-onboarding-cta:hover {
+        filter: brightness(0.97);
+        transform: translateY(-1px);
+    }
+    .section-onboarding-cta:focus-visible {
+        box-shadow: 0 0 0 4px rgba(39, 191, 36, 0.35);
+    }
+    .section-onboarding-cta:active {
+        transform: translateY(0);
+        filter: brightness(0.94);
+    }
+    .section-onboarding-cta-icon {
+        width: 24px;
+        height: 24px;
+        object-fit: contain;
     }
     .section-onboarding-showoff-inner {
         display: flex;
