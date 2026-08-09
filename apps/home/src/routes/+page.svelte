@@ -458,6 +458,9 @@
                         key="home.footer.sections.website.credits"
                     />
                 </a>
+                <a href={externalLinks.docs}>
+                    Docs
+                </a>
                 <a href={"/dev-panel"}>
                     Dev Panel
                 </a>

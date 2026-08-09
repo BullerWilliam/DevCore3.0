@@ -267,6 +267,10 @@ const runtimeRepos = {
                 source: "apps/home/vercel-output/packager checked into the repo",
             },
             {
+                label: "Docs",
+                source: "apps/docs built by Docusaurus and copied into /docs/ during scripts/build-vercel-output.mjs",
+            },
+            {
                 label: "Uploading guidelines route",
                 source: "apps/home/public/guidelines plus Vercel rewrite entries",
             },
@@ -276,10 +280,6 @@ const runtimeRepos = {
             },
         ],
         highestLeverageGaps: [
-            {
-                name: "PenguinMod-Docs",
-                why: "Imported at apps/docs, but scripts/build-vercel-output.mjs does not publish a docs route yet.",
-            },
             {
                 name: "PenguinMod-ExtensionsGallery",
                 why: "Imported at apps/extensions-gallery, but the current Vercel output does not expose an extensions gallery surface yet.",

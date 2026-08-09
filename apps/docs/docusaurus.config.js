@@ -6,23 +6,26 @@
 
 import { themes as prismThemes } from 'prism-react-renderer';
 
+const siteUrl = process.env.DEVCORE_DOCS_URL || 'https://dev-core-xi.vercel.app';
+const siteBaseUrl = process.env.DEVCORE_DOCS_BASE_URL || '/docs/';
+
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-    title: 'PenguinMod',
+    title: 'DevCore Docs',
     // tagline: 'Dinosaurs are cool',
     favicon: 'img/favicon.ico',
     
     // Set the production url of your site here
-    url: 'https://docs.penguinmod.com',
+    url: siteUrl,
     // Set the /<baseUrl>/ pathname under which your site is served
     // For GitHub pages deployment, it is often '/<projectName>/'
-    baseUrl: '/',
+    baseUrl: siteBaseUrl,
     trailingSlash: true,
     
     // GitHub pages deployment config.
     // If you aren't using GitHub pages, you don't need these.
-    organizationName: 'PenguinMod', // Usually your GitHub org/user name.
-    projectName: 'PenguinMod-Docs', // Usually your repo name.
+    organizationName: 'BullerWilliam', // Usually your GitHub org/user name.
+    projectName: 'DevCore3.0', // Usually your repo name.
     
     onBrokenLinks: 'warn',
     onBrokenMarkdownLinks: 'warn',
@@ -59,9 +62,9 @@ const config = {
     /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
     ({
         navbar: {
-            title: 'PenguinMod',
+            title: 'DevCore Docs',
             logo: {
-                alt: 'PenguinMod Logo',
+                alt: 'DevCore Logo',
                 src: 'img/favicon.png',
             },
             items: [
@@ -86,12 +89,12 @@ const config = {
                     position: 'left'
                 },
                 {
-                    href: 'https://penguinmod.com/',
-                    label: 'PenguinMod',
+                    href: siteUrl,
+                    label: 'DevCore',
                     position: 'right'
                 },
                 {
-                    href: 'https://github.com/PenguinMod/',
+                    href: 'https://github.com/BullerWilliam/DevCore3.0',
                     label: 'GitHub',
                     position: 'right',
                 },

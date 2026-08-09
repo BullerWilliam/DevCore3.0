@@ -33,6 +33,10 @@
       "destination": "/dev-panel/"
     },
     {
+      "source": "/docs",
+      "destination": "/docs/"
+    },
+    {
       "source": "/guidelines/uploading",
       "destination": "/guidelines/uploading/"
     }

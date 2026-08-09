@@ -1,6 +1,7 @@
 import {
     DEVCORE_CREDITS_PATH,
     DEVCORE_CONTACT_PATH,
+    DEVCORE_DOCS_PATH,
     DEVCORE_EDITOR_PATH,
     DEVCORE_PACKAGER_PATH
 } from "$lib/resources/site-paths";
@@ -40,6 +41,11 @@ export default {
      * PenguinMod's packager page
      */
     packager: DEVCORE_PACKAGER_PATH,
+
+    /**
+     * DevCore's docs page
+     */
+    docs: DEVCORE_DOCS_PATH,
     
     /**
      * PenguinMod's status page

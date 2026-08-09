@@ -102,21 +102,32 @@ const copyHtmlRoute = (sourceRelativePath, targetRoutePath, replacer) => {
 resetDirectory(outputRoot);
 
 const editorDir = path.join(repoRoot, 'apps', 'editor');
+const docsDir = path.join(repoRoot, 'apps', 'docs');
 const packagerDir = path.join(repoRoot, 'apps', 'packager');
 
 installApp(homeDir);
+installApp(docsDir);
 if (skipHomeBuild) {
     console.log('\n> skipping home build');
 } else {
     runNpm(['run', 'build'], {}, homeDir);
 }
+runNpm([
+    'run',
+    'build'
+], {
+    DEVCORE_DOCS_BASE_URL: '/docs/',
+    DEVCORE_DOCS_URL: 'https://dev-core-xi.vercel.app'
+}, docsDir);
 
 const homeOutput = path.join(repoRoot, 'apps', 'home', 'public');
+const docsOutput = path.join(repoRoot, 'apps', 'docs', 'build');
 const editorOutput = path.join(repoRoot, 'apps', 'editor', 'build');
 const packagerOutput = path.join(repoRoot, 'apps', 'packager', 'dist');
 
 copyDirectory(checkedInOutputDir, outputRoot);
 copyDirectory(homeOutput, outputRoot);
+copyDirectory(docsOutput, path.join(outputRoot, 'docs'));
 copyHtmlRoute('mystuff.html', 'mystuff', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('settings.html', 'settings', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('profile.html', 'profile', content => content.replaceAll('="./', '="/'));
