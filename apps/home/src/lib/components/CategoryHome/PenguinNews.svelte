@@ -6,6 +6,7 @@
     import Icon from "$lib/components/Icon/Component.svelte";
     import LocalizedString from "$lib/components/Localization/LocalizedString.svelte";
     
+    import homepageNews from "$lib/content/dev-panel/homepage-news";
     import TranslationMapper from "$lib/resources/localization/translation/mapper";
 
     import StoreSettings from "$lib/stores/settings";
@@ -22,51 +23,47 @@
         />
     {/snippet}
     {#snippet headerSecondary()}
-        <!-- NOTE: Remove target="_blank" if page leads to a pm domain -->
         <a
-            href={"https://itch.io/jam/all-the-mods-game-jam"}
-            target="_blank"
+            href={homepageNews.seeMoreHref}
+            target={homepageNews.seeMoreExternal ? "_blank" : undefined}
         >
             <LocalizedString
                 text="See more"
                 key="home.seemore"
             />
-            <!-- NOTE: remove this if the page leads to a pm domain -->
-            <Icon style="font-size:0.9rem;display:inline">
-                open_in_new
-            </Icon>
+            {#if homepageNews.seeMoreExternal}
+                <Icon style="font-size:0.9rem;display:inline">
+                    open_in_new
+                </Icon>
+            {/if}
         </a>
     {/snippet}
     <div>
         <h2 style="margin-block:4px;">
-            All The Mods Game Jam has ended!
+            {homepageNews.title}
         </h2>
         <div style="width:100%">
-            <p>
-                Thanks for participating in the event! Rankings will be announced
-                on <a href="https://itch.io/jam/all-the-mods-game-jam">itch.io</a>.
-                See you soon!
-            </p>
-            <a href="https://itch.io/jam/all-the-mods-game-jam">
-                All The Mods on itch.io
-            </a>
+            {#each homepageNews.body as paragraph}
+                <p>{paragraph}</p>
+            {/each}
+            {#each homepageNews.inlineLinks as link}
+                <a href={link.href} target="_blank">
+                    {link.label}
+                </a>
+            {/each}
         </div>
         <hr />
-        <!-- TODO: This should link to the active origin URL, not penguinmod.com -->
         <img
-            src="https://penguinmod.com/events/news/allthemods2026.webp?r=1"
-            alt="All The Mods 2026"
+            src={homepageNews.image.src}
+            alt={homepageNews.image.alt}
             style="width:100%;border-radius:8px;"
         />
     </div>
     {#snippet footer()}
         {#if browser && TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) !== "en"}
-            <LocalizedString
-                text="DevCore News is not translated in your language. Sorry! :("
-                key="home.sections.informational.notranslation"
-            />
+            {homepageNews.footer.untranslated}
         {:else}
-            TODO: UNIMPORTANT: This should be a fun fact
+            {homepageNews.footer.default}
         {/if}
     {/snippet}
 </Category>
