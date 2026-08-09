@@ -458,6 +458,9 @@
                         key="home.footer.sections.website.credits"
                     />
                 </a>
+                <a href={"/dev-panel"}>
+                    Dev Panel
+                </a>
                 <a href={externalLinks.github}>
                     <LocalizedString
                         text="Source"
