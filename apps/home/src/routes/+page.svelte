@@ -77,7 +77,11 @@
                         />
                     </p>
                     <p class="section-onboarding-built-off">
-                        Built off of <a href={externalLinks.scratch} target="_blank" rel="noreferrer">Scratch</a>, <a href={externalLinks.turbowarp} target="_blank" rel="noreferrer">TurboWarp</a> and <a href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
+                        Built off of
+                        <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a>,
+                        <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
+                        and
+                        <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
                     </p>
                     <a class="section-onboarding-cta" href={externalLinks.editor}>
                         <img
@@ -466,6 +470,9 @@
                 <a href={externalLinks.docs}>
                     Docs
                 </a>
+                <a href={externalLinks.extensionsGallery}>
+                    Extensions
+                </a>
                 <a href={"/dev-panel"}>
                     Dev Panel
                 </a>
@@ -606,18 +613,24 @@
         color: #ffffff;
     }
     .section-onboarding-built-off {
+        display: block;
         position: relative;
         z-index: 2;
         line-height: 1.4;
     }
-    .section-onboarding-built-off :global(a) {
+    .section-onboarding-built-off-link {
+        display: inline;
         position: relative;
-        z-index: 2;
+        z-index: 3;
+        pointer-events: auto;
+        color: #ffffff;
         text-decoration: underline;
         text-underline-offset: 0.15em;
     }
     .section-onboarding-cta {
         display: inline-flex;
+        position: relative;
+        z-index: 1;
         align-items: center;
         gap: 0.6rem;
         margin: 4px;
