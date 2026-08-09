@@ -77,10 +77,7 @@
                         />
                     </p>
                     <p>
-                        <LocalizedString
-                            text="Built off of Scratch and TurboWarp"
-                            key="home.introduction2"
-                        />
+                        Built off of <a href={externalLinks.scratch}>Scratch</a>, <a href={externalLinks.turbowarp}>TurboWarp</a> and <a href={externalLinks.editor}>PenguinMod</a>
                     </p>
                     <Button icon="/asset/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
                         <LocalizedString
