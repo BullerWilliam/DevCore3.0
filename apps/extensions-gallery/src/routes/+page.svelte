@@ -11,6 +11,7 @@
     import Footer from "$lib/Footer/Component.svelte";
     import Logo from "$lib/Logo/Component.svelte";
 
+    import { buildExtensionCodePath, buildGalleryPath } from "$lib/devcore-paths.js";
     import { Tags, makeDefaultTag } from "$lib/extension-tags.js";
     import ExtensionLoader from "$lib/extension-loader.js";
     import stateApplication from "$lib/state/app.svelte.js";
@@ -24,7 +25,7 @@
         return text.toLowerCase().trim();
     };
     const createExtUrl = (relativeUrl) => {
-        return `${origin}/extensions/${relativeUrl}`;
+        return `${origin}${buildExtensionCodePath(relativeUrl)}`;
     };
     $effect(() => {
         if (messageHandlersAdded) return;
@@ -227,7 +228,7 @@
 <div class="top">
     <div class="header">
         <Logo />
-        <h1>PenguinMod Extra Extensions</h1>
+        <h1>DevCore Extensions Gallery</h1>
     </div>
 </div>
 <div class="buffer">
@@ -236,14 +237,14 @@
         <p>
             To add an extension to your project, click the "Add to Project" button.
             You can also click the "Copy" button and
-            <a href="/load" target="_blank">load it into PenguinMod</a>
+            <a href={buildGalleryPath("/load/")} target="_blank">load it into DevCore</a>
             if the former fails.
         </p>
     {:else}
         <p>
             To use some of these extensions in your projects, click the "Copy Link"
             button on an extension and
-            <a href="/load" target="_blank">load it into PenguinMod,</a>
+            <a href={buildGalleryPath("/load/")} target="_blank">load it into DevCore,</a>
             or click the "Try it out" button to create a new project with the extension.
         </p>
     {/if}
@@ -252,14 +253,14 @@
 <div class="extension-list-controls">
     <button onclick={toggleFilterBar}>
         <img
-            src="/icons/filter.svg"
+            src={buildGalleryPath("/icons/filter.svg")}
             alt="Filters"
             title="Filters"
         />
     </button>
     <div class="extension-list-controls-sorting-selector-image-container-div">
         <img
-            src="/icons/sort.svg"
+            src={buildGalleryPath("/icons/sort.svg")}
             alt="Sort"
             title="Sort using the selector"
         />
@@ -278,13 +279,13 @@
         <button onclick={toggleTestInNewProject}>
             {#if showingTestInNewProject}
                 <img
-                    src="/icons/test-enabled.svg"
+                    src={buildGalleryPath("/icons/test-enabled.svg")}
                     alt={'Currently showing "Test in New Project" link'}
                     title={'Currently showing "Test in New Project" link'}
                 />
             {:else}
                 <img
-                    src="/icons/test-disabled.svg"
+                    src={buildGalleryPath("/icons/test-disabled.svg")}
                     alt={'Currently hiding "Test in New Project" link'}
                     title={'Currently hiding "Test in New Project" link'}
                 />
@@ -345,7 +346,7 @@
             {#each shownExtensions as extension}
                 <Extension
                     name={extension.name}
-                    image={`/images/${extension.banner}`}
+                    image={buildGalleryPath(`/images/${extension.banner}`)}
                     tags={extension.tags}
                     creator={extension.creator}
                     creatorAlias={extension.creatorAlias}
@@ -373,11 +374,11 @@
 
 <div class="buffer">
     <p style="text-align: center;">
-        Note: Some extensions may be added to the Extension Gallery in
-        PenguinMod Studio.
+        Note: Some extensions may be added directly to the built-in extension
+        menu in DevCore Studio.
         <br />
         If you cannot find an extension that was
-        previously listed here, check there.
+        previously listed here, check there too.
     </p>
 
     <Footer />
@@ -510,7 +511,7 @@
     .extension-list-filters-clear {
         border-color: rgba(0, 0, 0, 0.25);
         border-radius: 3px;
-        background: dodgerblue;
+        background: #27bf24;
         color: white;
         font-weight: bold;
         font-size: 16px;

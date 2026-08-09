@@ -1,4 +1,5 @@
 <script>
+    import { base } from "$app/paths";
     import { page } from "$app/state";
 
     // Components
@@ -18,7 +19,7 @@
 </script>
 
 <NavigationBar
-    displaySearchBar={page.url.pathname === '/'}
+    displaySearchBar={page.url.pathname === (base || "/") || page.url.pathname === `${base}/`}
     onsearch={onSearch}
 />
 <div style="height: 3rem;"></div>

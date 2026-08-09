@@ -1,5 +1,6 @@
 <script>
     import DocsPages from "$lib/Documentation/pages.js";
+    import { buildGalleryPath } from "$lib/devcore-paths.js";
     
     const pages = Object.keys(DocsPages);
     const amount = pages.length;
@@ -19,7 +20,7 @@
 
 {#each pages as page}
     <p>
-        <a href={`/docs/${page}`}>{page}</a>
+        <a href={buildGalleryPath(`/docs/${page}/`)}>{page}</a>
     </p>
 {/each}
 

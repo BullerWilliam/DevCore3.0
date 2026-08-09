@@ -1,5 +1,6 @@
 <script>
     import {onMount} from 'svelte';
+    import { buildGalleryPath } from "$lib/devcore-paths.js";
 
     // Components
     import BarPage from "./Page.svelte";
@@ -50,20 +51,20 @@
 </script>
 
 <div class="bar">
-    <a class="logo" href="/">
-        <img class="logo-image" src="/navicon.png" alt="PenguinMod" />
+    <a class="logo" href={buildGalleryPath("/")}>
+        <img class="logo-image" src={buildGalleryPath("/navicon.png")} alt="DevCore" />
     </a>
     <div style="margin-right: 12px;"></div>
     <BarPage style="padding:0.5rem" onclick={toggleTheme}>
-        <img src="/icons/moon.svg" alt="Theme" />
+        <img src={buildGalleryPath("/icons/moon.svg")} alt="Theme" />
     </BarPage>
-    <BarPage link={"/docs"}>Documentation</BarPage>
+    <BarPage link={buildGalleryPath("/docs/")}>Documentation</BarPage>
 
     {#if displaySearchBar}
         <div class="search">
             <button class="search-button" onclick={searchExtensions}>
                 <img
-                    src="/icons/search-icon.svg"
+                    src={buildGalleryPath("/icons/search-icon.svg")}
                     alt="Search"
                     style="width:30px; height:20px; margin-bottom:5px; margin-top: 5px;"
                 />
@@ -92,10 +93,10 @@
 
 <style>
     :root {
-        --penguinmod-color: #00c3ff;
+        --penguinmod-color: #27bf24;
     }
     :global(body.dark-mode) {
-        --penguinmod-color: #009ccc;
+        --penguinmod-color: #1f8f1d;
     }
 
     .bar {

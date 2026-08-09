@@ -1,6 +1,10 @@
+<script>
+    import { buildGalleryPath } from "$lib/devcore-paths.js";
+</script>
+
 <img
-    src="/favicon.ico"
-    alt="PenguinMod Logo"
+    src={buildGalleryPath("/favicon.ico")}
+    alt="DevCore Logo"
     class="logo"
 />
 

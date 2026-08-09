@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
     import { Tags } from "../extension-tags";
+    import { buildEditorPath, buildGalleryPath } from "$lib/devcore-paths.js";
     import stateApplication from '$lib/state/app.svelte.js';
     import stateSearchBar from '$lib/state/searchBar.svelte.js';
     import ExtensionLoader from "$lib/extension-loader.js";
@@ -11,7 +12,7 @@
         ...props
     } = $props();
     let name = $derived(props.name || "Test");
-    let image = $derived(props.image || "/images/example.avif");
+    let image = $derived(props.image || buildGalleryPath("/images/example.avif"));
     let tags = $derived(props.tags || []);
     let url = $derived(props.url || "");
     let notes = $derived(props.notes || "");
@@ -25,7 +26,8 @@
 
     // used for search
     let relUrl = $derived(props.relUrl);
-    const baseUrl = "https://studio.penguinmod.com/editor.html?extension=";
+    const editorExtensionBaseUrl = `${$page.url.origin}${buildEditorPath("/?extension=")}`;
+    const editorProjectBaseUrl = `${$page.url.origin}${buildEditorPath("/?project_url=")}`;
 
     /**
      * The button to copy the URL
@@ -206,9 +208,9 @@
             {/if}
             <button class="favorite-button" onclick={() => props?.onfavoriteclicked(relUrl)}>
                 {#if favorited}
-                    <img src="/icons/favorite-filled.svg" alt="Favorited" title="Favorited" />
+                    <img src={buildGalleryPath("/icons/favorite-filled.svg")} alt="Favorited" title="Favorited" />
                 {:else}
-                    <img src="/icons/favorite-outline.svg" alt="Favorite" title="Favorite" />
+                    <img src={buildGalleryPath("/icons/favorite-outline.svg")} alt="Favorite" title="Favorite" />
                 {/if}
             </button>
         </div>
@@ -233,14 +235,14 @@
         {/if}
         {#if example}
             <p>
-                <a href={`https://studio.penguinmod.com/editor.html?project_url=${encodeURIComponent(`${$page.url.origin}/examples/projects/${example}`)}`}>
+                <a href={`${editorProjectBaseUrl}${encodeURIComponent(`${$page.url.origin}${buildGalleryPath(`/examples/projects/${example}`)}`)}`}>
                     Example Project
                 </a>
             </p>
         {/if}
         {#if documentation}
             <p>
-                <a href={`/docs/${documentation}`}>Extension Documentation</a>
+                <a href={buildGalleryPath(`/docs/${documentation}/`)}>Extension Documentation</a>
             </p>
         {/if}
     </div>
@@ -249,7 +251,7 @@
         {#if props.showTestAlways && stateApplication.fromEditor}
             <p class="block-buttons-link">
                 <a
-                    href={baseUrl + url}
+                    href={editorExtensionBaseUrl + url}
                     target="_blank"
                 >
                     Test in New Project
@@ -281,7 +283,7 @@
                     Copy Link
                 </button>
                 <a
-                    href={baseUrl + url}
+                    href={editorExtensionBaseUrl + url}
                     target="_blank"
                 >
                     <button class="purple">Try it out</button>
@@ -449,7 +451,7 @@
         background: transparent;
     }
     .unstable-warning {
-        background-image: url('/icons/warning2.png');
+        background-image: url('/extensions-gallery/icons/warning2.png');
         background-position: center;
         background-size: 80%;
         background-repeat: no-repeat;
@@ -488,9 +490,9 @@
     }
 
     .blue {
-        background-color: #00a2ff;
+        background-color: #27bf24;
     }
     .purple {
-        background-color: #9d52ff;
+        background-color: #19871a;
     }
 </style>

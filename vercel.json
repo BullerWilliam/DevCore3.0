@@ -37,6 +37,10 @@
       "destination": "/docs/"
     },
     {
+      "source": "/extensions-gallery",
+      "destination": "/extensions-gallery/"
+    },
+    {
       "source": "/guidelines/uploading",
       "destination": "/guidelines/uploading/"
     }

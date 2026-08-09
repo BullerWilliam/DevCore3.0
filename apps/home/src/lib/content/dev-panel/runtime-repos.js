@@ -271,6 +271,10 @@ const runtimeRepos = {
                 source: "apps/docs built by Docusaurus and copied into /docs/ during scripts/build-vercel-output.mjs",
             },
             {
+                label: "Extensions gallery",
+                source: "apps/extensions-gallery built into /extensions-gallery/ with raw extension files copied to /extensions/",
+            },
+            {
                 label: "Uploading guidelines route",
                 source: "apps/home/public/guidelines plus Vercel rewrite entries",
             },
@@ -280,10 +284,6 @@ const runtimeRepos = {
             },
         ],
         highestLeverageGaps: [
-            {
-                name: "PenguinMod-ExtensionsGallery",
-                why: "Imported at apps/extensions-gallery, but the current Vercel output does not expose an extensions gallery surface yet.",
-            },
             {
                 name: "PenguinMod-Holdover",
                 why: "Imported at apps/holdover, but the current Vercel build does not swap to it automatically for outages.",

@@ -4,6 +4,7 @@ import {
     cpSync,
     existsSync,
     mkdirSync,
+    readdirSync,
     readFileSync,
     rmSync,
     writeFileSync
@@ -103,10 +104,12 @@ resetDirectory(outputRoot);
 
 const editorDir = path.join(repoRoot, 'apps', 'editor');
 const docsDir = path.join(repoRoot, 'apps', 'docs');
+const extensionsGalleryDir = path.join(repoRoot, 'apps', 'extensions-gallery');
 const packagerDir = path.join(repoRoot, 'apps', 'packager');
 
 installApp(homeDir);
 installApp(docsDir);
+installApp(extensionsGalleryDir);
 if (skipHomeBuild) {
     console.log('\n> skipping home build');
 } else {
@@ -119,15 +122,42 @@ runNpm([
     DEVCORE_DOCS_BASE_URL: '/docs/',
     DEVCORE_DOCS_URL: 'https://dev-core-xi.vercel.app'
 }, docsDir);
+runNpm([
+    'run',
+    'build'
+], {
+    DEVCORE_EXTENSIONS_BASE_PATH: '/extensions-gallery'
+}, extensionsGalleryDir);
 
 const homeOutput = path.join(repoRoot, 'apps', 'home', 'public');
 const docsOutput = path.join(repoRoot, 'apps', 'docs', 'build');
+const extensionsGalleryOutput = path.join(repoRoot, 'apps', 'extensions-gallery', 'public');
 const editorOutput = path.join(repoRoot, 'apps', 'editor', 'build');
 const packagerOutput = path.join(repoRoot, 'apps', 'packager', 'dist');
 
 copyDirectory(checkedInOutputDir, outputRoot);
 copyDirectory(homeOutput, outputRoot);
 copyDirectory(docsOutput, path.join(outputRoot, 'docs'));
+copyDirectory(extensionsGalleryOutput, path.join(outputRoot, 'extensions-gallery'));
+copyDirectory(path.join(extensionsGalleryOutput, 'extensions'), path.join(outputRoot, 'extensions'));
+copyHtmlRoute(
+    path.join('extensions-gallery', 'load.html'),
+    path.join('extensions-gallery', 'load')
+);
+copyHtmlRoute(
+    path.join('extensions-gallery', 'docs.html'),
+    path.join('extensions-gallery', 'docs')
+);
+for (const entry of readdirSync(path.join(outputRoot, 'extensions-gallery', 'docs'), { withFileTypes: true })) {
+    if (!entry.isFile() || !entry.name.endsWith('.html')) continue;
+
+    const slug = path.basename(entry.name, '.html');
+    if (slug === 'index') continue;
+    copyHtmlRoute(
+        path.join('extensions-gallery', 'docs', entry.name),
+        path.join('extensions-gallery', 'docs', slug)
+    );
+}
 copyHtmlRoute('mystuff.html', 'mystuff', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('settings.html', 'settings', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('profile.html', 'profile', content => content.replaceAll('="./', '="/'));

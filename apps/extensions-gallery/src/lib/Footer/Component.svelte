@@ -27,7 +27,7 @@
 <div style="height: 24px"></div>
 <div class="footer">
     <span>
-        PenguinMod is not affiliated with TurboWarp, Scratch, the Scratch Team, or
+        DevCore is not affiliated with Scratch, TurboWarp, PenguinMod, the Scratch Team, or
         the Scratch Foundation.
     </span>
     <span>
@@ -38,14 +38,14 @@
 <div class="links">
     <a
         target="_blank"
-        href="https://github.com/PenguinMod/PenguinMod-ExtensionsGallery"
+        href="https://github.com/BullerWilliam/DevCore3.0"
     >
         GitHub
     </a>
     <span style="margin: 0px 6px;">-</span>
     <a
         target="_blank"
-        href="https://github.com/PenguinMod/PenguinMod-ExtensionsGallery/blob/main/README.md"
+        href="https://github.com/BullerWilliam/DevCore3.0/tree/master/apps/extensions-gallery"
     >
         Submitting an extension
     </a>

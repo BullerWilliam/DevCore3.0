@@ -2,12 +2,13 @@
     // Components
     import Logo from "$lib/Logo/Component.svelte";
     import Footer from "$lib/Footer/Component.svelte";
+    import { buildGalleryPath } from "$lib/devcore-paths.js";
 </script>
 
 <div class="top">
     <div class="header">
         <Logo />
-        <h1>PenguinMod Extra Extensions</h1>
+        <h1>DevCore Extensions Gallery</h1>
     </div>
 </div>
 <div class="main">
@@ -17,10 +18,10 @@
     <p>
         <b>Step 1:</b>
         <br />
-        • Open the Extensions Menu at the bottom left of the Editor.
+        - Open the Extensions Menu at the bottom left of the Editor.
     </p>
     <img
-        src="/examples/loadextensions/1.png"
+        src={buildGalleryPath("/examples/loadextensions/1.png")}
         alt="Opening Extension Menu"
         style="width: 345px"
         loading="lazy"
@@ -31,18 +32,18 @@
     <p>
         <b>Step 2:</b>
         <br />
-        • Scroll to the bottom of the list and click on "Custom Extension" You can
+        - Scroll to the bottom of the list and click on "Custom Extension." You can
         also click the "Load Custom Extension" button on the left.
         <br />
     </p>
     <img
-        src="/examples/loadextensions/2.png"
+        src={buildGalleryPath("/examples/loadextensions/2.png")}
         alt="Opening the custom extension screen"
         style="width: 345px"
         loading="lazy"
     />
     <img
-        src="/examples/loadextensions/2-alt.png"
+        src={buildGalleryPath("/examples/loadextensions/2-alt.png")}
         alt="Opening the custom extension screen on the sidebar"
         style="width: 345px"
         loading="lazy"
@@ -53,10 +54,10 @@
     <p>
         <b>Step 3:</b>
         <br />
-        • Paste in any extension URL you have copied from this website here.
+        - Paste in any extension URL you have copied from this website here.
     </p>
     <img
-        src="/examples/loadextensions/3.png"
+        src={buildGalleryPath("/examples/loadextensions/3.png")}
         alt="Entering an extension URL to load a custom extension"
         style="width: 600px"
         loading="lazy"

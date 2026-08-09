@@ -11,7 +11,7 @@
     <br />
     You can help contribute to documentation
     <a
-        href="https://github.com/PenguinMod/PenguinMod-ExtensionsGallery/tree/main/src/lib/Documentation"
+        href="https://github.com/BullerWilliam/DevCore3.0/tree/master/apps/extensions-gallery/src/lib/Documentation"
     >
         here</a
     >.

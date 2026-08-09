@@ -1,3 +1,5 @@
+import { buildGalleryPath } from "$lib/devcore-paths.js";
+
 /*
 NOTE: This file manages aliases & groupings for tags.
 To make a new tag or list it, add it to an extension in `extensions.js`
@@ -11,7 +13,7 @@ export const Tags = [
     // extensiontypes
     {
         name: "new",
-        banner: "/icons/tag-banners/new.svg",
+        banner: buildGalleryPath("/icons/tag-banners/new.svg"),
         group: "extensiontypes",
     },
     {
