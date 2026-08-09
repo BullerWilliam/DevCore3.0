@@ -423,7 +423,7 @@
     <div class="section-footer">
         <p style="margin-block-end: 2px;">
             <LocalizedString
-                text="DevCore is not affiliated with Scratch, TurboWarp, the Scratch Team, or the Scratch Foundation."
+                text="DevCore is not affiliated with Scratch, TurboWarp, PenguinMod, the Scratch Team, or the Scratch Foundation."
                 key="home.footer.notaffiliated"
             />
         </p>
