@@ -68,6 +68,35 @@ const runNodeScript = scriptPath => {
     });
 };
 
+const runWebpackBuild = (cwd, env = {}, {
+    args = [],
+    cleanDirectory = null
+} = {}) => {
+    const candidatePaths = [
+        path.join(cwd, 'node_modules', 'webpack-cli', 'bin', 'cli.js'),
+        path.join(cwd, 'node_modules', 'webpack', 'bin', 'webpack.js')
+    ];
+    const cliPath = candidatePaths.find(candidate => existsSync(candidate));
+
+    if (!cliPath) {
+        throw new Error(`Could not find a local webpack entrypoint in ${cwd}`);
+    }
+
+    if (cleanDirectory) {
+        rmSync(cleanDirectory, { recursive: true, force: true });
+    }
+
+    console.log(`\n> webpack ${args.join(' ')}`.trim());
+    execSync(`"${process.execPath}" "${cliPath}" ${args.join(' ')}`.trim(), {
+        cwd,
+        stdio: 'inherit',
+        env: {
+            ...process.env,
+            ...env
+        }
+    });
+};
+
 const resetDirectory = directory => {
     rmSync(directory, { recursive: true, force: true });
     mkdirSync(directory, { recursive: true });
@@ -200,8 +229,16 @@ if (rebuildLegacyApps) {
     installApp(editorDir);
     installApp(packagerDir);
     runNodeScript('scripts/repair-legacy-install.mjs');
-    runNpm(['run', 'build'], {}, packagerDir);
-    runNpm(['run', 'build'], { ROOT: '/editor/' }, editorDir);
+    runWebpackBuild(packagerDir, {}, {
+        cleanDirectory: packagerOutput
+    });
+    runWebpackBuild(editorDir, {
+        NODE_OPTIONS: '--openssl-legacy-provider',
+        ROOT: '/editor/'
+    }, {
+        args: ['--colors', '--bail'],
+        cleanDirectory: editorOutput
+    });
 
     copyDirectory(packagerOutput, path.join(outputRoot, 'packager'));
     copyDirectory(editorOutput, path.join(outputRoot, 'editor'));
