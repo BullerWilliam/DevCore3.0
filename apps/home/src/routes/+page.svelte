@@ -77,7 +77,7 @@
                         />
                     </p>
                     <p>
-                        Built off of <a href={externalLinks.scratch}>Scratch</a>, <a href={externalLinks.turbowarp}>TurboWarp</a> and <a href={externalLinks.editor}>PenguinMod</a>
+                        Built off of <a href={externalLinks.scratch}>Scratch</a>, <a href={externalLinks.turbowarp}>TurboWarp</a> and <a href={externalLinks.penguinmod}>PenguinMod</a>
                     </p>
                     <Button icon="/asset/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
                         <LocalizedString
