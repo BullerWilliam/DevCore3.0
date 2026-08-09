@@ -103,13 +103,65 @@
         <h1>Dev Panel</h1>
         <p>
             This is the first migration control surface for the unified DevCore clone effort. It
-            tracks which public PenguinMod repos are actually needed for the live stack and where
-            the homepage content is currently sourced from.
+            tracks which public PenguinMod repos are actually needed for the live stack, which of
+            those repos are already copied into this monorepo, and where the homepage content is
+            currently sourced from.
         </p>
         <p>
-            Reviewed upstream repos: <strong>{runtimeRepos.reviewedRepoCount}</strong> as of
+            Reviewed upstream repos: <strong>{runtimeRepos.auditSummary.reviewedRepoCount}</strong> as of
             <strong>{runtimeRepos.reviewDate}</strong>.
         </p>
+    </section>
+
+    <section class="panel-card">
+        <h2>Repo Audit Snapshot</h2>
+        <div class="overview-grid">
+            <article class="mini-card">
+                <h3>Repos Reviewed</h3>
+                <p>{runtimeRepos.auditSummary.reviewedRepoCount}</p>
+            </article>
+            <article class="mini-card">
+                <h3>Repos Needed For DevCore Clone</h3>
+                <p>{runtimeRepos.auditSummary.targetCloneRepoCount}</p>
+            </article>
+            <article class="mini-card">
+                <h3>Needed Repos Already Copied In</h3>
+                <p>{runtimeRepos.auditSummary.importedIntoRepoCount}</p>
+            </article>
+            <article class="mini-card">
+                <h3>Critical Repos Already Copied In</h3>
+                <p>{runtimeRepos.auditSummary.criticalImportedCount} / {runtimeRepos.criticalPath.length}</p>
+            </article>
+            <article class="mini-card">
+                <h3>Needed Repos Still Missing</h3>
+                <p>{runtimeRepos.auditSummary.missingFromRepoCount}</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="panel-card two-col">
+        <div>
+            <h2>Current Vercel Output Coverage</h2>
+            <div class="stack">
+                {#each runtimeRepos.currentVercelCoverage.liveNow as item}
+                    <article class="mini-card">
+                        <h3>{item.label}</h3>
+                        <p>{item.source}</p>
+                    </article>
+                {/each}
+            </div>
+        </div>
+        <div>
+            <h2>Highest-Leverage Unified Runtime Gaps</h2>
+            <div class="stack">
+                {#each runtimeRepos.currentVercelCoverage.highestLeverageGaps as item}
+                    <article class="mini-card muted-card">
+                        <h3>{item.name}</h3>
+                        <p>{item.why}</p>
+                    </article>
+                {/each}
+            </div>
+        </div>
     </section>
 
     <section class="panel-card">
@@ -239,8 +291,9 @@
         <div class="repo-grid">
             {#each runtimeRepos.criticalPath as repo}
                 <article class="repo-card">
-                    <h3>{repo.name}</h3>
+                    <h3><a href={repo.repoUrl} target="_blank" rel="noreferrer">{repo.name}</a></h3>
                     <p>{repo.why}</p>
+                    <p><strong>DevCore path:</strong> {repo.devcorePath || "Not copied in yet"}</p>
                 </article>
             {/each}
         </div>
@@ -252,8 +305,9 @@
             <div class="stack">
                 {#each runtimeRepos.phaseTwo as repo}
                     <article class="mini-card">
-                        <h3>{repo.name}</h3>
+                        <h3><a href={repo.repoUrl} target="_blank" rel="noreferrer">{repo.name}</a></h3>
                         <p>{repo.why}</p>
+                        <p><strong>DevCore path:</strong> {repo.devcorePath || "Not copied in yet"}</p>
                     </article>
                 {/each}
             </div>
@@ -263,13 +317,27 @@
             <div class="stack">
                 {#each runtimeRepos.archivedOrExcluded as repo}
                     <article class="mini-card muted-card">
-                        <h3>{repo.name}</h3>
+                        <h3><a href={repo.repoUrl} target="_blank" rel="noreferrer">{repo.name}</a></h3>
                         <p>{repo.why}</p>
                     </article>
                 {/each}
             </div>
         </div>
     </section>
+
+    {#if runtimeRepos.missingFromRepo.length > 0}
+        <section class="panel-card">
+            <h2>Needed Repos Still Missing From DevCore</h2>
+            <div class="stack">
+                {#each runtimeRepos.missingFromRepo as repo}
+                    <article class="mini-card muted-card">
+                        <h3><a href={repo.repoUrl} target="_blank" rel="noreferrer">{repo.name}</a></h3>
+                        <p>{repo.why}</p>
+                    </article>
+                {/each}
+            </div>
+        </section>
+    {/if}
 </main>
 
 <style>
