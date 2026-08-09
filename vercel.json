@@ -29,6 +29,10 @@
       "destination": "/support/"
     },
     {
+      "source": "/dev-panel",
+      "destination": "/dev-panel/"
+    },
+    {
       "source": "/guidelines/uploading",
       "destination": "/guidelines/uploading/"
     }
