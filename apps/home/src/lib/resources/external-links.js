@@ -7,6 +7,11 @@ import {
 
 export default {
     /**
+     * PenguinMod's homepage
+     */
+    penguinmod: "https://penguinmod.com/",
+
+    /**
      * PenguinMod's editor page within the studio domain.
      * 
      * This should only be used in a context of "visit the editor" with no specific target
