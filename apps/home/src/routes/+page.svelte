@@ -77,7 +77,7 @@
                         />
                     </p>
                     <p>
-                        Built off of <a href={externalLinks.scratch} target="_blank" rel="noreferrer">Scratch</a>, <a href={externalLinks.turbowarp} target="_blank" rel="noreferrer">TurboWarp</a> and <a href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
+                        Built off of <a href="https://scratch.mit.edu" target="_blank" rel="noreferrer">Scratch</a>, <a href="https://turbowarp.org" target="_blank" rel="noreferrer">TurboWarp</a> and <a href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
                     </p>
                     <Button icon="/asset/icons/blocks-blue.svg" kind="highlighted" href={externalLinks.editor}>
                         <LocalizedString
