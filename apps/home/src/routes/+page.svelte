@@ -78,24 +78,26 @@
                             key="home.introduction1"
                         />
                     </p>
-                    <p class="section-onboarding-built-off">
-                        Built off of
-                        <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a>,
-                        <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
-                        and
-                        <a class="section-onboarding-built-off-link" href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
-                    </p>
-                    <a class="section-onboarding-cta" href={externalLinks.editor}>
-                        <img
-                            src="/asset/icons/blocks-blue.svg"
-                            alt=""
-                            class="section-onboarding-cta-icon"
-                        />
-                        <LocalizedString
-                            text="Try it out"
-                            key="home.tryout"
-                        />
-                    </a>
+                    <div class="section-onboarding-actions">
+                        <p class="section-onboarding-built-off">
+                            Built off of
+                            <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a>,
+                            <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
+                            and
+                            <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
+                        </p>
+                        <a class="section-onboarding-cta" href={externalLinks.editor}>
+                            <img
+                                src="/asset/icons/blocks-blue.svg"
+                                alt=""
+                                class="section-onboarding-cta-icon"
+                            />
+                            <LocalizedString
+                                text="Try it out"
+                                key="home.tryout"
+                            />
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="section-onboarding-showoff">
@@ -594,6 +596,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        position: relative;
     }
     .section-onboarding-studio-inner,
     .section-onboarding-showoff-inner {
@@ -605,6 +608,8 @@
         flex-direction: column;
         justify-content: center;
         align-items: flex-start;
+        position: relative;
+        z-index: 2;
 
         overflow-wrap: break-word;
         font-weight: bold;
@@ -616,16 +621,25 @@
     .section-onboarding-studio-inner :global(a) {
         color: #ffffff;
     }
+    .section-onboarding-actions {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.85rem;
+        position: relative;
+        z-index: 3;
+    }
     .section-onboarding-built-off {
         display: block;
+        margin: 0;
         position: relative;
-        z-index: 2;
+        z-index: 4;
         line-height: 1.4;
     }
     .section-onboarding-built-off-link {
-        display: inline;
+        display: inline-block;
         position: relative;
-        z-index: 3;
+        z-index: 5;
         pointer-events: auto;
         color: #ffffff;
         text-decoration: underline;
@@ -634,10 +648,10 @@
     .section-onboarding-cta {
         display: inline-flex;
         position: relative;
-        z-index: 1;
+        z-index: 2;
         align-items: center;
         gap: 0.6rem;
-        margin: 4px;
+        margin: 0;
         padding: 1rem 1rem;
         border-radius: 4px;
         background-color: #ffffff;
@@ -649,6 +663,9 @@
         outline: 0;
         box-shadow: 0 0 0 0 rgba(39, 191, 36, 0.35);
         transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+    }
+    .section-onboarding-cta :global(*) {
+        color: inherit !important;
     }
     .section-onboarding-cta:hover {
         filter: brightness(0.97);
