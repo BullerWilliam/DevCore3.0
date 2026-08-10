@@ -9,9 +9,9 @@ import {
 
 export default {
     /**
-     * PenguinMod's studio homepage
+     * PenguinMod's public homepage.
      */
-    penguinmod: "https://studio.penguinmod.com/",
+    penguinmod: "https://penguinmod.com/",
 
     /**
      * PenguinMod's editor page within the studio domain.
