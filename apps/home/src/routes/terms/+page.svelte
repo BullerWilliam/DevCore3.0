@@ -11,16 +11,26 @@
         <p class="eyebrow">DevCore</p>
         <h1>Terms of Service</h1>
         <p>
-            DevCore is still consolidating its legacy ecosystem into one hosted surface.
-            The main editor bundle already ships a legacy terms document, and a DevCore-specific
-            rewrite can live here without changing the editor build.
+            DevCore is still consolidating the wider PenguinMod stack into one hosted platform,
+            but this route now stays inside the owned DevCore home app instead of handing people
+            back to the editor bundle.
         </p>
         <p>
-            For now, use the current hosted terms document bundled with the editor:
-            <a href="/editor/terms.html">open terms</a>.
+            By using DevCore, you agree not to upload or share abusive, unlawful, or infringing
+            content, and you agree to follow the community and uploading guidelines that govern the
+            shared project ecosystem.
         </p>
         <p>
-            Credit and contributor details are also available at
+            You are also responsible for the safety and accuracy of the information you provide
+            while account, project, and moderation systems continue moving under one DevCore-owned
+            deployment.
+        </p>
+        <p>
+            For the current community policy references, use the
+            <a href="/guidelines/uploading">uploading guidelines</a>, the
+            <a href="/privacy">privacy policy</a>, and
+            <a href="/contact">contact page</a>.
+            Credit and contributor details are available at
             <a href={DEVCORE_CREDITS_PATH}>the DevCore credits page</a>.
         </p>
     </div>
