@@ -1,5 +1,4 @@
 <script>
-    import { PUBLIC_STUDIO_URL } from "$lib/resources/public-env";
     import { DEVCORE_EDITOR_PATH } from "$lib/resources/site-paths";
 
     import Icon from "$lib/components/Icon/Component.svelte";
@@ -80,14 +79,14 @@
 
             {#if StateApplication.loggedInProcessed && !($StoreSettings.loggedIn)}
                 <a
-                    href={PUBLIC_STUDIO_URL}
+                    href="/signin"
                     class="navigation-button navigation-auth-button"
                     {@attach LocalizedTooltip("navigation.login")}
                 >
                     <LocalizedString text="Sign in" key="navigation.login" />
                 </a>
                 <a
-                    href={PUBLIC_STUDIO_URL}
+                    href="/signup"
                     class="navigation-button navigation-auth-button"
                     {@attach LocalizedTooltip("navigation.signup")}
                 >

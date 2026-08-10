@@ -9,9 +9,11 @@
     import homepageNews from "$lib/content/dev-panel/homepage-news";
     import TranslationMapper from "$lib/resources/localization/translation/mapper";
 
+    import StoreDevPanelDrafts from "$lib/stores/dev-panel-drafts";
     import StoreSettings from "$lib/stores/settings";
 
     let props = $props();
+    const activeHomepageNews = $derived($StoreDevPanelDrafts.news || homepageNews);
 </script>
 
 <Category {...props}>
@@ -24,14 +26,14 @@
     {/snippet}
     {#snippet headerSecondary()}
         <a
-            href={homepageNews.seeMoreHref}
-            target={homepageNews.seeMoreExternal ? "_blank" : undefined}
+            href={activeHomepageNews.seeMoreHref}
+            target={activeHomepageNews.seeMoreExternal ? "_blank" : undefined}
         >
             <LocalizedString
                 text="See more"
                 key="home.seemore"
             />
-            {#if homepageNews.seeMoreExternal}
+            {#if activeHomepageNews.seeMoreExternal}
                 <Icon style="font-size:0.9rem;display:inline">
                     open_in_new
                 </Icon>
@@ -40,13 +42,13 @@
     {/snippet}
     <div>
         <h2 style="margin-block:4px;">
-            {homepageNews.title}
+            {activeHomepageNews.title}
         </h2>
         <div style="width:100%">
-            {#each homepageNews.body as paragraph}
+            {#each activeHomepageNews.body as paragraph}
                 <p>{paragraph}</p>
             {/each}
-            {#each homepageNews.inlineLinks as link}
+            {#each activeHomepageNews.inlineLinks as link}
                 <a href={link.href} target="_blank">
                     {link.label}
                 </a>
@@ -54,16 +56,16 @@
         </div>
         <hr />
         <img
-            src={homepageNews.image.src}
-            alt={homepageNews.image.alt}
+            src={activeHomepageNews.image.src}
+            alt={activeHomepageNews.image.alt}
             style="width:100%;border-radius:8px;"
         />
     </div>
     {#snippet footer()}
         {#if browser && TranslationMapper.mapSavedLanguageCode($StoreSettings.appLanguage) !== "en"}
-            {homepageNews.footer.untranslated}
+            {activeHomepageNews.footer.untranslated}
         {:else}
-            {homepageNews.footer.default}
+            {activeHomepageNews.footer.default}
         {/if}
     {/snippet}
 </Category>

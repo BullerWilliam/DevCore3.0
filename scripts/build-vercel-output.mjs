@@ -10,7 +10,7 @@ import {
     writeFileSync
 } from 'node:fs';
 import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const repoRoot = path.resolve(scriptDir, '..');
@@ -47,7 +47,10 @@ const runNpm = (args, env = {}, cwd = repoRoot) => {
     });
 };
 
-const installApp = cwd => {
+const installApp = (cwd, {
+    ignoreScripts = false,
+    extraArgs = []
+} = {}) => {
     if (skipInstalls) {
         console.log(`\n> skipping install in ${path.relative(repoRoot, cwd) || '.'}`);
         return;
@@ -56,6 +59,10 @@ const installApp = cwd => {
     const args = usingPnpm
         ? ['install', '--strict-peer-dependencies=false', '--no-frozen-lockfile']
         : ['install', '--workspaces=false', '--legacy-peer-deps'];
+    if (ignoreScripts) {
+        args.push('--ignore-scripts');
+    }
+    args.push(...extraArgs);
     runNpm(args, {}, cwd);
 };
 
@@ -112,6 +119,16 @@ const copyFile = (source, target) => {
     copyFileSync(source, target);
 };
 
+const writeOutputFile = (relativePath, content) => {
+    const target = path.join(outputRoot, relativePath);
+    mkdirSync(path.dirname(target), { recursive: true });
+    writeFileSync(target, content, 'utf8');
+};
+
+const writeOutputJson = (relativePath, data) => {
+    writeOutputFile(relativePath, JSON.stringify(data, null, 2));
+};
+
 const rewriteTextFile = (relativePath, transform) => {
     const filePath = path.join(outputRoot, relativePath);
     const current = readFileSync(filePath, 'utf8');
@@ -163,12 +180,38 @@ const docsOutput = path.join(repoRoot, 'apps', 'docs', 'build');
 const extensionsGalleryOutput = path.join(repoRoot, 'apps', 'extensions-gallery', 'public');
 const editorOutput = path.join(repoRoot, 'apps', 'editor', 'build');
 const packagerOutput = path.join(repoRoot, 'apps', 'packager', 'dist');
+const frontpageMirrorPath = path.join(
+    homeDir,
+    'src',
+    'lib',
+    'content',
+    'dev-panel',
+    'homepage-frontpage.json'
+);
+const homepageOwnedProfileCatalogModuleUrl = pathToFileURL(
+    path.join(homeDir, 'src', 'lib', 'content', 'dev-panel', 'owned-profile-catalog.js')
+).href;
+const homepageBasicApiModuleUrl = pathToFileURL(
+    path.join(homeDir, 'src', 'lib', 'content', 'dev-panel', 'homepage-basic-api.js')
+).href;
+const homepageFrontpage = JSON.parse(readFileSync(frontpageMirrorPath, 'utf8'));
+const { buildOwnedProfileCatalog } = await import(homepageOwnedProfileCatalogModuleUrl);
+const { default: homepageBasicApi } = await import(homepageBasicApiModuleUrl);
+const ownedProfileCatalog = buildOwnedProfileCatalog(homepageFrontpage);
 
 copyDirectory(checkedInOutputDir, outputRoot);
 copyDirectory(homeOutput, outputRoot);
 copyDirectory(docsOutput, path.join(outputRoot, 'docs'));
 copyDirectory(extensionsGalleryOutput, path.join(outputRoot, 'extensions-gallery'));
 copyDirectory(path.join(extensionsGalleryOutput, 'extensions'), path.join(outputRoot, 'extensions'));
+copyFile(frontpageMirrorPath, path.join(outputRoot, 'api', 'v1', 'projects', 'frontpage'));
+writeOutputJson(path.join('basic-api', 'status'), homepageBasicApi.status);
+writeOutputJson(path.join('basic-api', 'updates'), homepageBasicApi.updates);
+writeOutputJson(path.join('basic-api', 'commits'), homepageBasicApi.commits);
+writeOutputJson(path.join('api', 'v1', 'devcore', 'profiles', 'index.json'), ownedProfileCatalog.metadata);
+for (const [username, profile] of Object.entries(ownedProfileCatalog.profilesByUsername)) {
+    writeOutputJson(path.join('api', 'v1', 'devcore', 'profiles', `${username}.json`), profile);
+}
 copyHtmlRoute(
     path.join('extensions-gallery', 'load.html'),
     path.join('extensions-gallery', 'load')
@@ -193,6 +236,12 @@ copyHtmlRoute('profile.html', 'profile', content => content.replaceAll('="./', '
 copyHtmlRoute('privacy.html', 'privacy', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('terms.html', 'terms', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute('support.html', 'support', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('contact.html', 'contact', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('credits.html', 'credits', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('dev-panel.html', 'dev-panel', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('forgotpassword.html', 'forgotpassword', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('signin.html', 'signin', content => content.replaceAll('="./', '="/'));
+copyHtmlRoute('signup.html', 'signup', content => content.replaceAll('="./', '="/'));
 copyHtmlRoute(
     path.join('guidelines', 'uploading.html'),
     path.join('guidelines', 'uploading'),
@@ -216,6 +265,8 @@ if (rebuildLegacyApps) {
         'packages/parser',
         'packages/pmp-protobuf',
         'packages/audio',
+        'packages/blocks',
+        'packages/paint',
         'packages/render-fonts',
         'packages/svg-renderer',
         'packages/render',
@@ -224,10 +275,14 @@ if (rebuildLegacyApps) {
     ].map(packagePath => path.join(repoRoot, packagePath));
 
     for (const packageDir of sharedPackageDirs) {
-        installApp(packageDir);
+        installApp(packageDir, { ignoreScripts: true });
     }
-    installApp(editorDir);
-    installApp(packagerDir);
+    installApp(editorDir, {
+        extraArgs: usingPnpm ? [] : ['--install-strategy=nested']
+    });
+    installApp(packagerDir, {
+        extraArgs: usingPnpm ? [] : ['--install-strategy=nested']
+    });
     runNodeScript('scripts/repair-legacy-install.mjs');
     runWebpackBuild(packagerDir, {}, {
         cleanDirectory: packagerOutput

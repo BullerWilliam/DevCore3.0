@@ -6,6 +6,7 @@
     // components
     import { Category, SwappableHolder, Project } from "PenguinMod-SvelteUI";
     import Icon from "$lib/components/Icon/Component.svelte";
+    import HomeStatusAlerts from "$lib/components/CategoryHome/HomeStatusAlerts.svelte";
     import MyFeed from "$lib/components/CategoryHome/MyFeed.svelte";
     import LoadingSpinner from "$lib/components/LoadingSpinner.svelte";
     import WhatsNew from "$lib/components/CategoryHome/WhatsNew.svelte";
@@ -18,6 +19,7 @@
     import CacheHelper from "$lib/resources/cache/cache-helper";
     import TranslationMapper from "$lib/resources/localization/translation/mapper";
     import PenguinModClient from "$lib/resources/penguinmod/client";
+    import PenguinModFrontpageAPI from "$lib/resources/penguinmod/frontpage-api";
     import { buildSharedProjectPath } from "$lib/resources/site-paths";
 
     import StateApplication from "$lib/state/app.svelte";
@@ -42,7 +44,7 @@
             && !CacheHelper.isExpired("frontpageProjectsCachedTime", CACHE_FRONTPAGE_PROJECTS)
         ) return;
 
-        const frontPage = await PenguinModClient.projects.getFrontPage();
+        const frontPage = await PenguinModFrontpageAPI.getFrontPage();
         CacheHelper.update({
             frontpageProjectsCachedResult: frontPage,
         });
@@ -134,6 +136,8 @@
             </p>
         </div>
     {/if}
+
+    <HomeStatusAlerts />
 
     <!-- Scratch Note -->
     <p class="section-scratchnote">

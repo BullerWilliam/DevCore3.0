@@ -3,6 +3,35 @@
   "installCommand": "node -e \"console.log('Skipping root install; scripts/build-vercel-output.mjs handles workspace installs.')\"",
   "buildCommand": "npm run build:vercel",
   "outputDirectory": "dist/vercel",
+  "headers": [
+    {
+      "source": "/basic-api/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/projects/frontpage",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    },
+    {
+      "source": "/api/v1/devcore/profiles/(.*)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json; charset=utf-8"
+        }
+      ]
+    }
+  ],
   "rewrites": [
     {
       "source": "/mystuff",
@@ -21,8 +50,28 @@
       "destination": "/privacy/"
     },
     {
+      "source": "/credits",
+      "destination": "/credits/"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact/"
+    },
+    {
       "source": "/terms",
       "destination": "/terms/"
+    },
+    {
+      "source": "/signin",
+      "destination": "/signin/"
+    },
+    {
+      "source": "/signup",
+      "destination": "/signup/"
+    },
+    {
+      "source": "/forgotpassword",
+      "destination": "/forgotpassword/"
     },
     {
       "source": "/support",

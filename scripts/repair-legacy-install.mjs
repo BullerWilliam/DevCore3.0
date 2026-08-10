@@ -62,6 +62,16 @@ const linkModuleSet = (appPath, mappings) => {
             throw new Error(`Expected local package to exist: ${targetPath}`);
         }
 
+        if (moduleName === 'scratch-blocks') {
+            const requiredGeneratedEntrypoint = path.join(targetPath, 'blockly_compressed_vertical.js');
+            if (!existsSync(requiredGeneratedEntrypoint)) {
+                console.log(
+                    `skipping ${moduleName}; local package is missing generated Blockly entrypoints like ${path.relative(repoRoot, requiredGeneratedEntrypoint)}`
+                );
+                continue;
+            }
+        }
+
         replaceWithJunction(targetPath, linkPath);
         console.log(`linked ${moduleName} -> ${path.relative(repoRoot, targetPath)}`);
     }
