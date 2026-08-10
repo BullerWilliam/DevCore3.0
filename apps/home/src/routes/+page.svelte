@@ -81,7 +81,7 @@
                         <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a>,
                         <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
                         and
-                        <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
+                        <a class="section-onboarding-built-off-link" href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
                     </p>
                     <a class="section-onboarding-cta" href={externalLinks.editor}>
                         <img
