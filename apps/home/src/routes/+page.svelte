@@ -82,10 +82,16 @@
                         <div class="section-onboarding-built-off">
                             <span class="section-onboarding-built-off-label">Built off of</span>
                             <p class="section-onboarding-built-off-platforms">
-                                <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a><span>,</span>
-                                <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
+                                <span class="section-onboarding-built-off-platform">
+                                    <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a><span>,</span>
+                                </span>
+                                <span class="section-onboarding-built-off-platform">
+                                    <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
+                                </span>
                                 <span>and</span>
-                                <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
+                                <span class="section-onboarding-built-off-platform">
+                                    <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
+                                </span>
                             </p>
                         </div>
                         <a class="section-onboarding-cta" href={externalLinks.editor}>
@@ -638,8 +644,10 @@
         align-items: flex-start;
         gap: 0.25rem;
         margin: 0;
+        padding-bottom: 0.35rem;
         position: relative;
         z-index: 4;
+        isolation: isolate;
         width: fit-content;
         max-width: min(100%, 24rem);
     }
@@ -652,16 +660,25 @@
         align-items: baseline;
         gap: 0.35rem;
         margin: 0;
+        padding: 0;
         position: relative;
         z-index: 5;
         line-height: 1.4;
+        pointer-events: auto;
         width: fit-content;
         max-width: 100%;
+    }
+    .section-onboarding-built-off-platform {
+        display: inline-flex;
+        align-items: baseline;
+        gap: 0.12rem;
+        position: relative;
+        z-index: 6;
     }
     .section-onboarding-built-off-link {
         display: inline-block;
         position: relative;
-        z-index: 6;
+        z-index: 7;
         pointer-events: auto;
         color: #ffffff;
         text-decoration: underline;
@@ -670,10 +687,11 @@
     .section-onboarding-cta {
         display: inline-flex;
         position: relative;
-        z-index: 2;
+        z-index: 1;
         align-items: center;
         gap: 0.6rem;
-        margin: 0.15rem 0 0;
+        align-self: flex-start;
+        margin: 0.5rem 0 0;
         padding: 1rem 1rem;
         border-radius: 4px;
         background-color: #ffffff;
