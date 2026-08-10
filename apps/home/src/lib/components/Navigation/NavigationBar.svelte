@@ -16,10 +16,6 @@
         $StoreSettings.appTheme = $StoreSettings.appTheme === "light" ? "dark" : "light";
     };
 
-    const handleSearchSubmit = (event) => {
-        event.preventDefault();
-    };
-
     const handleLogout = async () => {
         await Authenticator.logout();
     };
@@ -64,7 +60,7 @@
                 <LocalizedString text="Create" key="navigation.create" />
             </a>
 
-            <form class="navigation-search" onsubmit={handleSearchSubmit}>
+            <form class="navigation-search" action="/search" method="GET">
                 <button class="navigation-search-button" type="submit" aria-label="Search">
                     <Icon>search</Icon>
                 </button>
@@ -73,7 +69,7 @@
                     type="search"
                     placeholder={searchPlaceholder()}
                     aria-label={searchPlaceholder()}
-                    name="search"
+                    name="q"
                 />
             </form>
 
