@@ -63,6 +63,10 @@
             frontPageLoading = false;
         }
     });
+
+    const stopNavigationBubble = (event) => {
+        event.stopPropagation();
+    };
 </script>
 
 <main>
@@ -79,7 +83,7 @@
                         />
                     </p>
                     <div class="section-onboarding-actions">
-                        <div class="section-onboarding-built-off">
+                        <div class="section-onboarding-built-off" onclick={stopNavigationBubble}>
                             <span class="section-onboarding-built-off-label">Built off of</span>
                             <div class="section-onboarding-built-off-platforms">
                                 <a class="section-onboarding-built-off-link" href={externalLinks.scratch} target="_blank" rel="noreferrer">Scratch</a>
@@ -89,17 +93,19 @@
                                 <a class="section-onboarding-built-off-link" href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
                             </div>
                         </div>
-                        <a class="section-onboarding-cta" href={externalLinks.editor}>
-                            <img
-                                src="/asset/icons/blocks-blue.svg"
-                                alt=""
-                                class="section-onboarding-cta-icon"
-                            />
-                            <LocalizedString
-                                text="Try it out"
-                                key="home.tryout"
-                            />
-                        </a>
+                        <div class="section-onboarding-cta-wrap">
+                            <a class="section-onboarding-cta" href={externalLinks.editor}>
+                                <img
+                                    src="/asset/icons/blocks-blue.svg"
+                                    alt=""
+                                    class="section-onboarding-cta-icon"
+                                />
+                                <LocalizedString
+                                    text="Try it out"
+                                    key="home.tryout"
+                                />
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -147,7 +153,7 @@
     <!-- Scratch Note -->
     <p class="section-scratchnote">
         <LocalizedString
-            text="Scratch Note: Please don't mention DevCore on Scratch, we have different rules compared to Scratch! 😅"
+            text="Scratch Note: Please don't mention DevCore on Scratch, we have different rules compared to Scratch! ??"
             key="home.scratchnote"
         />
     </p>
@@ -634,6 +640,7 @@
         isolation: isolate;
         width: fit-content;
         max-width: min(100%, 26rem);
+        pointer-events: none;
     }
     .section-onboarding-built-off {
         display: flex;
@@ -647,6 +654,7 @@
         isolation: isolate;
         width: fit-content;
         max-width: min(100%, 24rem);
+        pointer-events: auto;
     }
     .section-onboarding-built-off-label {
         line-height: 1.2;
@@ -680,13 +688,20 @@
         text-decoration: underline;
         text-underline-offset: 0.15em;
     }
+    .section-onboarding-cta-wrap {
+        display: inline-flex;
+        align-self: flex-start;
+        position: relative;
+        z-index: 1;
+        margin-top: 0.15rem;
+        pointer-events: auto;
+    }
     .section-onboarding-cta {
         display: inline-flex;
         position: relative;
-        z-index: 1;
+        z-index: 0;
         align-items: center;
         gap: 0.6rem;
-        align-self: flex-start;
         margin: 0;
         padding: 1rem 1rem;
         border-radius: 4px;
