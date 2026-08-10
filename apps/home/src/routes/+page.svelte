@@ -81,18 +81,13 @@
                     <div class="section-onboarding-actions">
                         <div class="section-onboarding-built-off">
                             <span class="section-onboarding-built-off-label">Built off of</span>
-                            <p class="section-onboarding-built-off-platforms">
-                                <span class="section-onboarding-built-off-platform">
-                                    <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a><span>,</span>
-                                </span>
-                                <span class="section-onboarding-built-off-platform">
-                                    <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
-                                </span>
-                                <span>and</span>
-                                <span class="section-onboarding-built-off-platform">
-                                    <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
-                                </span>
-                            </p>
+                            <div class="section-onboarding-built-off-platforms">
+                                <a class="section-onboarding-built-off-link" href={externalLinks.scratch} target="_blank" rel="noreferrer">Scratch</a>
+                                <span class="section-onboarding-built-off-separator">,</span>
+                                <a class="section-onboarding-built-off-link" href={externalLinks.turbowarp} target="_blank" rel="noreferrer">TurboWarp</a>
+                                <span class="section-onboarding-built-off-separator">and</span>
+                                <a class="section-onboarding-built-off-link" href={externalLinks.penguinmod} target="_blank" rel="noreferrer">PenguinMod</a>
+                            </div>
                         </div>
                         <a class="section-onboarding-cta" href={externalLinks.editor}>
                             <img
@@ -637,6 +632,8 @@
         position: relative;
         z-index: 3;
         isolation: isolate;
+        width: fit-content;
+        max-width: min(100%, 26rem);
     }
     .section-onboarding-built-off {
         display: flex;
@@ -644,7 +641,7 @@
         align-items: flex-start;
         gap: 0.25rem;
         margin: 0;
-        padding-bottom: 0.35rem;
+        padding-bottom: 0.85rem;
         position: relative;
         z-index: 4;
         isolation: isolate;
@@ -655,7 +652,7 @@
         line-height: 1.2;
     }
     .section-onboarding-built-off-platforms {
-        display: inline-flex;
+        display: flex;
         flex-wrap: wrap;
         align-items: baseline;
         gap: 0.35rem;
@@ -668,10 +665,9 @@
         width: fit-content;
         max-width: 100%;
     }
-    .section-onboarding-built-off-platform {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.12rem;
+    .section-onboarding-built-off-separator {
+        pointer-events: none;
+        user-select: none;
         position: relative;
         z-index: 6;
     }
@@ -691,7 +687,7 @@
         align-items: center;
         gap: 0.6rem;
         align-self: flex-start;
-        margin: 0.5rem 0 0;
+        margin: 0;
         padding: 1rem 1rem;
         border-radius: 4px;
         background-color: #ffffff;
