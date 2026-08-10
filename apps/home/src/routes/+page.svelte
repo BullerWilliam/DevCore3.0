@@ -630,6 +630,7 @@
         gap: 0.85rem;
         position: relative;
         z-index: 3;
+        isolation: isolate;
     }
     .section-onboarding-built-off {
         display: flex;
@@ -639,13 +640,14 @@
         margin: 0;
         position: relative;
         z-index: 4;
-        max-width: 24rem;
+        width: fit-content;
+        max-width: min(100%, 24rem);
     }
     .section-onboarding-built-off-label {
         line-height: 1.2;
     }
     .section-onboarding-built-off-platforms {
-        display: flex;
+        display: inline-flex;
         flex-wrap: wrap;
         align-items: baseline;
         gap: 0.35rem;
@@ -653,6 +655,8 @@
         position: relative;
         z-index: 5;
         line-height: 1.4;
+        width: fit-content;
+        max-width: 100%;
     }
     .section-onboarding-built-off-link {
         display: inline-block;
