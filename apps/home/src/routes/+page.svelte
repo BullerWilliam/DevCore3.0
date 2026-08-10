@@ -79,13 +79,15 @@
                         />
                     </p>
                     <div class="section-onboarding-actions">
-                        <p class="section-onboarding-built-off">
-                            Built off of
-                            <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a>,
-                            <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
-                            and
-                            <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
-                        </p>
+                        <div class="section-onboarding-built-off">
+                            <span class="section-onboarding-built-off-label">Built off of</span>
+                            <p class="section-onboarding-built-off-platforms">
+                                <a class="section-onboarding-built-off-link" href="https://scratch.mit.edu/" target="_blank" rel="noreferrer">Scratch</a><span>,</span>
+                                <a class="section-onboarding-built-off-link" href="https://turbowarp.org/" target="_blank" rel="noreferrer">TurboWarp</a>
+                                <span>and</span>
+                                <a class="section-onboarding-built-off-link" href="https://penguinmod.com/" target="_blank" rel="noreferrer">PenguinMod</a>
+                            </p>
+                        </div>
                         <a class="section-onboarding-cta" href={externalLinks.editor}>
                             <img
                                 src="/asset/icons/blocks-blue.svg"
@@ -630,16 +632,32 @@
         z-index: 3;
     }
     .section-onboarding-built-off {
-        display: block;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
         margin: 0;
         position: relative;
         z-index: 4;
+        max-width: 24rem;
+    }
+    .section-onboarding-built-off-label {
+        line-height: 1.2;
+    }
+    .section-onboarding-built-off-platforms {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        gap: 0.35rem;
+        margin: 0;
+        position: relative;
+        z-index: 5;
         line-height: 1.4;
     }
     .section-onboarding-built-off-link {
         display: inline-block;
         position: relative;
-        z-index: 5;
+        z-index: 6;
         pointer-events: auto;
         color: #ffffff;
         text-decoration: underline;
@@ -651,7 +669,7 @@
         z-index: 2;
         align-items: center;
         gap: 0.6rem;
-        margin: 0;
+        margin: 0.15rem 0 0;
         padding: 1rem 1rem;
         border-radius: 4px;
         background-color: #ffffff;
